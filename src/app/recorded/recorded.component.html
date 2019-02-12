@@ -1,0 +1,18 @@
+<ul class="recordeds">
+
+<li *ngFor="let rec of recordeds" (click)="onSelect(rec)" [class.selected]="rec === selectedRecorded">
+
+<span>{{rec.Title}} Title</span>
+<div><span>start: {{rec.StartTime}}</span></div>
+
+</li>
+
+</ul>
+
+<div *ngIf="selectedRecorded">
+
+<h1>Selected: {{selectedRecorded.Title}}</h1>
+
+<app-recorded-detail [recorded]="selectedRecorded"></app-recorded-detail>
+
+</div>

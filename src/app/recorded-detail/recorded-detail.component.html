@@ -1,0 +1,11 @@
+<div *ngIf="recorded">
+
+  <h2>{{recorded.Title | uppercase}} Details</h2>
+  <div><span>id: </span>{{recorded.StartTime}}</div>
+  <div>
+    <label>name:
+      <input [(ngModel)]="recorded.Title" placeholder="name"/>  
+    </label>
+  </div>
+
+</div>
