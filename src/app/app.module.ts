@@ -13,6 +13,11 @@ import { UpcomingComponent } from './upcoming/upcoming.component';
 import { StatusComponent } from './status/status.component';
 import { GuideComponent } from './guide/guide.component';
 
+import { WINDOW_PROVIDERS } from './window.provider.ts';
+import { UniquePipe } from './unique.pipe';
+import { UniqueTitlePipe } from './unique-title.pipe';
+import { ProgramListComponent } from './program-list/program-list.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +27,10 @@ import { GuideComponent } from './guide/guide.component';
     DashboardComponent,
     UpcomingComponent,
     StatusComponent,
-    GuideComponent
+    GuideComponent,
+    UniquePipe,
+    UniqueTitlePipe,
+    ProgramListComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +38,9 @@ import { GuideComponent } from './guide/guide.component';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+	WINDOW_PROVIDERS
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

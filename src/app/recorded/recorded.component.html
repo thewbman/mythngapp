@@ -1,17 +1,30 @@
-<ul class="recordeds">
+<ul class="titleList">
 
-<li *ngFor="let rec of recordeds" (click)="onSelect(rec)" [class.selected]="rec === selectedRecorded">
+<li *ngFor="let rec of recordeds | uniqueTitle" (click)="onSelectTitle(rec)" [class.selected]="rec === selectedTitle">
 
-<span>{{rec.Title}} Title</span>
-<div><span>start: {{rec.StartTime}}</span></div>
+<span>{{rec.Title}}</span>
 
 </li>
 
 </ul>
 
-<div *ngIf="selectedRecorded">
+<div *ngIf="selectedTitle">
 
-<h1>Selected: {{selectedRecorded.Title}}</h1>
+<h1>Selected: {{selectedTitle.Title}}</h1>
+
+
+
+<ul class="filteredProgramList">
+
+
+<li *ngFor="let rec of filteredRecordeds" (click)="onSelectRecorded(rec)" [class.selected]="rec === selectedRecorded">
+
+<span>S{{rec.Season}}E{{rec.Episode}} - </span><span>{{rec.StartTime}}</span>
+
+</li>
+
+
+</ul>
 
 <app-recorded-detail [recorded]="selectedRecorded"></app-recorded-detail>
 

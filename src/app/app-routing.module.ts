@@ -8,7 +8,7 @@ import { StatusComponent } from './status/status.component';
 import { GuideComponent } from './guide/guide.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   { path: 'recorded', component: RecordedComponent },
   { path: 'upcoming', component: UpcomingComponent },
   { path: 'guide', component: GuideComponent },
