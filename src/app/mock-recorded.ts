@@ -1,4 +1,5 @@
 import { Program } from './program'
+import { RecordedProgramResponse } from './recordedProgramResponse'
 
 export const MOCK_RECORDED: Program[] = [
 {

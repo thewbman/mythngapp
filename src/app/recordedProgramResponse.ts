@@ -1,12 +1,12 @@
 import { Program } from './program';
 
 export class ProgramListClass {
-      StartIndex: number;
-      Count: number;
-      TotalAvailable: number;
+      StartIndex: string;
+      Count: string;
+      TotalAvailable: string;
       AsOf: string;
       Version: string;
-      ProtoVer: number;
+      ProtoVer: string;
       Programs: Program[];
 }
 

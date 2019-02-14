@@ -6,19 +6,22 @@ export class Program {
 	Category?: string;
 	Description?: string;
 	Airdate?: string;
-	Season?: number;
-	Episode?: number;
+	Season?: string;
+	Episode?: string;
 	Recording?: ProgramRecording;
 	Channel?: ProgramChannel;
+	[key: string]: any;
 }
 
 export class ProgramRecording {
-	RecordedId?: number;
-	Status?: number;
+	RecordedId?: string;
+	Status?: string;
 	FileName?: string;
+	[key: string]: any;
 }
 
 export class ProgramChannel {
-	ChanId?: number;
+	ChanId?: string;
 	ChannelName?: string;
+	[key: string]: any;
 }

@@ -13,7 +13,7 @@ import { UpcomingComponent } from './upcoming/upcoming.component';
 import { StatusComponent } from './status/status.component';
 import { GuideComponent } from './guide/guide.component';
 
-import { WINDOW_PROVIDERS } from './window.provider.ts';
+import { WINDOW_PROVIDERS } from './window.provider';
 import { UniquePipe } from './unique.pipe';
 import { UniqueTitlePipe } from './unique-title.pipe';
 import { ProgramListComponent } from './program-list/program-list.component';

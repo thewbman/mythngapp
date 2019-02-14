@@ -35,7 +35,7 @@ export class RecordedService {
 	return this.http.get<RecordedProgramResponse>(this.recordedUrl)
       .pipe(
         tap(_ => this.log('fetched recorded')),
-        catchError(this.handleError('getRecordeds', []))
+        catchError(this.handleError<RecordedProgramResponse>('getRecordedsUrl'))
       );
   }
 
