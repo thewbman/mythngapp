@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
 import { HttpClientModule }    from '@angular/common/http';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +18,7 @@ import { WINDOW_PROVIDERS } from './window.provider';
 import { UniquePipe } from './unique.pipe';
 import { UniqueTitlePipe } from './unique-title.pipe';
 import { ProgramListComponent } from './program-list/program-list.component';
+import { MaterialModule } from './material';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { ProgramListComponent } from './program-list/program-list.component';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [
 	WINDOW_PROVIDERS
