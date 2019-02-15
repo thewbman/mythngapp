@@ -11,5 +11,5 @@ export class ProgramListClass {
 }
 
 export class RecordedProgramResponse {
-	ProgramList: ProgramListClass;
+ ProgramList: ProgramListClass;
 }

@@ -6,9 +6,9 @@ import * as _ from 'lodash';
   pure: false
 })
 export class UniqueTitlePipe implements PipeTransform {
-    transform(value: any): any{
-        if(value!== undefined && value!== null){
-            return _.sortBy(_.uniqBy(value, 'Title'),'Title');
+    transform(value: any): any {
+        if (value !== undefined && value !== null) {
+            return _.sortBy(_.uniqBy(value, 'Title'), 'Title');
         }
         return value;
     }
