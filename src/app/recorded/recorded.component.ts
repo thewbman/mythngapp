@@ -10,6 +10,7 @@ import { MessageService } from '../message.service';
 })
 export class RecordedComponent implements OnInit {
 
+  tabIndex: number;
   selectedTitle: Program;
   selectedRecorded: Program;
 
@@ -19,6 +20,7 @@ export class RecordedComponent implements OnInit {
   constructor(private recService: RecordedService, private mesService: MessageService) { }
 
   ngOnInit() {
+	this.tabIndex = 0;
 	this.getRecordeds();
 	// this.filterRecordedsByTitle();
   }
@@ -27,11 +29,13 @@ export class RecordedComponent implements OnInit {
     this.mesService.add('Selected title: ' + myRecTitle.Title);
     this.selectedTitle = myRecTitle;
     this.filterRecordedsByTitle();
+    this.tabIndex = 1;
   }
 
   onSelectRecorded(myRec: Program): void {
     this.mesService.add('Select program: ' + myRec.StartTime);
     this.selectedRecorded = myRec;
+    this.tabIndex = 2;
   }
 
   getRecordeds(): void {

@@ -1,31 +1,63 @@
-<ul class="titleList">
+<mat-tab-group [selectedIndex]="tabIndex" >
+  <mat-tab label="Titles">
+    <ng-template matTabContent>
 
-<li *ngFor="let rec of recordeds | uniqueTitle" (click)="onSelectTitle(rec)" [class.selected]="rec === selectedTitle">
+<mat-list class="titleList">
+
+<mat-list-item  *ngFor="let rec of recordeds | uniqueTitle; last as last" (click)="onSelectTitle(rec)" [class.selected]="rec === selectedTitle">
 
 <span>{{rec.Title}}</span>
 
-</li>
+<mat-divider [inset]="true" *ngIf="!last"></mat-divider>
+</mat-list-item>
 
-</ul>
+</mat-list>
+
+    </ng-template>
+  </mat-tab>
+
+  <mat-tab label="Recordings">
+    <ng-template matTabContent>
 
 <div *ngIf="selectedTitle">
 
-<h1>Selected: {{selectedTitle.Title}}</h1>
+<h2>{{selectedTitle.Title}}</h2>
 
 
 
-<ul class="filteredProgramList">
+<mat-list class="filteredProgramList">
 
 
-<li *ngFor="let rec of filteredRecordeds" (click)="onSelectRecorded(rec)" [class.selected]="rec === selectedRecorded">
+<mat-list-item *ngFor="let rec of filteredRecordeds; last as last" (click)="onSelectRecorded(rec)" [class.selected]="rec === selectedRecorded">
 
 <span>S{{rec.Season}}E{{rec.Episode}} - </span><span>{{rec.StartTime}}</span>
 
-</li>
 
 
-</ul>
+<mat-divider [inset]="true"  *ngIf="!last" ></mat-divider>
+
+</mat-list-item>
+
+
+</mat-list>
+
+
+</div>
+
+
+    </ng-template>
+  </mat-tab>
+  <mat-tab label="Details">
+    <ng-template matTabContent>
+
+<div *ngIf="selectedRecorded">
 
 <app-recorded-detail [recorded]="selectedRecorded"></app-recorded-detail>
 
+
 </div>
+
+
+    </ng-template>
+  </mat-tab>
+</mat-tab-group>
