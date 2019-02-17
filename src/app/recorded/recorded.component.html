@@ -1,12 +1,29 @@
 <mat-tab-group [selectedIndex]="tabIndex" >
+    <mat-tab label="RecGroup">
+        <ng-template matTabContent>
+      
+          <mat-list class="recGroupList">
+      
+          <mat-list-item  *ngFor="let recGR of recGroupList; last as last"  (click)="onSelectRecGroup(recGR)" [class.selected]="recGR === selectedRecGroup">
+          
+          <span>{{recGR}}</span>
+          
+<mat-divider [inset]="true" *ngIf="!last"></mat-divider>
+          </mat-list-item>
+          
+          </mat-list>
+      
+          </ng-template>
+        </mat-tab>
+
   <mat-tab label="Titles">
     <ng-template matTabContent>
 
 <mat-list class="titleList">
 
-<mat-list-item  *ngFor="let rec of recordeds | uniqueTitle; last as last" (click)="onSelectTitle(rec)" [class.selected]="rec === selectedTitle">
+<mat-list-item  *ngFor="let title of titleList; last as last" (click)="onSelectTitle(title)" [class.selected]="title === selectedTitle">
 
-<span>{{rec.Title}}</span>
+<span>{{title}}</span>
 
 <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
 </mat-list-item>
@@ -57,7 +74,7 @@
 
 </div>
 
+</ng-template>
+</mat-tab>
 
-    </ng-template>
-  </mat-tab>
 </mat-tab-group>

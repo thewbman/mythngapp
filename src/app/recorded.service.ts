@@ -25,14 +25,14 @@ export class RecordedService {
   constructor(@Inject(WINDOW) private window: Window, private mesService: MessageService, private http: HttpClient) { }
 
   getRecordeds(): Observable<Program[]> {
-	this.log('RecordedService: fetched recorded');
-	return of(MOCK_RECORDED_RESPONSE.ProgramList.Programs);
+    this.log('RecordedService: fetched recorded');
+    return of(MOCK_RECORDED_RESPONSE.ProgramList.Programs);
 
-	// return this.getRecordedsUrl().ProgramList.Programs;
+    // return this.getRecordedsUrl().ProgramList.Programs;
   }
 
   getRecordedsUrl(): Observable<RecordedProgramResponse> {
-	return this.http.get<RecordedProgramResponse>(this.recordedUrl)
+    return this.http.get<RecordedProgramResponse>(this.recordedUrl)
       .pipe(
         tap(_ => this.log('fetched recorded')),
         catchError(this.handleError<RecordedProgramResponse>('getRecordedsUrl'))

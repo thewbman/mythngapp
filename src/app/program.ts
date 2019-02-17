@@ -1,27 +1,28 @@
 export class Program {
-	StartTime: string;
-	EndTime?: string;
-	Title: string;
-	SubTitle?: string;
-	Category?: string;
-	Description?: string;
-	Airdate?: string;
-	Season?: string;
-	Episode?: string;
-	Recording?: ProgramRecording;
-	Channel?: ProgramChannel;
-	[key: string]: any;
+  StartTime: string;
+  EndTime?: string;
+  Title: string;
+  SubTitle?: string;
+  Category?: string;
+  Description?: string;
+  Airdate?: string;
+  Season?: string;
+  Episode?: string;
+  Recording?: ProgramRecording;
+  Channel?: ProgramChannel;
+  [key: string]: any;
 }
 
 export class ProgramRecording {
-	RecordedId?: string;
-	Status?: string;
-	FileName?: string;
-	[key: string]: any;
+  RecordedId?: string;
+  Status?: string;
+  FileName?: string;
+  RecGroup?: string;
+  [key: string]: any;
 }
 
 export class ProgramChannel {
-	ChanId?: string;
-	ChannelName?: string;
-	[key: string]: any;
+  ChanId?: string;
+  ChannelName?: string;
+  [key: string]: any;
 }
