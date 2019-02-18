@@ -38,16 +38,16 @@ export class RecordedComponent implements OnInit {
     this.titleTabDisabled = true;
     this.recordingTabDisabled = true;
     this.detailTabDisabled = true;
-    
-    this.selectedRecGroup = "Default";
-    
+
+    this.selectedRecGroup = 'Default';
+
     this.getRecordeds();
 
   }
 
   getRecordeds(): void {
     // this.recService.getRecordeds().subscribe(recordeds => this.recordeds = recordeds);
-    this.recService.getRecordedsUrl().subscribe(recordedResponse => {this.recordeds = recordedResponse.ProgramList.Programs; this.getRecordedsCompleted()});
+    this.recService.getRecordedsUrl().subscribe(recordedResponse => {this.recordeds = recordedResponse.ProgramList.Programs; this.getRecordedsCompleted(); });
   }
 
   getRecordedsCompleted(): void {
@@ -58,12 +58,10 @@ export class RecordedComponent implements OnInit {
   filterRecGroupList(): void {
     this.recGroupList = [];
 
-    if(this.recordeds != null)
-    {
-      for(const r of this.recordeds)
-      {
-        if(r.Recording != null){
-          //this.mesService.add('Adding rec group: ' + r.Recording.RecGroup.toString());
+    if (this.recordeds != null) {
+      for (const r of this.recordeds) {
+        if (r.Recording != null) {
+          // this.mesService.add('Adding rec group: ' + r.Recording.RecGroup.toString());
           this.recGroupList.push(r.Recording.RecGroup.toString());
         }
       }
@@ -78,13 +76,11 @@ export class RecordedComponent implements OnInit {
   filterTitlesByRecGroup(): void {
     this.titleList = [];
 
-    if(this.recordeds != null)
-    {
-      for(const r of this.recordeds)
-      {
-        if(r.Recording != null) {
-          if(r.Recording.RecGroup === this.selectedRecGroup){
-            //this.mesService.add('Adding title: ' + r.Title);
+    if (this.recordeds != null) {
+      for (const r of this.recordeds) {
+        if (r.Recording != null) {
+          if (r.Recording.RecGroup === this.selectedRecGroup) {
+            // this.mesService.add('Adding title: ' + r.Title);
             this.titleList.push(r.Title);
           }
         }
@@ -99,8 +95,7 @@ export class RecordedComponent implements OnInit {
 
     for ( const r of this.recordeds ) {
       if (r.Title === this.selectedTitle) {
-        if(r.Recording.RecGroup === this.selectedRecGroup)
-        {
+        if (r.Recording.RecGroup === this.selectedRecGroup) {
           this.filteredRecordeds.push(r);
         }
       }
@@ -130,52 +125,53 @@ export class RecordedComponent implements OnInit {
     this.tabIndex = 3;
   }
 
-  onTabChanged(tabChangeEvent: any) : void {
-    this.mesService.add("onTabChanged: "+tabChangeEvent.index.toString());
-    if(tabChangeEvent.index != this.tabIndex)
+  onTabChanged(tabChangeEvent: any): void {
+    this.mesService.add('onTabChanged: ' + tabChangeEvent.index.toString());
+    if (tabChangeEvent.index !== this.tabIndex) {
       this.tabIndex = tabChangeEvent.index;
+    }
 
-    switch(this.tabIndex) {
+    switch (this.tabIndex) {
       case 0: {
-        //RecGroup
-	this.selectedRecGroup = '';
-	this.selectedTitle = '';
-	this.selectedRecorded = null;
-	
+        // RecGroup
+        this.selectedRecGroup = '';
+        this.selectedTitle = '';
+        this.selectedRecorded = null;
+
         this.titleTabDisabled = true;
-	this.recordingTabDisabled = true;
-	this.detailTabDisabled = true;
-	
+        this.recordingTabDisabled = true;
+        this.detailTabDisabled = true;
+
         this.filterTitlesByRecGroup();
-	this.filterRecordedsByTitle();
-	
+        this.filterRecordedsByTitle();
+
         break;
       }
       case 1: {
-        //Title
+        // Title
         this.selectedTitle = '';
         this.selectedRecorded = null;
-	
-	this.recordingTabDisabled = true;
-	this.detailTabDisabled = true;
-	
+
+        this.recordingTabDisabled = true;
+        this.detailTabDisabled = true;
+
         this.filterRecordedsByTitle();
-        
+
         break;
       }
       case 2: {
-        //Recordings
+        // Recordings
         this.selectedRecorded = null;
-	
-	this.detailTabDisabled = true;
-        
+
+        this.detailTabDisabled = true;
+
         break;
       }
       case 3: {
-        //Details
+        // Details
         break;
       }
-      
+
     }
   }
 
