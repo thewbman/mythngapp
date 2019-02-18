@@ -9,11 +9,16 @@ import { MessageService } from '../message.service';
 @Component({
   selector: 'app-recorded',
   templateUrl: './recorded.component.html',
-  styleUrls: ['./recorded.component.less']
+  styleUrls: ['./recorded.component.scss']
 })
 export class RecordedComponent implements OnInit {
 
+  dataLoaded: boolean;
+
   tabIndex: number;
+  titleTabDisabled: boolean;
+  recordingTabDisabled: boolean;
+  detailTabDisabled: boolean;
 
   selectedRecGroup: string;
   selectedTitle: string;
@@ -27,16 +32,27 @@ export class RecordedComponent implements OnInit {
   constructor(private recService: RecordedService, private mesService: MessageService) { }
 
   ngOnInit() {
+    this.dataLoaded = false;
+
     this.tabIndex = 0;
+    this.titleTabDisabled = true;
+    this.recordingTabDisabled = true;
+    this.detailTabDisabled = true;
+    
     this.selectedRecGroup = "Default";
+    
     this.getRecordeds();
-    // this.filterRecordedsByTitle();
 
   }
 
   getRecordeds(): void {
     // this.recService.getRecordeds().subscribe(recordeds => this.recordeds = recordeds);
-    this.recService.getRecordedsUrl().subscribe(recordedResponse => {this.recordeds = recordedResponse.ProgramList.Programs; this.filterRecGroupList()});
+    this.recService.getRecordedsUrl().subscribe(recordedResponse => {this.recordeds = recordedResponse.ProgramList.Programs; this.getRecordedsCompleted()});
+  }
+
+  getRecordedsCompleted(): void {
+    this.dataLoaded = true;
+    this.filterRecGroupList();
   }
 
   filterRecGroupList(): void {
@@ -59,7 +75,7 @@ export class RecordedComponent implements OnInit {
 
   }
 
-  filteTitlesByRecGroup(): void {
+  filterTitlesByRecGroup(): void {
     this.titleList = [];
 
     if(this.recordeds != null)
@@ -94,7 +110,8 @@ export class RecordedComponent implements OnInit {
   onSelectRecGroup(myRecGroup: string): void {
     this.mesService.add('Selected recGroup: ' + myRecGroup);
     this.selectedRecGroup = myRecGroup;
-    this.filteTitlesByRecGroup();
+    this.filterTitlesByRecGroup();
+    this.titleTabDisabled = false;
     this.tabIndex = 1;
   }
 
@@ -102,15 +119,64 @@ export class RecordedComponent implements OnInit {
     this.mesService.add('Selected title: ' + myRecTitle);
     this.selectedTitle = myRecTitle;
     this.filterRecordedsByTitle();
+    this.recordingTabDisabled = false;
     this.tabIndex = 2;
   }
 
   onSelectRecorded(myRec: Program): void {
     this.mesService.add('Select program: ' + myRec.StartTime);
     this.selectedRecorded = myRec;
+    this.detailTabDisabled = false;
     this.tabIndex = 3;
   }
 
+  onTabChanged(tabChangeEvent: any) : void {
+    this.mesService.add("onTabChanged: "+tabChangeEvent.index.toString());
+    if(tabChangeEvent.index != this.tabIndex)
+      this.tabIndex = tabChangeEvent.index;
 
+    switch(this.tabIndex) {
+      case 0: {
+        //RecGroup
+	this.selectedRecGroup = '';
+	this.selectedTitle = '';
+	this.selectedRecorded = null;
+	
+        this.titleTabDisabled = true;
+	this.recordingTabDisabled = true;
+	this.detailTabDisabled = true;
+	
+        this.filterTitlesByRecGroup();
+	this.filterRecordedsByTitle();
+	
+        break;
+      }
+      case 1: {
+        //Title
+        this.selectedTitle = '';
+        this.selectedRecorded = null;
+	
+	this.recordingTabDisabled = true;
+	this.detailTabDisabled = true;
+	
+        this.filterRecordedsByTitle();
+        
+        break;
+      }
+      case 2: {
+        //Recordings
+        this.selectedRecorded = null;
+	
+	this.detailTabDisabled = true;
+        
+        break;
+      }
+      case 3: {
+        //Details
+        break;
+      }
+      
+    }
+  }
 
 }

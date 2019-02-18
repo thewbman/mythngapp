@@ -4,7 +4,7 @@ import { Program } from '../program';
 @Component({
   selector: 'app-recorded-detail',
   templateUrl: './recorded-detail.component.html',
-  styleUrls: ['./recorded-detail.component.less']
+  styleUrls: ['./recorded-detail.component.scss']
 })
 export class RecordedDetailComponent implements OnInit {
 
