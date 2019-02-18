@@ -16,9 +16,8 @@ export class RecordedComponent implements OnInit {
   dataLoaded: boolean;
 
   tabIndex: number;
-  titleTabDisabled: boolean;
-  recordingTabDisabled: boolean;
-  detailTabDisabled: boolean;
+  titleTabEnabled: boolean;
+  recordingTabEnabled: boolean;
 
   selectedRecGroup: string;
   selectedTitle: string;
@@ -35,9 +34,8 @@ export class RecordedComponent implements OnInit {
     this.dataLoaded = false;
 
     this.tabIndex = 0;
-    this.titleTabDisabled = true;
-    this.recordingTabDisabled = true;
-    this.detailTabDisabled = true;
+    this.titleTabEnabled = false;
+    this.recordingTabEnabled = false;
 
     this.selectedRecGroup = 'Default';
 
@@ -106,7 +104,7 @@ export class RecordedComponent implements OnInit {
     this.mesService.add('Selected recGroup: ' + myRecGroup);
     this.selectedRecGroup = myRecGroup;
     this.filterTitlesByRecGroup();
-    this.titleTabDisabled = false;
+    this.titleTabEnabled = true;
     this.tabIndex = 1;
   }
 
@@ -114,14 +112,13 @@ export class RecordedComponent implements OnInit {
     this.mesService.add('Selected title: ' + myRecTitle);
     this.selectedTitle = myRecTitle;
     this.filterRecordedsByTitle();
-    this.recordingTabDisabled = false;
+    this.recordingTabEnabled = true;
     this.tabIndex = 2;
   }
 
   onSelectRecorded(myRec: Program): void {
     this.mesService.add('Select program: ' + myRec.StartTime);
     this.selectedRecorded = myRec;
-    this.detailTabDisabled = false;
     this.tabIndex = 3;
   }
 
@@ -138,9 +135,8 @@ export class RecordedComponent implements OnInit {
         this.selectedTitle = '';
         this.selectedRecorded = null;
 
-        this.titleTabDisabled = true;
-        this.recordingTabDisabled = true;
-        this.detailTabDisabled = true;
+        this.titleTabEnabled = false;
+        this.recordingTabEnabled = false;
 
         this.filterTitlesByRecGroup();
         this.filterRecordedsByTitle();
@@ -152,8 +148,7 @@ export class RecordedComponent implements OnInit {
         this.selectedTitle = '';
         this.selectedRecorded = null;
 
-        this.recordingTabDisabled = true;
-        this.detailTabDisabled = true;
+        this.recordingTabEnabled = false;
 
         this.filterRecordedsByTitle();
 
@@ -162,8 +157,6 @@ export class RecordedComponent implements OnInit {
       case 2: {
         // Recordings
         this.selectedRecorded = null;
-
-        this.detailTabDisabled = true;
 
         break;
       }

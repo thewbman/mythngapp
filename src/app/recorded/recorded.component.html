@@ -28,7 +28,7 @@ Loading...
           </ng-template>
         </mat-tab>
 
-  <mat-tab label="Title" [disabled]="titleTabDisabled">
+  <mat-tab label="Title" *ngIf="titleTabEnabled">
     <ng-template matTabContent>
 
 <mat-list class="titleList">
@@ -45,7 +45,7 @@ Loading...
     </ng-template>
   </mat-tab>
 
-  <mat-tab label="Recording" [disabled]="recordingTabDisabled">
+  <mat-tab label="Recording" *ngIf="recordingTabEnabled">
     <ng-template matTabContent>
 
 <div *ngIf="selectedTitle">
@@ -76,15 +76,11 @@ Loading...
 
     </ng-template>
   </mat-tab>
-  <mat-tab label="Detail" [disabled]="detailTabDisabled">
+  <mat-tab label="Detail" *ngIf="selectedRecorded">
     <ng-template matTabContent>
-
-<div *ngIf="selectedRecorded">
 
 <app-recorded-detail [recorded]="selectedRecorded"></app-recorded-detail>
 
-
-</div>
 
 </ng-template>
 </mat-tab>
