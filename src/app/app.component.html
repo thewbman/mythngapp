@@ -1,3 +1,5 @@
+<div class="overall-container" [class.is-mobile]="mobileQuery.matches">
+
 <mat-toolbar color="warn" class="toolbar-header" >
   <mat-toolbar-row>
     <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" color="primary">
@@ -11,8 +13,9 @@
 </mat-toolbar>
 
 
-<mat-sidenav-container class="main-container">
-  <mat-sidenav #drawer mode="side" opened role="navigation" class="drawer-sidenav" >
+<mat-sidenav-container class="sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0" >
+  <mat-sidenav #drawer role="navigation" class="drawer-sidenav" [mode]="mobileQuery.matches ? 'over' : 'side'" [opened]="mobileQuery.matches ? false: true"
+                 [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" >
   
 <mat-nav-list>
 
@@ -32,7 +35,7 @@
 <app-messages></app-messages>
 </mat-sidenav>
 
-  <mat-sidenav-content>
+<mat-sidenav-content class="content-continer">
 
 
 
@@ -48,3 +51,4 @@
 
 
 
+</div>
