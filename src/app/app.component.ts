@@ -12,17 +12,18 @@ export class AppComponent implements OnDestroy {
   mobileQuery: MediaQueryList;
   title = 'Myth-ng App';
 
-  constructor(private router: Router,changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+  constructor(private router: Router, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
 
 this.mobileQuery = media.matchMedia('(max-width: 600px)');
-    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-    this.mobileQuery.addListener(this._mobileQueryListener);
+this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+this.mobileQuery.addListener(this._mobileQueryListener);
 
-        router.events.subscribe( (event: Event) => {
+router.events.subscribe( (event: Event) => {
 
             if (event instanceof NavigationStart) {
-                if(this.mobileQuery.matches)
-		  this.drawer.close()
+                if (this.mobileQuery.matches) {
+                  this.drawer.close();
+                }
             }
 
             if (event instanceof NavigationEnd) {
