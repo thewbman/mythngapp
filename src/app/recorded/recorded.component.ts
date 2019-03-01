@@ -13,6 +13,8 @@ import { MessageService } from '../message.service';
 })
 export class RecordedComponent implements OnInit {
 
+  allTextString: string;
+
   dataLoaded: boolean;
 
   tabIndex: number;
@@ -40,6 +42,8 @@ export class RecordedComponent implements OnInit {
     this.selectedRecGroup = 'Default';
 
     this.getRecordeds();
+
+    this.allTextString = "-- All --";
 
   }
 
@@ -86,18 +90,21 @@ export class RecordedComponent implements OnInit {
     }
 
     this.titleList = Array.from(new Set(this.titleList)).sort();
+    this.titleList.unshift(this.allTextString);
   }
 
   filterRecordedsByTitle(): void {
     this.filteredRecordeds = [];
 
     for ( const r of this.recordeds ) {
-      if (r.Title === this.selectedTitle) {
+      if ((r.Title === this.selectedTitle)||(this.allTextString === this.selectedTitle)) {
         if (r.Recording.RecGroup === this.selectedRecGroup) {
           this.filteredRecordeds.push(r);
         }
       }
     }
+
+    this.filteredRecordeds = Array.from(new Set(this.filteredRecordeds)).sort();
   }
 
   onSelectRecGroup(myRecGroup: string): void {

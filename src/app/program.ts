@@ -18,6 +18,7 @@ export class ProgramRecording {
   Status?: string;
   FileName?: string;
   RecGroup?: string;
+  StartTs?: string;
   [key: string]: any;
 }
 

@@ -59,7 +59,11 @@ Loading...
 
 <mat-list-item *ngFor="let rec of filteredRecordeds; last as last" (click)="onSelectRecorded(rec)" [class.selected]="rec === selectedRecorded">
 
-<span>S{{rec.Season}}E{{rec.Episode}} - </span><span>{{rec.StartTime}}</span>
+<p matLine>{{rec.Title}}</p>
+<p matLine>{{rec.SubTitle}}</p>
+<p matLine>S{{rec.Season}}E{{rec.Episode}}</p>
+<p matLine>Recorded: {{rec.StartTime}}</p>
+<p matLine>Original Airdate: {{rec.Airdate}}</p>
 
 
 

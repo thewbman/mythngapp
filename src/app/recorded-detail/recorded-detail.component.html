@@ -1,8 +1,18 @@
 <div *ngIf="recorded">
 
-  <h2>{{recorded.Title | uppercase}} Details</h2>
-  <div><span>start: </span>{{recorded.StartTime}}</div>
 
-<div><b>{{recorded.Description}}</b></div>
+
+<h2>{{recorded.Title | uppercase}}</h2>
+<p>{{recorded.SubTitle}}</p>
+<p><span>Start: </span>{{recorded.StartTime}}</p>
+<p>ChanId: {{recorded.Channel.ChanId}}</p>
+<p>RecStart: {{recorded.Recording.StartTs}}</p>
+<div>{{recorded.Description}}</div>
+
+
+
+
+<img *ngIf='imageUrl' [src]='imageUrl' alt='image goes here' />
+
   
 </div>
