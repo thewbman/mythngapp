@@ -9,20 +9,15 @@ Loading...
 </div>
 
 <div *ngIf="dataLoaded">
-
-
-      
-          <mat-list class="recGroupList">
+      <mat-list class="recGroupList">
       
           <mat-list-item  *ngFor="let recGR of recGroupList; last as last"  (click)="onSelectRecGroup(recGR)" [class.selected]="recGR === selectedRecGroup">
           
           <span>{{recGR}}</span>
-          
-<mat-divider [inset]="true" *ngIf="!last"></mat-divider>
+          <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
           </mat-list-item>
           
           </mat-list>
-
 
 </div>
           </ng-template>
@@ -52,20 +47,19 @@ Loading...
 
 <h2>{{selectedTitle.Title}}</h2>
 
-
-
 <mat-list class="filteredProgramList">
-
 
 <mat-list-item *ngFor="let rec of filteredRecordeds; last as last" (click)="onSelectRecorded(rec)" [class.selected]="rec === selectedRecorded">
 
+<img matListAvatar *ngIf='rec.smallPreviewImageUrl' [src]='rec.smallPreviewImageUrl' alt='image here' />
+
 <p matLine>{{rec.Title}}</p>
 <p matLine>{{rec.SubTitle}}</p>
-<p matLine>S{{rec.Season}}E{{rec.Episode}}</p>
+<p matLine *ngIf='rec.Season > 0' >S{{rec.Season}}E{{rec.Episode}}</p>
 <p matLine>Recorded: {{rec.StartTime}}</p>
-<p matLine>Original Airdate: {{rec.Airdate}}</p>
+<p matLine *ngIf='rec.Airdate' >Original Airdate: {{rec.Airdate}}</p>
 
-<img *ngIf='rec.smallPreviewImageUrl' [src]='rec.smallPreviewImageUrl' alt='image here' />
+<!--<img matListAvatar  *ngIf='rec.smallPreviewImageUrl' [src]='rec.smallPreviewImageUrl' alt='image here' />-->
 
 
 <mat-divider [inset]="true"  *ngIf="!last" ></mat-divider>

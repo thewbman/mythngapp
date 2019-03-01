@@ -100,7 +100,7 @@ export class RecordedComponent implements OnInit {
       if ((r.Title === this.selectedTitle)||(this.allTextString === this.selectedTitle)) {
         if (r.Recording.RecGroup === this.selectedRecGroup) {
           if(r.smallPreviewImageUrl == null) {
-            r.smallPreviewImageUrl = this.recService.getPreviewImageUrl(r,80);
+            r.smallPreviewImageUrl = this.recService.getPreviewImageUrlWidth(r,150); 
 	  }
 
 	  this.filteredRecordeds.push(r);

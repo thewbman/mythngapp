@@ -54,15 +54,14 @@ export class MythDataService {
     };
   }
 
-  getPreviewImageUrl(rec: Program, ht?: number) {
-    //u: string;
-    var u = this.baseUrl+'/Content/GetPreviewImage&ChanId='+rec.Channel.ChanId+'&StartTime='+rec.Recording.StartTs;
-
-    if(ht) {
-      u = u + '&Height='+ht.toString();
-    }
-
-    return u;
+  getPreviewImageUrl(rec: Program) {
+    return this.baseUrl+'/Content/GetPreviewImage&ChanId='+rec.Channel.ChanId+'&StartTime='+rec.Recording.StartTs;
+  }
+  getPreviewImageUrlHeight(rec: Program, ht: number) {
+    return this.getPreviewImageUrl(rec)+'&Height='+ht.toString();
+  }
+  getPreviewImageUrlWidth(rec: Program, wd: number) {
+    return this.getPreviewImageUrl(rec)+'&Width='+wd.toString();
   }
 
   private log(message: string) {

@@ -33,3 +33,11 @@
 .mat-tab-label.mat-tab-disabled .mat-tab-label-content {
   color: red;
 }
+.mat-list-base .mat-list-item .mat-list-avatar {
+  width: 150px;
+  height: auto;
+  border-radius: 5%;
+}
+.mat-list-base .mat-list-item .mat-list-avatar~.mat-divider-inset {
+  margin-left: 0px;
+}
