@@ -65,6 +65,7 @@ Loading...
 <p matLine>Recorded: {{rec.StartTime}}</p>
 <p matLine>Original Airdate: {{rec.Airdate}}</p>
 
+<img *ngIf='rec.smallPreviewImageUrl' [src]='rec.smallPreviewImageUrl' alt='image here' />
 
 
 <mat-divider [inset]="true"  *ngIf="!last" ></mat-divider>

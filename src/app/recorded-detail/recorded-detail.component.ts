@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Injectable, Inject } from '@angular/core';
 import { Program } from '../program';
-import { WINDOW } from '../window.provider';
+import { MythDataService } from '../mythdata.service';
 
 @Component({
   selector: 'app-recorded-detail',
@@ -12,10 +12,10 @@ export class RecordedDetailComponent implements OnInit {
 
   @Input() recorded: Program;
 
-  constructor(@Inject(WINDOW) private window: Window) {  }
+  constructor(private dataService: MythDataService) {  }
 
   ngOnInit() {
-    this.imageUrl = 'http://' + this.window.location.hostname + ':8580/api/api.php?Host=localhost&Port=6544&Url=/Content/GetPreviewImage&ChanId='+this.recorded.Channel.ChanId+'&StartTime='+this.recorded.Recording.StartTs+'&Height=200';
+    this.imageUrl = this.dataService.getPreviewImageUrl(this.recorded,200);
   }
 
 }

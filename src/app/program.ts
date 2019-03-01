@@ -11,6 +11,8 @@ export class Program {
   Recording?: ProgramRecording;
   Channel?: ProgramChannel;
   [key: string]: any;
+  
+  smallPreviewImageUrl: string;
 }
 
 export class ProgramRecording {

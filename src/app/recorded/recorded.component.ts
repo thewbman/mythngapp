@@ -3,7 +3,7 @@ import * as _ from 'lodash';
 
 
 import { Program } from '../program';
-import { RecordedService } from '../recorded.service';
+import { MythDataService } from '../mythdata.service';
 import { MessageService } from '../message.service';
 
 @Component({
@@ -30,7 +30,7 @@ export class RecordedComponent implements OnInit {
   titleList: string[];
   filteredRecordeds: Program[];
 
-  constructor(private recService: RecordedService, private mesService: MessageService) { }
+  constructor(private recService: MythDataService, private mesService: MessageService) { }
 
   ngOnInit() {
     this.dataLoaded = false;
@@ -99,7 +99,11 @@ export class RecordedComponent implements OnInit {
     for ( const r of this.recordeds ) {
       if ((r.Title === this.selectedTitle)||(this.allTextString === this.selectedTitle)) {
         if (r.Recording.RecGroup === this.selectedRecGroup) {
-          this.filteredRecordeds.push(r);
+          if(r.smallPreviewImageUrl == null) {
+            r.smallPreviewImageUrl = this.recService.getPreviewImageUrl(r,80);
+	  }
+
+	  this.filteredRecordeds.push(r);
         }
       }
     }

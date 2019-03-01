@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { RecordedService } from './recorded.service';
+import { MythDataService } from './mythdata.service';
 
-describe('RecordedService', () => {
+describe('MythDataService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: RecordedService = TestBed.get(RecordedService);
+    const service: MythDataService = TestBed.get(MythDataService);
     expect(service).toBeTruthy();
   });
 });

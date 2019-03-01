@@ -17,10 +17,11 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class RecordedService {
+export class MythDataService {
 
   // Need a better way to get actual data, but for now
-  private recordedUrl = 'http://' + this.window.location.hostname + ':8580/api/api.php?Host=localhost&Port=6544&Url=/Dvr/GetRecordedList';  // &Count=10';
+  private baseUrl = 'http://' + this.window.location.hostname + ':8580/api/api.php?Host=localhost&Port=6544&Url=';
+  private recordedUrl = this.baseUrl+'/Dvr/GetRecordedList';  // &Count=10';
 
   constructor(@Inject(WINDOW) private window: Window, private mesService: MessageService, private http: HttpClient) { }
 
@@ -53,7 +54,18 @@ export class RecordedService {
     };
   }
 
+  getPreviewImageUrl(rec: Program, ht?: number) {
+    //u: string;
+    var u = this.baseUrl+'/Content/GetPreviewImage&ChanId='+rec.Channel.ChanId+'&StartTime='+rec.Recording.StartTs;
+
+    if(ht) {
+      u = u + '&Height='+ht.toString();
+    }
+
+    return u;
+  }
+
   private log(message: string) {
-    this.mesService.add(`RecordedService: ${message}`);
+    this.mesService.add(`MythDataService: ${message}`);
   }
 }
