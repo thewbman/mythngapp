@@ -1,3 +1,11 @@
 <p>
   status works!
 </p>
+
+<div *ngIf="!dataLoaded">
+Loading...
+</div>
+
+<div *ngIf="dataLoaded">
+{{rawStatusText}}
+</div>

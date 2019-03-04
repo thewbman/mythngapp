@@ -12,7 +12,7 @@ export class Program {
   Channel?: ProgramChannel;
   [key: string]: any;
   
-  smallPreviewImageUrl: string;
+  smallPreviewImageUrl?: string;
 }
 
 export class ProgramRecording {

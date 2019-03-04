@@ -13,3 +13,7 @@ export class ProgramListClass {
 export class RecordedProgramResponse {
  ProgramList: ProgramListClass;
 }
+
+export class UpcomingProgramResponse {
+  ProgramList: ProgramListClass;
+}

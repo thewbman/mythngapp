@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, OnDestroy, ViewChild } from '@angular/core';
 import { Router, Event, NavigationStart, NavigationEnd, NavigationError } from '@angular/router';
 import {MediaMatcher} from '@angular/cdk/layout';
+import {MatSidenavModule} from '@angular/material';
 
 @Component({
   selector: 'app-root',

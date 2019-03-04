@@ -1,3 +1,34 @@
 <p>
   upcoming works!
 </p>
+
+<div *ngIf="!dataLoaded">
+Loading...
+</div>
+
+<div *ngIf="dataLoaded">
+
+<mat-list>
+
+<mat-list-item *ngFor="let u of upcomings; last as last" >
+
+
+<p matLine>{{u.Title}}</p>
+<p matLine>{{u.SubTitle}}</p>
+<p matLine>Status: {{u.Recording.Status}}</p>
+<p matLine *ngIf='u.Season > 0' >S{{u.Season}}E{{u.Episode}}</p>
+<p matLine>Recording Start: {{u.StartTime}}</p>
+<p matLine *ngIf='u.Airdate' >Original Airdate: {{u.Airdate}}</p>
+
+
+
+<mat-divider [inset]="true"  *ngIf="!last" ></mat-divider>
+
+</mat-list-item>
+
+
+</mat-list>
+
+
+</div>
+

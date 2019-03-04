@@ -1,5 +1,5 @@
 import { Program } from './program';
-import { RecordedProgramResponse } from './recordedProgramResponse';
+import { RecordedProgramResponse, UpcomingProgramResponse } from './recordedProgramResponse';
 import { MOCK_RECORDED, MOCK_RECORDED_RESPONSE } from './mock-recorded';
 import { MessageService } from './message.service';
 
@@ -22,6 +22,8 @@ export class MythDataService {
   // Need a better way to get actual data, but for now
   private baseUrl = 'http://' + this.window.location.hostname + ':8580/api/api.php?Host=localhost&Port=6544&Url=';
   private recordedUrl = this.baseUrl+'/Dvr/GetRecordedList';  // &Count=10';
+  private upcomingUrl = this.baseUrl+'/Dvr/GetUpcomingList&ShowAll=true';
+  private statusUrl = this.baseUrl+'/Status/GetStatus';
 
   constructor(@Inject(WINDOW) private window: Window, private mesService: MessageService, private http: HttpClient) { }
 
@@ -37,6 +39,22 @@ export class MythDataService {
       .pipe(
         tap(_ => this.log('fetched recorded')),
         catchError(this.handleError<RecordedProgramResponse>('getRecordedsUrl'))
+      );
+  }
+
+  getUpcomingUrl() : Observable<UpcomingProgramResponse> {
+    return this.http.get<UpcomingProgramResponse>(this.upcomingUrl)
+      .pipe(
+        tap(_ => this.log('fetched upcoming')),
+	catchError(this.handleError<string>('getUpcomingUrl'))
+      );
+  }
+
+  getStatusUrl() : Observable<string> {
+    return this.http.get(this.statusUrl, {responseType: 'text'})
+      .pipe(
+        tap(_ => this.log('fetched status')),
+        catchError(this.handleError<string>('getStatusUrl'))
       );
   }
 
