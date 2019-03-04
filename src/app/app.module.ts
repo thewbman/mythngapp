@@ -19,6 +19,7 @@ import { UniquePipe } from './unique.pipe';
 import { UniqueTitlePipe } from './unique-title.pipe';
 import { ProgramListComponent } from './program-list/program-list.component';
 import { MaterialModule } from './material';
+import { RecstatusPipe } from './recstatus.pipe';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { MaterialModule } from './material';
     GuideComponent,
     UniquePipe,
     UniqueTitlePipe,
-    ProgramListComponent
+    ProgramListComponent,
+    RecstatusPipe
   ],
   imports: [
     BrowserModule,

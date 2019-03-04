@@ -1,24 +1,64 @@
-<p>
-  upcoming works!
-</p>
+<div class="upcoming">
+
+<mat-tab-group [selectedIndex]="tabIndex" (selectedTabChange)=onTabChanged($event)>
+    <mat-tab label="Group">
+        <ng-template matTabContent>
 
 <div *ngIf="!dataLoaded">
 Loading...
 </div>
 
 <div *ngIf="dataLoaded">
+      <mat-list class="upcomingGroupList">
+      
+          <mat-list-item  *ngFor="let upGR of upcomingGroupList; last as last"  (click)="onSelectGroup(upGR)" [class.selected]="upGR === selectedUpcomingGroup">
+          
+          <span>{{upGR}}</span>
+          <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
+          </mat-list-item>
+          
+          </mat-list>
 
-<mat-list>
+</div>
+          </ng-template>
+        </mat-tab>
 
-<mat-list-item *ngFor="let u of upcomings; last as last" >
+  <mat-tab label="Date" *ngIf="dateTabEnabled">
+    <ng-template matTabContent>
+
+<mat-list class="dateList">
+
+<mat-list-item  *ngFor="let dt of dateList; last as last" (click)="onSelectDate(dt)" [class.selected]="dt === selectedDate">
+
+<span>{{dt}}</span>
+
+<mat-divider [inset]="true" *ngIf="!last"></mat-divider>
+</mat-list-item>
+
+</mat-list>
+
+    </ng-template>
+  </mat-tab>
+
+  <mat-tab label="Program" *ngIf="programTabEnabled">
+    <ng-template matTabContent>
+
+<div *ngIf="selectedDate">
+
+<h2>{{selectedDate}}</h2>
+
+<mat-list class="filteredProgramList">
+
+<mat-list-item *ngFor="let u of filteredUpcomings; last as last" (click)="onSelectProgram(u)" [class.selected]="u === selectedProgram">
 
 
 <p matLine>{{u.Title}}</p>
 <p matLine>{{u.SubTitle}}</p>
-<p matLine>Status: {{u.Recording.Status}}</p>
+<p matLine>Status: {{u.Recording.Status |  recstatus}}</p>
 <p matLine *ngIf='u.Season > 0' >S{{u.Season}}E{{u.Episode}}</p>
 <p matLine>Recording Start: {{u.StartTime}}</p>
 <p matLine *ngIf='u.Airdate' >Original Airdate: {{u.Airdate}}</p>
+
 
 
 
@@ -29,6 +69,22 @@ Loading...
 
 </mat-list>
 
+
+</div>
+
+
+    </ng-template>
+  </mat-tab>
+  <mat-tab label="Detail" *ngIf="selectedUpcoming">
+    <ng-template matTabContent>
+
+<app-recorded-detail [recorded]="selectedUpcoming"></app-recorded-detail>
+
+
+</ng-template>
+</mat-tab>
+
+</mat-tab-group>
 
 </div>
 

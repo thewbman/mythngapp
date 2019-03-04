@@ -21,9 +21,9 @@ export class MythDataService {
 
   // Need a better way to get actual data, but for now
   private baseUrl = 'http://' + this.window.location.hostname + ':8580/api/api.php?Host=localhost&Port=6544&Url=';
-  private recordedUrl = this.baseUrl+'/Dvr/GetRecordedList';  // &Count=10';
-  private upcomingUrl = this.baseUrl+'/Dvr/GetUpcomingList&ShowAll=true';
-  private statusUrl = this.baseUrl+'/Status/GetStatus';
+  private recordedUrl = this.baseUrl + '/Dvr/GetRecordedList';  // &Count=10';
+  private upcomingUrl = this.baseUrl + '/Dvr/GetUpcomingList&ShowAll=true&Count=100';
+  private statusUrl = this.baseUrl + '/Status/GetStatus';
 
   constructor(@Inject(WINDOW) private window: Window, private mesService: MessageService, private http: HttpClient) { }
 
@@ -42,7 +42,7 @@ export class MythDataService {
       );
   }
 
-  getUpcomingUrl() : Observable<UpcomingProgramResponse> {
+  getUpcomingUrl(): Observable<UpcomingProgramResponse> {
     return this.http.get<UpcomingProgramResponse>(this.upcomingUrl)
       .pipe(
         tap(_ => this.log('fetched upcoming')),
@@ -50,7 +50,7 @@ export class MythDataService {
       );
   }
 
-  getStatusUrl() : Observable<string> {
+  getStatusUrl(): Observable<string> {
     return this.http.get(this.statusUrl, {responseType: 'text'})
       .pipe(
         tap(_ => this.log('fetched status')),
@@ -73,13 +73,13 @@ export class MythDataService {
   }
 
   getPreviewImageUrl(rec: Program) {
-    return this.baseUrl+'/Content/GetPreviewImage&ChanId='+rec.Channel.ChanId+'&StartTime='+rec.Recording.StartTs;
+    return this.baseUrl + '/Content/GetPreviewImage&ChanId=' + rec.Channel.ChanId + '&StartTime=' + rec.Recording.StartTs;
   }
   getPreviewImageUrlHeight(rec: Program, ht: number) {
-    return this.getPreviewImageUrl(rec)+'&Height='+ht.toString();
+    return this.getPreviewImageUrl(rec) + '&Height=' + ht.toString();
   }
   getPreviewImageUrlWidth(rec: Program, wd: number) {
-    return this.getPreviewImageUrl(rec)+'&Width='+wd.toString();
+    return this.getPreviewImageUrl(rec) + '&Width=' + wd.toString();
   }
 
   private log(message: string) {

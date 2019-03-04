@@ -43,7 +43,7 @@ export class RecordedComponent implements OnInit {
 
     this.getRecordeds();
 
-    this.allTextString = "-- All --";
+    this.allTextString = '-- All --';
 
   }
 
@@ -97,13 +97,13 @@ export class RecordedComponent implements OnInit {
     this.filteredRecordeds = [];
 
     for ( const r of this.recordeds ) {
-      if ((r.Title === this.selectedTitle)||(this.allTextString === this.selectedTitle)) {
+      if ((r.Title === this.selectedTitle) || (this.allTextString === this.selectedTitle)) {
         if (r.Recording.RecGroup === this.selectedRecGroup) {
-          if(r.smallPreviewImageUrl == null) {
-            r.smallPreviewImageUrl = this.recService.getPreviewImageUrlWidth(r,150); 
+          if (r.smallPreviewImageUrl == null) {
+            r.smallPreviewImageUrl = this.recService.getPreviewImageUrlWidth(r, 150);
 	  }
 
-	  this.filteredRecordeds.push(r);
+	         this.filteredRecordeds.push(r);
         }
       }
     }
