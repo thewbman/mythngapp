@@ -28,11 +28,13 @@ Loading...
 
 <mat-list class="dateList">
 
-<mat-list-item  *ngFor="let dt of dateList; last as last" (click)="onSelectDate(dt)" [class.selected]="dt === selectedDate">
+<mat-list-item  *ngFor="let dt of dateList; first as first; last as last" (click)="onSelectDate(dt)" [class.selected]="dt === selectedDate">
 
-<span>{{dt}}</span>
+<span *ngIf="first">{{dt}}</span>
+<span *ngIf="!first">{{dt | date:'fullDate'}}</span>
 
 <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
+
 </mat-list-item>
 
 </mat-list>
@@ -45,18 +47,18 @@ Loading...
 
 <div *ngIf="selectedDate">
 
-<h2>{{selectedDate}}</h2>
+<h2>{{selectedDateFormatted}}</h2>
 
 <mat-list class="filteredProgramList">
 
-<mat-list-item *ngFor="let u of filteredUpcomings; last as last" (click)="onSelectProgram(u)" [class.selected]="u === selectedProgram">
+<mat-list-item *ngFor="let u of dateFilteredPrograms; last as last" (click)="onSelectProgram(u)" [class.selected]="u === selectedUpcoming">
 
 
 <p matLine>{{u.Title}}</p>
 <p matLine>{{u.SubTitle}}</p>
 <p matLine>Status: {{u.Recording.Status |  recstatus}}</p>
 <p matLine *ngIf='u.Season > 0' >S{{u.Season}}E{{u.Episode}}</p>
-<p matLine>Recording Start: {{u.StartTime}}</p>
+<p matLine>Recording Start: {{u.StartTime | date:'MM/dd/yyyy @ h:mma'}}</p>
 <p matLine *ngIf='u.Airdate' >Original Airdate: {{u.Airdate}}</p>
 
 

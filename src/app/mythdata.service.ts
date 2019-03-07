@@ -22,7 +22,7 @@ export class MythDataService {
   // Need a better way to get actual data, but for now
   private baseUrl = 'http://' + this.window.location.hostname + ':8580/api/api.php?Host=localhost&Port=6544&Url=';
   private recordedUrl = this.baseUrl + '/Dvr/GetRecordedList';  // &Count=10';
-  private upcomingUrl = this.baseUrl + '/Dvr/GetUpcomingList&ShowAll=true&Count=100';
+  private upcomingUrl = this.baseUrl + '/Dvr/GetUpcomingList&ShowAll=true&Count=10000';
   private statusUrl = this.baseUrl + '/Status/GetStatus';
 
   constructor(@Inject(WINDOW) private window: Window, private mesService: MessageService, private http: HttpClient) { }
@@ -46,7 +46,7 @@ export class MythDataService {
     return this.http.get<UpcomingProgramResponse>(this.upcomingUrl)
       .pipe(
         tap(_ => this.log('fetched upcoming')),
-	catchError(this.handleError<string>('getUpcomingUrl'))
+	catchError(this.handleError<UpcomingProgramResponse>('getUpcomingUrl'))
       );
   }
 
