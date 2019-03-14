@@ -1,18 +1,22 @@
-<div *ngIf="recorded">
+<mat-card *ngIf="recorded" class="recorded-detail-card">
 
 
+<mat-card-header>
+<mat-card-title>{{recorded.Title}}</mat-card-title>
+<mat-card-subtitle>{{recorded.SubTitle}}</mat-card-subtitle>
+</mat-card-header>
 
-<h2>{{recorded.Title | uppercase}}</h2>
-<p>{{recorded.SubTitle}}</p>
-<p><span>Start: </span>{{recorded.StartTime}}</p>
+<img *ngIf="imageUrl" mat-card-image [src]="imageUrl" />
+
+
+<mat-card-content>
+
+<p><span>Start: </span>{{recorded.StartTime | date:'MM/dd/yyyy @ h:mma'}}</p>
 <p>ChanId: {{recorded.Channel.ChanId}}</p>
-<p>RecStart: {{recorded.Recording.StartTs}}</p>
+<p>RecStart: {{recorded.Recording.StartTs | date:'MM/dd/yyyy @ h:mma'}}</p>
 <div>{{recorded.Description}}</div>
 
-
-
-
-<img *ngIf='imageUrl' [src]='imageUrl' alt='image goes here' />
+</mat-card-content>
 
   
-</div>
+</mat-card>

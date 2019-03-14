@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
 import { HttpClientModule } from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { DeferLoadModule } from '@trademe/ng-defer-load';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,6 +22,7 @@ import { UniqueTitlePipe } from './unique-title.pipe';
 import { ProgramListComponent } from './program-list/program-list.component';
 import { MaterialModule } from './material';
 import { RecstatusPipe } from './recstatus.pipe';
+
 
 @NgModule({
   declarations: [
@@ -42,7 +45,8 @@ import { RecstatusPipe } from './recstatus.pipe';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    DeferLoadModule
   ],
   providers: [
     WINDOW_PROVIDERS

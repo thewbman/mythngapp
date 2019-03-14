@@ -49,15 +49,18 @@ Loading...
 
 <mat-list class="filteredProgramList">
 
-<mat-list-item *ngFor="let rec of filteredRecordeds; last as last" (click)="onSelectRecorded(rec)" [class.selected]="rec === selectedRecorded">
+<mat-list-item *ngFor="let rec of filteredRecordeds; last as last" class="program" (click)="onSelectRecorded(rec)" [class.selected]="rec === selectedRecorded" style="height: 120px;">
 
-<img matListAvatar *ngIf='rec.smallPreviewImageUrl' [src]='rec.smallPreviewImageUrl' alt='image here' />
+
+<img matListAvatar *ngIf="rec.smallPreviewImageUrl" src={{rec.smallPreviewImageUrl}} class="lazy" />
+
 
 <p matLine>{{rec.Title}}</p>
 <p matLine>{{rec.SubTitle}}</p>
 <p matLine *ngIf='rec.Season > 0' >S{{rec.Season}}E{{rec.Episode}}</p>
-<p matLine>Recorded: {{rec.StartTime}}</p>
-<p matLine *ngIf='rec.Airdate' >Original Airdate: {{rec.Airdate}}</p>
+<p matLine>Recorded: {{rec.StartTime | date:'MM/dd/yyyy @ h:mma'}}</p>
+<p matLine *ngIf='rec.Airdate' >Original Airdate: {{rec.Airdate | date:'MM/dd/yyyy'}}</p>
+
 
 <!--<img matListAvatar  *ngIf='rec.smallPreviewImageUrl' [src]='rec.smallPreviewImageUrl' alt='image here' />-->
 

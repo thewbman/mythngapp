@@ -12,6 +12,9 @@ export class Program {
   Channel?: ProgramChannel;
   [key: string]: any;
 
+  showImage: bool;
+  show: bool;
+
   smallPreviewImageUrl?: string;
 }
 

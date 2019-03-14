@@ -6,6 +6,7 @@ import { Program } from '../program';
 import { MythDataService } from '../mythdata.service';
 import { MessageService } from '../message.service';
 
+
 @Component({
   selector: 'app-recorded',
   templateUrl: './recorded.component.html',
@@ -96,11 +97,16 @@ export class RecordedComponent implements OnInit {
   filterRecordedsByTitle(): void {
     this.filteredRecordeds = [];
 
+    this.mesService.add('starting filterRecordedByTitle');
+
     for ( const r of this.recordeds ) {
       if ((r.Title === this.selectedTitle) || (this.allTextString === this.selectedTitle)) {
         if (r.Recording.RecGroup === this.selectedRecGroup) {
           if (r.smallPreviewImageUrl == null) {
             r.smallPreviewImageUrl = this.recService.getPreviewImageUrlWidth(r, 150);
+	  }
+	  if (r.showImage == null) {
+            r.showImage = false;
 	  }
 
 	         this.filteredRecordeds.push(r);
@@ -108,21 +114,34 @@ export class RecordedComponent implements OnInit {
       }
     }
 
-    this.filteredRecordeds = Array.from(new Set(this.filteredRecordeds)).sort();
+    this.mesService.add('finished list of programs');
+
+    //this.filteredRecordeds = Array.from(new Set(this.filteredRecordeds));
+    //this.mesService.add('Array.from complete')
+
+    if(this.allTextString === this.selectedTitle) {
+      //this.filteredRecordeds.sort((val1, val2)=> { return +new Date(val2.StartTime) - +new Date(val1.StartTime)});
+      this.filteredRecordeds.sort((val1, val2)=> { return ((val2.StartTime < val1.StartTime) ? -1 : 0);});
+    }
+    else {
+      this.filteredRecordeds.sort((val1, val2)=> { return ((val2.Airdate < val1.Airdate) ? 1 : 0);});
+    }
+
+    this.mesService.add('sorting done');
   }
 
   onSelectRecGroup(myRecGroup: string): void {
     this.mesService.add('Selected recGroup: ' + myRecGroup);
     this.selectedRecGroup = myRecGroup;
-    this.filterTitlesByRecGroup();
     this.titleTabEnabled = true;
     this.tabIndex = 1;
+    //this.filterTitlesByRecGroup();
   }
 
   onSelectTitle(myRecTitle: string): void {
     this.mesService.add('Selected title: ' + myRecTitle);
     this.selectedTitle = myRecTitle;
-    this.filterRecordedsByTitle();
+    //this.filterRecordedsByTitle();
     this.recordingTabEnabled = true;
     this.tabIndex = 2;
   }
@@ -149,8 +168,8 @@ export class RecordedComponent implements OnInit {
         this.titleTabEnabled = false;
         this.recordingTabEnabled = false;
 
-        this.filterTitlesByRecGroup();
-        this.filterRecordedsByTitle();
+        //this.filterTitlesByRecGroup();
+        //this.filterRecordedsByTitle();
 
         break;
       }
@@ -161,13 +180,17 @@ export class RecordedComponent implements OnInit {
 
         this.recordingTabEnabled = false;
 
-        this.filterRecordedsByTitle();
+        this.filterTitlesByRecGroup();
+
+        //this.filterRecordedsByTitle();
 
         break;
       }
       case 2: {
         // Recordings
         this.selectedRecorded = null;
+
+	this.filterRecordedsByTitle();
 
         break;
       }
