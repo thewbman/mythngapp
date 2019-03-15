@@ -46,7 +46,7 @@ export class MythDataService {
     return this.http.get<UpcomingProgramResponse>(this.upcomingUrl)
       .pipe(
         tap(_ => this.log('fetched upcoming')),
-	catchError(this.handleError<UpcomingProgramResponse>('getUpcomingUrl'))
+        catchError(this.handleError<UpcomingProgramResponse>('getUpcomingUrl'))
       );
   }
 

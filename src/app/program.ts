@@ -1,7 +1,7 @@
 export class Program {
-  StartTime: string;
+  StartTime?: string;
   EndTime?: string;
-  Title: string;
+  Title?: string;
   SubTitle?: string;
   Category?: string;
   Description?: string;
@@ -12,8 +12,8 @@ export class Program {
   Channel?: ProgramChannel;
   [key: string]: any;
 
-  showImage: bool;
-  show: bool;
+  showImage?: boolean;
+  show?: boolean;
 
   smallPreviewImageUrl?: string;
 }

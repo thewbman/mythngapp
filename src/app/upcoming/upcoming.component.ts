@@ -72,18 +72,18 @@ export class UpcomingComponent implements OnInit {
 
       switch (this.selectedUpcomingGroup) {
         case 'All': {
-	  this.groupFilteredPrograms = Array.from(new Set(this.allPrograms));
-	  break;
-	}
-	case 'Conflicting': {
+         this.groupFilteredPrograms = Array.from(new Set(this.allPrograms));
+         break;
+        }
+        case 'Conflicting': {
           for (const p of this.allPrograms) {
-	    if (p.Recording.Status === '7') {
-	      this.groupFilteredPrograms.push(p);
-	    }
-	  }
+            if (p.Recording.Status === '7') {
+              this.groupFilteredPrograms.push(p);
+            }
+          }
           break;
-	}
-	case 'Overrides': {
+        }
+        case 'Overrides': {
           for (const p of this.allPrograms) {
             if (p.Recording.Status === '1') {
               this.groupFilteredPrograms.push(p);
@@ -91,7 +91,7 @@ export class UpcomingComponent implements OnInit {
           }
           break;
         }
-	case 'Upcoming': {
+        case 'Upcoming': {
           for (const p of this.allPrograms) {
             if ((p.Recording.Status === '7') || (p.Recording.Status === '-2') || (p.Recording.Status === '-1')) {
               this.groupFilteredPrograms.push(p);
@@ -99,10 +99,10 @@ export class UpcomingComponent implements OnInit {
           }
           break;
         }
-	default: {
-	  this.groupFilteredPrograms = Array.from(new Set(this.allPrograms));
-	  break;
-	}
+        default: {
+          this.groupFilteredPrograms = Array.from(new Set(this.allPrograms));
+          break;
+        }
       }
 
       if (this.groupFilteredPrograms != null) {
@@ -138,7 +138,7 @@ export class UpcomingComponent implements OnInit {
         }
       }
     }
-  
+
   }
 
 
@@ -147,30 +147,30 @@ export class UpcomingComponent implements OnInit {
 
 
 
-  onSelectGroup(myGroup: string) : void {
+  onSelectGroup(myGroup: string): void {
     this.mesService.add('Selected upcoming Group: ' + myGroup);
     this.selectedUpcomingGroup = myGroup;
     this.filterDatesByGroup();
     this.dateTabEnabled = true;
     this.tabIndex = 1;
-  };
+  }
 
-  onSelectDate(myDate: string) : void {
+  onSelectDate(myDate: string): void {
     this.mesService.add('Selected date: ' + myDate);
     this.selectedDate = myDate;
-    this.selectedDateFormatted = (this.selectedDate === this.allDatesString ? this.selectedDate : formatDate(this.selectedDate,'fullDate','en-US'));
+    this.selectedDateFormatted = (this.selectedDate === this.allDatesString ? this.selectedDate : formatDate(this.selectedDate, 'fullDate', 'en-US'));
     this.filterProgramsByDate();
     this.programTabEnabled = true;
     this.tabIndex = 2;
-  };
+  }
 
-  onSelectProgram(myProgram: Program) : void {
+  onSelectProgram(myProgram: Program): void {
     this.mesService.add('select program: ' + myProgram.Title);
     this.selectedUpcoming = myProgram;
     this.tabIndex = 3;
-  };
+  }
 
-  onTabChanged(tabChangeEvent: any) : void {
+  onTabChanged(tabChangeEvent: any): void {
     this.mesService.add('onTabChanged: ' + tabChangeEvent.index.toString());
     if (tabChangeEvent.index !== this.tabIndex) {
       this.tabIndex = tabChangeEvent.index;

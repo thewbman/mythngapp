@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, OnDestroy, ViewChild } from '@angular/core';
 import { Router, Event, NavigationStart, NavigationEnd, NavigationError } from '@angular/router';
-import {MediaMatcher} from '@angular/cdk/layout';
-import {MatSidenavModule} from '@angular/material';
+import { MediaMatcher } from '@angular/cdk/layout';
+import { MatSidenav } from '@angular/material';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +11,7 @@ import {MatSidenavModule} from '@angular/material';
 export class AppComponent implements OnDestroy {
   @ViewChild('drawer') drawer: MatSidenav;
   mobileQuery: MediaQueryList;
+  _mobileQueryListener: any;
   title = 'Myth-ng App';
 
   constructor(private router: Router, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {

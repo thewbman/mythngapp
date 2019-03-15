@@ -104,27 +104,26 @@ export class RecordedComponent implements OnInit {
         if (r.Recording.RecGroup === this.selectedRecGroup) {
           if (r.smallPreviewImageUrl == null) {
             r.smallPreviewImageUrl = this.recService.getPreviewImageUrlWidth(r, 150);
-	  }
-	  if (r.showImage == null) {
+          }
+          if (r.showImage == null) {
             r.showImage = false;
-	  }
+          }
 
-	         this.filteredRecordeds.push(r);
+          this.filteredRecordeds.push(r);
         }
       }
     }
 
     this.mesService.add('finished list of programs');
 
-    //this.filteredRecordeds = Array.from(new Set(this.filteredRecordeds));
-    //this.mesService.add('Array.from complete')
+    // this.filteredRecordeds = Array.from(new Set(this.filteredRecordeds));
+    // this.mesService.add('Array.from complete')
 
-    if(this.allTextString === this.selectedTitle) {
-      //this.filteredRecordeds.sort((val1, val2)=> { return +new Date(val2.StartTime) - +new Date(val1.StartTime)});
-      this.filteredRecordeds.sort((val1, val2)=> { return ((val2.StartTime < val1.StartTime) ? -1 : 0);});
-    }
-    else {
-      this.filteredRecordeds.sort((val1, val2)=> { return ((val2.Airdate < val1.Airdate) ? 1 : 0);});
+    if (this.allTextString === this.selectedTitle) {
+      // this.filteredRecordeds.sort((val1, val2)=> { return +new Date(val2.StartTime) - +new Date(val1.StartTime)});
+      this.filteredRecordeds.sort((val1, val2) => ((val2.StartTime < val1.StartTime) ? -1 : 0));
+    } else {
+      this.filteredRecordeds.sort((val1, val2) => ((val2.Airdate < val1.Airdate) ? 1 : 0));
     }
 
     this.mesService.add('sorting done');
@@ -135,13 +134,13 @@ export class RecordedComponent implements OnInit {
     this.selectedRecGroup = myRecGroup;
     this.titleTabEnabled = true;
     this.tabIndex = 1;
-    //this.filterTitlesByRecGroup();
+    // this.filterTitlesByRecGroup();
   }
 
   onSelectTitle(myRecTitle: string): void {
     this.mesService.add('Selected title: ' + myRecTitle);
     this.selectedTitle = myRecTitle;
-    //this.filterRecordedsByTitle();
+    // this.filterRecordedsByTitle();
     this.recordingTabEnabled = true;
     this.tabIndex = 2;
   }
@@ -168,8 +167,8 @@ export class RecordedComponent implements OnInit {
         this.titleTabEnabled = false;
         this.recordingTabEnabled = false;
 
-        //this.filterTitlesByRecGroup();
-        //this.filterRecordedsByTitle();
+        // this.filterTitlesByRecGroup();
+        // this.filterRecordedsByTitle();
 
         break;
       }
@@ -182,7 +181,7 @@ export class RecordedComponent implements OnInit {
 
         this.filterTitlesByRecGroup();
 
-        //this.filterRecordedsByTitle();
+        // this.filterRecordedsByTitle();
 
         break;
       }
@@ -190,7 +189,7 @@ export class RecordedComponent implements OnInit {
         // Recordings
         this.selectedRecorded = null;
 
-	this.filterRecordedsByTitle();
+        this.filterRecordedsByTitle();
 
         break;
       }
