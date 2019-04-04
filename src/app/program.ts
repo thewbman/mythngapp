@@ -16,6 +16,7 @@ export class Program {
   show?: boolean;
 
   smallPreviewImageUrl?: string;
+  largePreviewImageUrl?: string;
 }
 
 export class ProgramRecording {
