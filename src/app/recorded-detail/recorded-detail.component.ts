@@ -15,7 +15,8 @@ export class RecordedDetailComponent implements OnInit {
   constructor(private dataService: MythDataService) {  }
 
   ngOnInit() {
-    this.imageUrl = this.dataService.getPreviewImageUrlWidth(this.recorded, 400);
+    if(this.recorded.showImage)
+      this.imageUrl = this.dataService.getPreviewImageUrlWidth(this.recorded, 400);
   }
 
 }

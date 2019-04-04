@@ -106,7 +106,7 @@ export class RecordedComponent implements OnInit {
             r.smallPreviewImageUrl = this.recService.getPreviewImageUrlWidth(r, 150);
           }
           if (r.showImage == null) {
-            r.showImage = false;
+            r.showImage = true;
           }
 
           this.filteredRecordeds.push(r);
