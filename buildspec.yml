@@ -5,7 +5,7 @@ phases:
     commands: 
       - ls
       - pwd
-      - npm install @angular/cli
+      - npm install -g @angular/cli
       - ls node_modules
       - npm install
       - ng build
