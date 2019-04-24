@@ -8,8 +8,10 @@ phases:
       - npm install -g @angular/cli
       - ls
       - npm install
+      - ls
       - ng build
 artifacts:
   files:
-    - 'dist/**/*'
+    - '*'
+  base-directory: dist/mythngapp
   name: build-$(date +%Y-%m-%d)
