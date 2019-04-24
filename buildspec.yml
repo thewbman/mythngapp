@@ -9,7 +9,7 @@ phases:
       - ls
       - npm install
       - ls
-      - ng build
+      - ng build -c production
 artifacts:
   files:
     - '*'
