@@ -6,6 +6,7 @@ phases:
       - ls
       - pwd
       - npm install @angular/cli
+      - ls node_mobules
       - npm install
       - ng build
 artifacts:
