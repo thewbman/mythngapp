@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CookieService } from '../cookie.service';
-import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import { FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-settings',
@@ -9,7 +9,7 @@ import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/form
 })
 export class SettingsComponent implements OnInit {
 
-  private _rootApiUrl: string;
+  public _rootApiUrl: string;
 
   constructor(private cookieService: CookieService) {
    this._rootApiUrl = cookieService.get("rootApiUrl");
