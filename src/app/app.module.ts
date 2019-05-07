@@ -15,6 +15,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { UpcomingComponent } from './upcoming/upcoming.component';
 import { StatusComponent } from './status/status.component';
 import { GuideComponent } from './guide/guide.component';
+import { SettingsComponent } from './settings/settings.component';
 
 import { WINDOW_PROVIDERS } from './window.provider';
 import { UniquePipe } from './unique.pipe';
@@ -22,6 +23,8 @@ import { UniqueTitlePipe } from './unique-title.pipe';
 import { ProgramListComponent } from './program-list/program-list.component';
 import { MaterialModule } from './material';
 import { RecstatusPipe } from './recstatus.pipe';
+
+import { CookieService } from './cookie.service';
 
 
 @NgModule({
@@ -37,7 +40,8 @@ import { RecstatusPipe } from './recstatus.pipe';
     UniquePipe,
     UniqueTitlePipe,
     ProgramListComponent,
-    RecstatusPipe
+    RecstatusPipe,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +53,8 @@ import { RecstatusPipe } from './recstatus.pipe';
     DeferLoadModule
   ],
   providers: [
-    WINDOW_PROVIDERS
+    WINDOW_PROVIDERS,
+    CookieService
   ],
   bootstrap: [AppComponent]
 })

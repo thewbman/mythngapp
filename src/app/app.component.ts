@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, OnDestroy, ViewChild } from '@angular/cor
 import { Router, Event, NavigationStart, NavigationEnd, NavigationError } from '@angular/router';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { MatSidenav } from '@angular/material';
+import { CookieService } from './cookie.service';
 
 @Component({
   selector: 'app-root',
@@ -13,8 +14,14 @@ export class AppComponent implements OnDestroy {
   mobileQuery: MediaQueryList;
   _mobileQueryListener: any;
   title = 'Myth-ng App';
+  private _rootApiUrl: string;
 
-  constructor(private router: Router, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+  constructor(private router: Router, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, public cookieService: CookieService) {
+
+this._rootApiUrl = cookieService.get("rootApiUrl");
+if(this._rootApiUrl === "") {
+  this.setCookie("http://myRootUrl:8080/api?");
+}
 
 this.mobileQuery = media.matchMedia('(max-width: 600px)');
 this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -44,5 +51,10 @@ router.events.subscribe( (event: Event) => {
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
+  }
+
+  public setCookie(value: string) {
+    this._rootApiUrl = value;
+    this.cookieService.set("rootApiUrl", value);
   }
 }

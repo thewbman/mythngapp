@@ -6,6 +6,7 @@ import { RecordedComponent } from './recorded/recorded.component';
 import { UpcomingComponent } from './upcoming/upcoming.component';
 import { StatusComponent } from './status/status.component';
 import { GuideComponent } from './guide/guide.component';
+import { SettingsComponent } from './settings/settings.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path: 'upcoming', component: UpcomingComponent },
   { path: 'guide', component: GuideComponent },
   { path: 'status', component: StatusComponent },
-  { path: 'dashboard', component: DashboardComponent }
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'settings', component: SettingsComponent }
 ];
 
 @NgModule({
