@@ -10,7 +10,7 @@ export class CookieService {
   set(key: string, value: string, expires: Date): void;
   set(key: string, value: string, expires?: Date): void {
     let cookieValue = `${key}=${value}`;
-    if (expires) cookieValue += `;expires='${expires.toUTCString()}'`
+    if (expires) { cookieValue += `;expires='${expires.toUTCString()}'`; }
     document.cookie = cookieValue;
   }
 
@@ -35,10 +35,10 @@ export class CookieService {
   }
 
   setWithExpiryInMiliseconds(key: string, value: string, expires: number) {
-    var expireDate = new Date();
-    var time = expireDate.getTime() + expires;
+    const expireDate = new Date();
+    const time = expireDate.getTime() + expires;
     expireDate.setTime(time);
-    
+
     this.set(key, value, expireDate);
   }
 
@@ -52,6 +52,6 @@ export class CookieService {
         return pair.substring(prefix.length);
       }
     }
-    return "";
+    return '';
   }
-}  
+}

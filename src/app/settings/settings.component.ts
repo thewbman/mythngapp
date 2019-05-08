@@ -12,14 +12,14 @@ export class SettingsComponent implements OnInit {
   public _rootApiUrl: string;
 
   constructor(private cookieService: CookieService) {
-   this._rootApiUrl = cookieService.get("rootApiUrl");
+   this._rootApiUrl = cookieService.get('rootApiUrl');
  }
 
   ngOnInit() {
   }
 
   onClickSave(): void {
-    this.cookieService.set("rootApiUrl", this._rootApiUrl);
+    this.cookieService.set('rootApiUrl', this._rootApiUrl);
   }
 
 }

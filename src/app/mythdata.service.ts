@@ -21,11 +21,11 @@ const httpOptions = {
 export class MythDataService {
 
   // Need a better way to get actual data, but for now
-  private baseUrl: string; 
+  private baseUrl: string;
   // = 'http://' + this.window.location.hostname + ':8580/api/api.php?Host=localhost&Port=6544&Url=';
 
-  constructor(@Inject(WINDOW) private window: Window, private mesService: MessageService, private http: HttpClient, private cookieService: CookieService) { 
-    this.baseUrl = cookieService.get("rootApiUrl");
+  constructor(@Inject(WINDOW) private window: Window, private mesService: MessageService, private http: HttpClient, private cookieService: CookieService) {
+    this.baseUrl = cookieService.get('rootApiUrl');
   }
 
   getRecordeds(): Observable<Program[]> {
@@ -83,7 +83,7 @@ export class MythDataService {
     return this.getPreviewImageUrl(rec) + '&Width=' + wd.toString();
   }
 
-  recordedUrl() { 
+  recordedUrl() {
     return this.baseUrl + '/Dvr/GetRecordedList';  // &Count=10';
   }
   upcomingUrl() {
