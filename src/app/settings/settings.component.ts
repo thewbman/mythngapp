@@ -19,7 +19,7 @@ export class SettingsComponent implements OnInit {
   }
 
   onClickSave(): void {
-    this.cookieService.set('rootApiUrl', this._rootApiUrl);
+    this.cookieService.setWithExpiryInYears('rootApiUrl', this._rootApiUrl, 1);
   }
 
 }

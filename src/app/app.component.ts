@@ -18,10 +18,10 @@ export class AppComponent implements OnDestroy {
 
   constructor(private router: Router, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, public cookieService: CookieService) {
 
-this._rootApiUrl = cookieService.get('rootApiUrl');
-if (this._rootApiUrl === '') {
-  this.setCookie('http://myRootUrl:8080/api/api.php?Host=localhost&Port=6544&Url=');
-}
+  this._rootApiUrl = cookieService.get('rootApiUrl');
+  if (this._rootApiUrl === '') {
+    this.setCookie('http://myRootUrl:8080/api/api.php?Host=localhost&Port=6544&Url=');
+  }
 
 this.mobileQuery = media.matchMedia('(max-width: 600px)');
 this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -55,7 +55,7 @@ router.events.subscribe( (event: Event) => {
 
   public setCookie(value: string) {
     this._rootApiUrl = value;
-    this.cookieService.set('rootApiUrl', value);
+    this.cookieService.setWithExpiryInYears('rootApiUrl', value,1);
   }
 
 }
