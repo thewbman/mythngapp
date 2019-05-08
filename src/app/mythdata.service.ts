@@ -20,13 +20,7 @@ const httpOptions = {
 })
 export class MythDataService {
 
-  // Need a better way to get actual data, but for now
-  private baseUrl: string;
-  // = 'http://' + this.window.location.hostname + ':8580/api/api.php?Host=localhost&Port=6544&Url=';
-
-  constructor(@Inject(WINDOW) private window: Window, private mesService: MessageService, private http: HttpClient, private cookieService: CookieService) {
-    this.baseUrl = cookieService.get('rootApiUrl');
-  }
+  constructor(@Inject(WINDOW) private window: Window, private mesService: MessageService, private http: HttpClient, private cookieService: CookieService) {  }
 
   getRecordeds(): Observable<Program[]> {
     this.log('RecordedService: fetched recorded');
@@ -83,14 +77,18 @@ export class MythDataService {
     return this.getPreviewImageUrl(rec) + '&Width=' + wd.toString();
   }
 
+  baseUrl() {
+    return this.cookieService.get('rootApiUrl');
+  }
+
   recordedUrl() {
-    return this.baseUrl + '/Dvr/GetRecordedList';  // &Count=10';
+    return this.baseUrl() + '/Dvr/GetRecordedList';  // &Count=10';
   }
   upcomingUrl() {
-    return this.baseUrl + '/Dvr/GetUpcomingList&ShowAll=true&Count=10000';
+    return this.baseUrl() + '/Dvr/GetUpcomingList&ShowAll=true&Count=10000';
   }
   statusUrl() {
-    return this.baseUrl + '/Status/GetStatus';
+    return this.baseUrl() + '/Status/GetStatus';
   }
 
 
