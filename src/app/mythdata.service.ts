@@ -2,6 +2,7 @@ import { Program } from './program';
 import { RecordedProgramResponse, UpcomingProgramResponse } from './recordedProgramResponse';
 import { MOCK_RECORDED, MOCK_RECORDED_RESPONSE } from './mock-recorded';
 import { MessageService } from './message.service';
+import { CookieService } from './cookie.service';
 
 import { WINDOW } from './window.provider';
 
@@ -20,12 +21,12 @@ const httpOptions = {
 export class MythDataService {
 
   // Need a better way to get actual data, but for now
-  private baseUrl = 'http://' + this.window.location.hostname + ':8580/api/api.php?Host=localhost&Port=6544&Url=';
-  private recordedUrl = this.baseUrl + '/Dvr/GetRecordedList';  // &Count=10';
-  private upcomingUrl = this.baseUrl + '/Dvr/GetUpcomingList&ShowAll=true&Count=10000';
-  private statusUrl = this.baseUrl + '/Status/GetStatus';
+  private baseUrl: string; 
+  // = 'http://' + this.window.location.hostname + ':8580/api/api.php?Host=localhost&Port=6544&Url=';
 
-  constructor(@Inject(WINDOW) private window: Window, private mesService: MessageService, private http: HttpClient) { }
+  constructor(@Inject(WINDOW) private window: Window, private mesService: MessageService, private http: HttpClient, private cookieService: CookieService) { 
+    this.baseUrl = cookieService.get("rootApiUrl");
+  }
 
   getRecordeds(): Observable<Program[]> {
     this.log('RecordedService: fetched recorded');
@@ -35,7 +36,7 @@ export class MythDataService {
   }
 
   getRecordedsUrl(): Observable<RecordedProgramResponse> {
-    return this.http.get<RecordedProgramResponse>(this.recordedUrl)
+    return this.http.get<RecordedProgramResponse>(this.recordedUrl())
       .pipe(
         tap(_ => this.log('fetched recorded')),
         catchError(this.handleError<RecordedProgramResponse>('getRecordedsUrl'))
@@ -43,7 +44,7 @@ export class MythDataService {
   }
 
   getUpcomingUrl(): Observable<UpcomingProgramResponse> {
-    return this.http.get<UpcomingProgramResponse>(this.upcomingUrl)
+    return this.http.get<UpcomingProgramResponse>(this.upcomingUrl())
       .pipe(
         tap(_ => this.log('fetched upcoming')),
         catchError(this.handleError<UpcomingProgramResponse>('getUpcomingUrl'))
@@ -51,7 +52,7 @@ export class MythDataService {
   }
 
   getStatusUrl(): Observable<string> {
-    return this.http.get(this.statusUrl, {responseType: 'text'})
+    return this.http.get(this.statusUrl(), {responseType: 'text'})
       .pipe(
         tap(_ => this.log('fetched status')),
         catchError(this.handleError<string>('getStatusUrl'))
@@ -81,6 +82,17 @@ export class MythDataService {
   getPreviewImageUrlWidth(rec: Program, wd: number) {
     return this.getPreviewImageUrl(rec) + '&Width=' + wd.toString();
   }
+
+  recordedUrl() { 
+    return this.baseUrl + '/Dvr/GetRecordedList';  // &Count=10';
+  }
+  upcomingUrl() {
+    return this.baseUrl + '/Dvr/GetUpcomingList&ShowAll=true&Count=10000';
+  }
+  statusUrl() {
+    return this.baseUrl + '/Status/GetStatus';
+  }
+
 
   private log(message: string) {
     this.mesService.add(`MythDataService: ${message}`);
