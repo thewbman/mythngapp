@@ -1,5 +1,5 @@
 import { Program } from './program';
-import { RecordedProgramResponse, UpcomingProgramResponse } from './recordedProgramResponse';
+import { RecordedProgramResponse, UpcomingProgramResponse,ConflictProgramResponse } from './recordedProgramResponse';
 import { MOCK_RECORDED, MOCK_RECORDED_RESPONSE } from './mock-recorded';
 import { MessageService } from './message.service';
 import { CookieService } from './cookie.service';
@@ -27,6 +27,14 @@ export class MythDataService {
     return of(MOCK_RECORDED_RESPONSE.ProgramList.Programs);
 
     // return this.getRecordedsUrl().ProgramList.Programs;
+  }
+
+ getConflictsUrl(): Observable<ConflictProgramResponse> {
+    return this.http.get<ConflictProgramResponse>(this.conflictUrl())
+      .pipe(
+        tap(_ => this.log('fetched conflict')),
+        catchError(this.handleError<ConflictProgramResponse>('getConflictsUrl'))
+      );
   }
 
   getRecordedsUrl(): Observable<RecordedProgramResponse> {
@@ -81,6 +89,9 @@ export class MythDataService {
     return this.cookieService.get('rootApiUrl');
   }
 
+  conflictUrl() {
+    return this.baseUrl() + '/Dvr/GetConflictList'; 
+  }
   recordedUrl() {
     return this.baseUrl() + '/Dvr/GetRecordedList';  // &Count=10';
   }

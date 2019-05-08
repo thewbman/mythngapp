@@ -17,3 +17,7 @@ export class RecordedProgramResponse {
 export class UpcomingProgramResponse {
   ProgramList: ProgramListClass;
 }
+
+export class ConflictProgramResponse {
+  ProgramList: ProgramListClass;
+}
