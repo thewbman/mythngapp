@@ -1,3 +1,34 @@
-<p>
-  dashboard works!
-</p>
+<div class="dashboard">
+
+<h1>Welcome to the Dashboard!</h1>
+
+<div *ngIf="!dataLoaded">
+Loading...
+</div>
+
+<div *ngIf="dataLoaded">
+
+<h2>Conflicts ({{conflictCount}})</h2>
+
+<mat-list class="conflictList">
+
+<mat-list-item *ngFor="let c of conflicts; last as last" class="program"  style="height: 120px;">
+
+<p matLine>{{c.Title}}</p>
+<p matLine>{{c.SubTitle}}</p>
+<p matLine *ngIf='c.Season > 0' >S{{c.Season}}E{{r.Episode}}</p>
+<p matLine>Recorded: {{c.StartTime | date:'MM/dd/yyyy @ h:mma'}}</p>
+<p matLine *ngIf='c.Airdate' >Original Airdate: {{c.Airdate | date:'MM/dd/yyyy'}}</p>
+
+<mat-divider [inset]="true"  *ngIf="!last" ></mat-divider>
+
+</mat-list-item>
+
+</mat-list>
+
+</div>
+
+
+
+
+</div>
