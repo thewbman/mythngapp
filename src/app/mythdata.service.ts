@@ -68,7 +68,7 @@ export class MythDataService {
   }
 
   getPreviewImageUrl(rec: Program) {
-    return this.baseUrl + '/Content/GetPreviewImage&ChanId=' + rec.Channel.ChanId + '&StartTime=' + rec.Recording.StartTs;
+    return this.baseUrl() + '/Content/GetPreviewImage&ChanId=' + rec.Channel.ChanId + '&StartTime=' + rec.Recording.StartTs;
   }
   getPreviewImageUrlHeight(rec: Program, ht: number) {
     return this.getPreviewImageUrl(rec) + '&Height=' + ht.toString();
