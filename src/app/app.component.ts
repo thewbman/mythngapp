@@ -57,4 +57,7 @@ router.events.subscribe( (event: Event) => {
     this._rootApiUrl = value;
     this.cookieService.set("rootApiUrl", value);
   }
+
+
+  asdf -- force error
 }
