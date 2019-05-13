@@ -3,6 +3,7 @@ import { formatDate } from '@angular/common';
 import * as _ from 'lodash';
 
 import { Program } from '../program';
+import { UpcomingDateProgramClass } from '../recordedProgramResponse';
 import { MythDataService } from '../mythdata.service';
 import { MessageService } from '../message.service';
 
@@ -30,6 +31,8 @@ export class UpcomingComponent implements OnInit {
   allPrograms: Program[];
   groupFilteredPrograms: Program[];
   dateFilteredPrograms: Program[];
+
+  dateProgramList: UpcomingDateProgramClass[];
 
   upcomingGroupList: string[];
   dateList: string[];
@@ -125,18 +128,40 @@ export class UpcomingComponent implements OnInit {
   }
 
   filterProgramsByDate(): void {
-    this.dateFilteredPrograms = [];
+    //this.dateFilteredPrograms = [];
+    this.dateProgramList = [];
 
     if ((this.selectedDate == null) || (this.selectedDate === '')) {
       // do nothing
     } else if (this.selectedDate === this.allDatesString ) {
-      this.dateFilteredPrograms = this.groupFilteredPrograms;
-    } else {
-      for (const u of this.groupFilteredPrograms) {
-        if (formatDate(u.StartTime, 'yyyy-MM-dd', 'en-US') === formatDate(this.selectedDate, 'yyyy-MM-dd', 'en-US')) {
-          this.dateFilteredPrograms.push(u);
+      //this.dateFilteredPrograms = this.groupFilteredPrograms;
+      for (const d of this.dateList) {
+        if(d != this.allDatesString) {
+          let dateItem = new UpcomingDateProgramClass();
+	  dateItem.DateString = d;
+	  dateItem.Programs = [];
+        
+          for (const u of this.groupFilteredPrograms) {
+            if (formatDate(u.StartTime, 'yyyy-MM-dd', 'en-US') === formatDate(dateItem.DateString, 'yyyy-MM-dd', 'en-US')) {
+              dateItem.Programs.push(u);
+            }
+          }
+
+	  this.dateProgramList.push(dateItem);
         }
       }
+    } else {
+      let dateItem = new UpcomingDateProgramClass();
+      dateItem.DateString = this.selectedDate;
+      dateItem.Programs = [];
+
+      for (const u of this.groupFilteredPrograms) {
+        if (formatDate(u.StartTime, 'yyyy-MM-dd', 'en-US') === formatDate(dateItem.DateString, 'yyyy-MM-dd', 'en-US')) {
+          dateItem.Programs.push(u);
+        }
+      }
+
+      this.dateProgramList.push(dateItem);
     }
 
   }
