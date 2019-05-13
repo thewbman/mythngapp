@@ -47,30 +47,32 @@ Loading...
 
 <div *ngIf="selectedDate">
 
-<h2>{{selectedDateFormatted}}</h2>
-
-<mat-list class="filteredProgramList">
-
-<mat-list-item *ngFor="let u of dateFilteredPrograms; last as last" (click)="onSelectProgram(u)" [class.selected]="u === selectedUpcoming">
+<!--<h2>{{selectedDateFormatted}}</h2>-->
 
 
+<mat-list class="filteredProgramDateList">
+
+<ng-container *ngFor="let d of dateProgramList">
+<mat-list-item>
+<div class="dateString">{{d.DateDisplayString}}</div>
+</mat-list-item>
+
+<mat-list class="programList">
+<mat-list-item *ngFor="let u of d.Programs; last as last" (click)="onSelectProgram(u)" [class.selected]="u === selectedUpcoming">
 <p matLine>{{u.Title}}</p>
 <p matLine>{{u.SubTitle}}</p>
 <p matLine>Status: {{u.Recording.Status |  recstatus}}</p>
 <p matLine *ngIf='u.Season > 0' >S{{u.Season}}E{{u.Episode}}</p>
 <p matLine>Recording Start: {{u.StartTime | date:'MM/dd/yyyy @ h:mma'}}</p>
 <p matLine *ngIf='u.Airdate' >Original Airdate: {{u.Airdate}}</p>
-
-
-
-
 <mat-divider [inset]="true"  *ngIf="!last" ></mat-divider>
-
 </mat-list-item>
-
-
 </mat-list>
 
+
+
+</ng-container>
+</mat-list>
 
 </div>
 

@@ -21,3 +21,9 @@ export class UpcomingProgramResponse {
 export class ConflictProgramResponse {
   ProgramList: ProgramListClass;
 }
+
+export class UpcomingDateProgramClass {
+  DateString: string;
+  DateDisplayString: string;
+  Programs: Program[];
+}
