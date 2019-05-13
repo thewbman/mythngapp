@@ -139,6 +139,7 @@ export class UpcomingComponent implements OnInit {
         if(d != this.allDatesString) {
           let dateItem = new UpcomingDateProgramClass();
 	  dateItem.DateString = d;
+	  dateItem.DateDisplayString = formatDate(dateItem.DateString,'fullDate','en-US');
 	  dateItem.Programs = [];
         
           for (const u of this.groupFilteredPrograms) {
@@ -153,6 +154,7 @@ export class UpcomingComponent implements OnInit {
     } else {
       let dateItem = new UpcomingDateProgramClass();
       dateItem.DateString = this.selectedDate;
+      dateItem.DateDisplayString = formatDate(dateItem.DateString, 'fullDate','en-US')
       dateItem.Programs = [];
 
       for (const u of this.groupFilteredPrograms) {

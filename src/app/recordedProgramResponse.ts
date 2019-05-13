@@ -24,5 +24,6 @@ export class ConflictProgramResponse {
 
 export class UpcomingDateProgramClass {
   DateString: string;
+  DateDisplayString: string;
   Programs: Program[];
 }
