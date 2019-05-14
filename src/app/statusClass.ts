@@ -111,3 +111,16 @@ export class StatusRootObject {
     _doctype: string;
     Status: Status;
 }
+
+export enum CardTVStateEnum {
+    kState_Error = -1,
+    kState_None = 0,
+    kState_WatchingLiveTV = 1,
+    kState_WatchingPreRecorded = 2,
+    kState_WatchingVideo = 3,
+    kState_WatchingDVD = 4,
+    kState_WatchingBD = 5,
+    kState_WatchingRecording = 6,
+    kState_RecordingOnly = 7,
+    kState_ChangingState = 8
+}
