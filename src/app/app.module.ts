@@ -25,6 +25,8 @@ import { MaterialModule } from './material';
 import { RecstatusPipe } from './recstatus.pipe';
 
 import { CookieService } from './cookie.service';
+import { SafeHtmlDirective } from './safe-html.directive';
+
 
 
 @NgModule({
@@ -41,7 +43,8 @@ import { CookieService } from './cookie.service';
     UniqueTitlePipe,
     ProgramListComponent,
     RecstatusPipe,
-    SettingsComponent
+    SettingsComponent,
+    SafeHtmlDirective
   ],
   imports: [
     BrowserModule,

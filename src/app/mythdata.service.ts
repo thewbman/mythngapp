@@ -60,6 +60,13 @@ export class MythDataService {
         catchError(this.handleError<string>('getStatusUrl'))
       );
   }
+  getStatusHtmlUrl(): Observable<string> {
+    return this.http.get(this.statusHtmlUrl(), {responseType: 'text'})
+      .pipe(
+        tap(_ => this.log('fetched status thml')),
+        catchError(this.handleError<string>('getStatusHtmlUrl'))
+      );
+  }
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
@@ -99,7 +106,10 @@ export class MythDataService {
     return this.baseUrl() + '/Dvr/GetUpcomingList&ShowAll=true&Count=10000';
   }
   statusUrl() {
-    return this.baseUrl() + '/Status/GetStatus';
+    return this.baseUrl() + '/Status/xml';
+  }
+  statusHtmlUrl() {
+    return this.baseUrl() + '/Status/GetStatusHTML';
   }
 
 
