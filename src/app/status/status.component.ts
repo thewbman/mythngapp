@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import * as _ from 'lodash';
+import * as convert from 'xml-js';
 
 
 import { Program } from '../program';
+import { StatusRootObject } from '../statusClass';
 import { MythDataService } from '../mythdata.service';
 import { MessageService } from '../message.service';
 
@@ -15,6 +17,9 @@ import { MessageService } from '../message.service';
 export class StatusComponent implements OnInit {
 
   rawStatusText: string;
+  parseStatusText: string;
+
+  statusObject: StatusRootObject;
 
   dataLoaded: boolean;
 
@@ -31,6 +36,9 @@ export class StatusComponent implements OnInit {
   }
 
   getStatusCompleted(): void {
+    this.parseStatusText = convert.xml2json(this.rawStatusText, {compact: true, spaces: 4});
+    this.statusObject = JSON.parse(convert.xml2json(this.rawStatusText, {compact: true, spaces: 4}));
+  
     this.dataLoaded = true;
   }
 

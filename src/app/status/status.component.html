@@ -6,6 +6,29 @@
 Loading...
 </div>
 
+
+
+
+
 <div *ngIf="dataLoaded">
-{{rawStatusText}}
+
+<ul>
+<li *ngFor="let en of statusObject.Status.Encoders.Encoder">Id: {{en._attributes.id}} - {{en._attributes.devlabel}}  - state={{en._attributes.state}}</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+<br/>
+
+
+
+{{parseStatusText}}
+
 </div>

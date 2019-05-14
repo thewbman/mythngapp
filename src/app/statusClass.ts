@@ -1,0 +1,111 @@
+export class Attributes {
+    version: string;
+    encoding: string;
+}
+
+export class Declaration {
+    _attributes: Attributes;
+}
+
+export class EncoderAttributes {
+    sleepstatus: string;
+    id: string;
+    state: string;
+    connected: string;
+    devlabel: string;
+    hostname: string;
+    local: string;
+}
+
+export class Encoder {
+    _attributes: EncoderAttributes;
+}
+
+export class Encoders {
+    _attributes: any;
+    Encoder: Encoder[];
+}
+
+export class Channel {
+    _attributes: any;
+}
+
+export class Recording {
+    _attributes: any;
+}
+
+export class StatusProgram {
+    _attributes: any;
+    Channel: Channel;
+    Recording: Recording;
+    _text: string;
+}
+
+export class Scheduled {
+    _attributes: any;
+    Program: StatusProgram[];
+}
+
+export class Frontends {
+}
+
+export class Backends {
+    _attributes: any;
+}
+
+export class Program {
+    _attributes: any;
+    Channel: any;
+    Recording: any;
+    _text: string;
+}
+
+export class Job {
+    _attributes: any;
+    _text: string;
+    Program: Program;
+}
+
+export class JobQueue {
+    _attributes: any;
+    Job: Job[];
+}
+
+export class Group {
+    _attributes: any;
+}
+
+export class Storage {
+    Group: Group[];
+}
+
+export class Load {
+    _attributes: any;
+}
+
+export class Guide {
+    _attributes: any;
+    _text: string;
+}
+
+export class MachineInfo {
+    Storage: Storage;
+    Load: Load;
+    Guide: Guide;
+}
+
+export class Status {
+    _attributes: any;
+    Encoders: Encoders;
+    Scheduled: Scheduled;
+    Frontends: Frontends;
+    Backends: Backends;
+    JobQueue: JobQueue;
+    MachineInfo: MachineInfo;
+}
+
+export class StatusRootObject {
+    _declaration: Declaration;
+    _doctype: string;
+    Status: Status;
+}
