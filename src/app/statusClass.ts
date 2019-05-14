@@ -1,3 +1,5 @@
+//Generated from https://www.jsonutils.com/
+
 export class Attributes {
     version: string;
     encoding: string;
