@@ -1,7 +1,3 @@
-<p>
-  status works!
-</p>
-
 <div *ngIf="!dataLoaded">
 Loading...
 </div>
@@ -12,18 +8,33 @@ Loading...
 
 <div *ngIf="dataLoaded">
 
+
+<h2>Encoders</h2>
 <ul>
 <li *ngFor="let en of statusObject.Status.Encoders.Encoder">Id: {{en._attributes.id}} - {{en._attributes.devlabel}}  - state={{en._attributes.state}}</li>
 </ul>
 
+<h2>Job Queue</h2>
+<ul>
+<li *ngFor="let j of statusObject.Status.JobQueue.Job">Id: {{j._attributes.id}} - {{j._text}}</li>
+</ul>
 
+<h2>Storage</h2>
+<ul>
+<li *ngFor="let sq of statusObject.Status.MachineInfo.Storage.Group">{{sq._attributes.dir}} - {{sq._attributes.used/1000 | number:'1.0-0'}} GB used, {{sq._attributes.free/1000 | number:'1.0-0'}} GB remaining</li>
+</ul>
 
+<h2>Guide Data</h2>
+<ul>
+<li >Guide last refresh {{statusObject.Status.MachineInfo.Guide._attributes.start}} was {{statusObject.Status.MachineInfo.Guide._attributes.status}}</li>
+</ul>
 
-
-
-
-
-
+<h2>Load average</h2>
+<ul>
+<li>1 minute: {{statusObject.Status.MachineInfo.Load._attributes.avg1}}</li>
+<li>5 minutes: {{statusObject.Status.MachineInfo.Load._attributes.avg2}}</li>
+<li>15 minutes: {{statusObject.Status.MachineInfo.Load._attributes.avg3}}</li>
+</ul>
 
 <br/>
 
