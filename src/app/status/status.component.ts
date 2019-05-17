@@ -3,12 +3,10 @@ import * as _ from 'lodash';
 import * as convert from 'xml-js';
 
 
-import { Program } from '../program';
-import { StatusRootObject } from '../statusClass';
+import { Program } from '../classes/program';
+import { StatusRootObject } from '../classes/statusClass';
 import { MythDataService } from '../mythdata.service';
 import { MessageService } from '../message.service';
-
-import { SafeHtmlDirective } from '../safe-html.directive';
 
 
 @Component({

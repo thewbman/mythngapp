@@ -1,6 +1,6 @@
-import { Program } from './program';
-import { RecordedProgramResponse, UpcomingProgramResponse,ConflictProgramResponse } from './recordedProgramResponse';
-import { MOCK_RECORDED, MOCK_RECORDED_RESPONSE } from './mock-recorded';
+import { Program } from './classes/program';
+import { RecordedProgramResponse, UpcomingProgramResponse,ConflictProgramResponse } from './classes/recordedProgramResponse';
+import { MOCK_RECORDED, MOCK_RECORDED_RESPONSE } from './classes/mock-recorded';
 import { MessageService } from './message.service';
 import { CookieService } from './cookie.service';
 

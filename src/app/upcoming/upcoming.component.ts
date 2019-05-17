@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { formatDate } from '@angular/common';
 import * as _ from 'lodash';
 
-import { Program } from '../program';
-import { UpcomingDateProgramClass } from '../recordedProgramResponse';
+import { Program } from '../classes/program';
+import { UpcomingDateProgramClass } from '../classes/recordedProgramResponse';
 import { MythDataService } from '../mythdata.service';
 import { MessageService } from '../message.service';
 

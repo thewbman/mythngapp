@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Injectable, Inject } from '@angular/core';
-import { Program } from '../program';
+import { Program } from '../classes/program';
 import { MythDataService } from '../mythdata.service';
 
 @Component({
