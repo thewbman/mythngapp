@@ -1,7 +1,46 @@
 <div class="guide">
 
-{{selectedTimeString}}
-{{selectedChanId}}
+<mat-tab-group [selectedIndex]="tabIndex" (selectedTabChange)=onTabChanged($event)>
+    <mat-tab label="Inputs">
+        <ng-template matTabContent>
+
+<br />
+
+<div>
+  <button mat-raised-button color="primary" (click)="onClickNow()" >Now (default)</button>
+</div>
+
+
+<br /> 
+
+<form class="guide-form">
+  <mat-form-field class="guide-full-width">
+    <input matInput placeholder="Start Time" [value]="startTimeInput" (input)="startTimeInput = $event.target.value">
+  </mat-form-field>
+  
+  <mat-form-field class="guide-full-width">
+    <input matInput placeholder="End Time" [value]="endTimeInput" (input)="endTimeInput = $event.target.value">
+  </mat-form-field>
+  
+  <mat-form-field class="guide-full-width">
+    <input matInput placeholder="Channel Id" [value]="chanIdInput" (input)="chanIdInput = $event.target.value">
+  </mat-form-field>
+  
+  
+</form>
+
+<div>
+  <button mat-raised-button color="primary" (click)="onClickGo()" >Go</button>
+</div>
+
+</ng-template>
+</mat-tab>
+
+
+
+    <mat-tab label="Guide" *ngIf="guideTabEnabled">
+        <ng-template matTabContent>
+	
 
 
 <div *ngIf="!dataLoaded">
@@ -46,11 +85,21 @@ Loading...
 </table>
 
 </div>
-
-
-
-<app-program-detail *ngIf="selectedProgram" [program]="selectedProgram"></app-program-detail>
-
-
 </div>
+
+</ng-template>
+</mat-tab>
+
+  <mat-tab label="Detail" *ngIf="selectedProgram">
+    <ng-template matTabContent>
+
+    
+<app-program-detail [program]="selectedProgram"></app-program-detail>
+
+
+</ng-template>
+</mat-tab>
+
+</mat-tab-group>
+
 </div>

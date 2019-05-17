@@ -17,6 +17,9 @@ export class GuideComponent implements OnInit {
 
   dataLoaded: boolean;
 
+  tabIndex: number;
+  guideTabEnabled: boolean;
+
   byTimeLayout: boolean;
 
   time: Date;
@@ -29,15 +32,33 @@ export class GuideComponent implements OnInit {
   guideChannels: GuideChannel[];
   guidePrograms: Program[];
 
+  public startTimeInput: string;
+  public endTimeInput: string;
+  public chanIdInput: string;
+
   constructor(private guideService: MythDataService, private mesService: MessageService) { }
 
   ngOnInit() {
     this.dataLoaded = false;
+    
+    this.tabIndex = 0;
+    this.guideTabEnabled = false;
     this.byTimeLayout = true;
+
+    this.getGuideNow();
+  }
+
+  getGuideNow(): void {
+    this.guideTabEnabled = true;
+    this.tabIndex = 1;
     
     let d = new Date();
     this.selectedTimeString = d.toISOString();
     this.selectedChanId = null;
+
+    this.startTimeInput = this.selectedTimeString;
+    this.endTimeInput = '';
+    this.chanIdInput = '';
     
     this.getGuide(this.selectedTimeString, this.selectedTimeString, this.selectedChanId);
   }
@@ -45,6 +66,8 @@ export class GuideComponent implements OnInit {
   //Possible bug in MythTV api not taking chanid parameter
   getGuide(startTime: string, endTime: string, chanId: string): void {
     this.mesService.add("getGuide()");
+    this.dataLoaded = false;
+    
     this.guideService.getGuideUrl(startTime, endTime, chanId).subscribe(
       guideResponse => {
         if( typeof guideResponse.ProgramGuide != "undefined" ) {
@@ -64,22 +87,69 @@ export class GuideComponent implements OnInit {
 
   getGuideCompleted(): void {
     this.dataLoaded = true;
+    this.guideTabEnabled = true;
+    this.tabIndex = 1;
   }
 
 
 
 
+  onClickNow(): void {
+    this.getGuideNow();
+  }
+  
+  onClickGo(): void {
+    this.mesService.add("onClickGo");
+    let d = new Date();
+    let d2 = new Date();
+
+    if(this.chanIdInput === "") {
+      this.selectedChanId = null;
+    }
+    else {
+      this.selectedChanId = this.chanIdInput;
+    }
+
+    if(this.startTimeInput === "") {
+      //let d2 = new Date(d.getTime() + 24*60*60*1000);
+      this.selectedTimeString = d.toISOString();
+      this.startTimeInput = d.toISOString();
+    }
+    else {
+      d = new Date(this.startTimeInput);
+      this.selectedTimeString = this.startTimeInput;
+    }
+
+    if(this.endTimeInput === "") {
+      if(this.chanIdInput != "") {
+        //Use 24 hours if have channel and no end time
+        d2 = new Date(d.getTime() + 24*60*60*1000);
+      }
+      else {
+        //If no channel, use same time
+	d2 = new Date(d.getTime());
+      }
+    }
+    else {
+      d2 = new Date(this.endTimeInput);
+    }
 
 
+    this.getGuide(this.selectedTimeString,d2.toISOString(),this.selectedChanId);
+  }
+  
   onSelectChannel(myChan: GuideChannel): void {
     this.mesService.add("onSelectChannel");
     this.selectedChannel = myChan;
     this.selectedChanId = myChan.ChanId;
     this.selectedTimeString = null;
+    this.selectedProgram = null;
 
     let d = new Date();
     let d2 = new Date(d.getTime() + 24*60*60*1000);
     this.selectedTimeString = d.toISOString();
+
+    this.chanIdInput = this.selectedChanId;
     
     this.getGuide(this.selectedTimeString,d2.toISOString(),this.selectedChanId);
   }
@@ -88,6 +158,7 @@ export class GuideComponent implements OnInit {
     this.mesService.add("onSelectTime");
     this.selectedChannel = null;
     this.selectedChanId = null;
+    this.selectedProgram = null;
 
     let d = new Date(myTime);
     let d2 = new Date(d.getTime() + 1000);		//add 1 second so we dont get programs ending exactly on time
@@ -98,17 +169,45 @@ export class GuideComponent implements OnInit {
 
   onSelectProgram(myProg: Program, chanId: string): void {
     this.mesService.add("onSelectProgram");
-    this.mesService.add("typeof myProg.Channel: "+typeof myProg.Channel);
 
     if( typeof myProg.Channel === "undefined" ) {
       myProg.Channel = {};
       myProg.Channel.ChanId = chanId;
     }
 
-    this.mesService.add("typeof myProg.Channel: "+typeof myProg.Channel);
-    
     this.selectedProgram = myProg;
+    this.tabIndex = 2;
   }
 
+
+  onTabChanged(tabChangeEvent: any): void {
+    this.mesService.add('onTabChanged: ' + tabChangeEvent.index.toString());
+    if (tabChangeEvent.index !== this.tabIndex) {
+      this.tabIndex = tabChangeEvent.index;
+    }
+
+    switch (this.tabIndex) {
+      case 0: {
+        //Inputs
+        this.selectedProgram = null;
+
+	this.guidePrograms = null;
+	this.guideChannels = null;
+
+        this.guideTabEnabled = false;
+
+        break;
+      }
+      case 1: {
+        //Guide
+	this.selectedProgram = null;
+      }
+      case 2: {
+        // Details
+        break;
+      }
+
+    }
+  }
 
 }
