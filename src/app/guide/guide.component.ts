@@ -24,6 +24,7 @@ export class GuideComponent implements OnInit {
   selectedTimeString: string;		//note all times are UTC
   selectedChannel: GuideChannel;
   selectedChanId: string;
+  selectedProgram: Program;
 
   guideChannels: GuideChannel[];
   guidePrograms: Program[];
@@ -88,9 +89,17 @@ export class GuideComponent implements OnInit {
     this.mesService.add("onSelectTime");
     this.selectedChannel = null;
     this.selectedChanId = null;
-    this.selectedTimeString = myTime;
 
-    this.getGuide(myTime,myTime,this.selectedChanId);
+    let d = new Date(myTime);
+    let d2 = new Date(d.getTime() + 1000);		//add 1 second so we dont get programs ending exactly on time
+    this.selectedTimeString = d2.toISOString();
+
+    this.getGuide(this.selectedTimeString,this.selectedTimeString,this.selectedChanId);
+  }
+
+  onSelectProgram(myProg: Program): void {
+    this.mesService.add("onSelectProgram");
+    this.selectedProgram = myProg;
   }
 
 

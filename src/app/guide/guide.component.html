@@ -22,7 +22,7 @@ Loading...
 
 <tr *ngFor="let ch of guideChannels; last as last">
 <td (click)="onSelectChannel(ch)">{{ch.ChanNum}} - {{ch.ChannelName}}</td>
-<td *ngIf="ch.Programs.length > 0">{{ch.Programs[0].Title}}</td>
+<td *ngIf="ch.Programs.length > 0" (click)="onSelectProgram(ch.Programs[0])">{{ch.Programs[0].Title}}</td>
 </tr>
 
 </table>
@@ -39,8 +39,8 @@ Loading...
 </tr>
 
 <tr *ngFor="let p of guidePrograms; last as last">
-<td (click)="onSelectTime(p.StartTime)">{{p.StartTime}}</td>
-<td>{{p.Title}}</td>
+<td (click)="onSelectTime(p.StartTime)">{{p.StartTime | date:'medium'}}</td>
+<td (click)="onSelectProgram(p)">{{p.Title}}</td>
 </tr>
 
 </table>
@@ -49,7 +49,7 @@ Loading...
 
 
 
-
+<app-recorded-detail *ngIf="selectedProgram" [recorded]="selectedProgram"></app-recorded-detail>
 
 
 </div>

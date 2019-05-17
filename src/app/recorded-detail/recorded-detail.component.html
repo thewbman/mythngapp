@@ -12,8 +12,8 @@
 <mat-card-content>
 
 <p><span>Start: </span>{{recorded.StartTime | date:'MM/dd/yyyy @ h:mma'}}</p>
-<p>ChanId: {{recorded.Channel.ChanId}}</p>
-<p>RecStart: {{recorded.Recording.StartTs | date:'MM/dd/yyyy @ h:mma'}}</p>
+<p *ngIf="recorded.Channel">ChanId: {{recorded.Channel.ChanId}}</p>
+<p *ngIf="recorded.Recording">RecStart: {{recorded.Recording.StartTs | date:'MM/dd/yyyy @ h:mma'}}</p>
 <div>{{recorded.Description}}</div>
 
 </mat-card-content>
