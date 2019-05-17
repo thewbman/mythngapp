@@ -29,7 +29,14 @@ export class ProgramDetailComponent implements OnInit {
   }
 
   getProgramDetails(): void {
-    this.dataService.getProgramDetailsUrl(this.program.Channel.ChanId, this.program.StartTime).subscribe(response => {this.program = response.Program; this.getProgramDetailsCompleted(); });
+    this.dataService.getProgramDetailsUrl(this.program.Channel.ChanId, this.program.StartTime).subscribe(response => {
+      //For recorded programs, they actually use record start time so this fails to get data
+      if(response.Program.StartTime !== '') {
+        this.program = response.Program;
+      }
+      
+      this.getProgramDetailsCompleted(); 
+   });
   }
 
   getProgramDetailsCompleted(): void {
