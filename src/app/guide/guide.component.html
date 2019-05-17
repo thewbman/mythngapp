@@ -1,3 +1,56 @@
-<p>
-  guide does work
-</p>
+<div class="guide">
+
+{{selectedTimeString}}
+{{selectedChanId}}
+
+
+<div *ngIf="!dataLoaded">
+Loading...
+</div>
+
+<div *ngIf="dataLoaded">
+
+
+
+<div *ngIf="byTimeLayout">
+
+<table style="width:100%">
+<tr>
+<th>Channel</th>
+<th>Program</th>
+</tr>
+
+<tr *ngFor="let ch of guideChannels; last as last">
+<td (click)="onSelectChannel(ch)">{{ch.ChanNum}} - {{ch.ChannelName}}</td>
+<td *ngIf="ch.Programs.length > 0">{{ch.Programs[0].Title}}</td>
+</tr>
+
+</table>
+
+</div>
+
+
+<div *ngIf="!byTimeLayout">
+
+<table style="width:100%">
+<tr>
+<th>Time</th>
+<th>Program</th>
+</tr>
+
+<tr *ngFor="let p of guidePrograms; last as last">
+<td (click)="onSelectTime(p.StartTime)">{{p.StartTime}}</td>
+<td>{{p.Title}}</td>
+</tr>
+
+</table>
+
+</div>
+
+
+
+
+
+
+</div>
+</div>
