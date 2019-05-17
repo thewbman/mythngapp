@@ -3,7 +3,7 @@ import * as _ from 'lodash';
 
 
 import { Program } from '../classes/program';
-import { GuideChannel,GuideProgram } from '../classes/recordedProgramResponse';
+import { GuideChannel } from '../classes/recordedProgramResponse';
 import { MythDataService } from '../mythdata.service';
 import { MessageService } from '../message.service';
 
