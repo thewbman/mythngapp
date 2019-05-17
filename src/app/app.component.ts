@@ -23,11 +23,11 @@ export class AppComponent implements OnDestroy {
     this.setCookie('http://myRootUrl:8080/api/api.php?Host=localhost&Port=6544&Url=');
   }
 
-this.mobileQuery = media.matchMedia('(max-width: 600px)');
-this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-this.mobileQuery.addListener(this._mobileQueryListener);
+  this.mobileQuery = media.matchMedia('(max-width: 600px)');
+  this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+  this.mobileQuery.addListener(this._mobileQueryListener);
 
-router.events.subscribe( (event: Event) => {
+  router.events.subscribe( (event: Event) => {
 
             if (event instanceof NavigationStart) {
                 if (this.mobileQuery.matches) {
@@ -55,7 +55,7 @@ router.events.subscribe( (event: Event) => {
 
   public setCookie(value: string) {
     this._rootApiUrl = value;
-    this.cookieService.setWithExpiryInYears('rootApiUrl', value,1);
+    this.cookieService.setWithExpiryInYears('rootApiUrl', value, 1);
   }
 
 }

@@ -1,5 +1,5 @@
 import { Program } from './classes/program';
-import { RecordedProgramResponse, UpcomingProgramResponse,ConflictProgramResponse,ProgramGuideResponse } from './classes/recordedProgramResponse';
+import { RecordedProgramResponse, UpcomingProgramResponse, ConflictProgramResponse, ProgramGuideResponse } from './classes/recordedProgramResponse';
 import { MOCK_RECORDED, MOCK_RECORDED_RESPONSE } from './classes/mock-recorded';
 import { MessageService } from './message.service';
 import { CookieService } from './cookie.service';
@@ -52,7 +52,7 @@ export class MythDataService {
         catchError(this.handleError<UpcomingProgramResponse>('getUpcomingUrl'))
       );
   }
-  
+
   getGuideUrl(startTime: string, endTime: string, chanId: string): Observable<ProgramGuideResponse> {
     return this.http.get<ProgramGuideResponse>(this.guideUrl(startTime, endTime, chanId))
       .pipe(
@@ -65,10 +65,10 @@ export class MythDataService {
     return this.http.get<Program>(this.programDetailsUrl(chanId, startTime))
       .pipe(
         tap(_ => this.log('fetched program details')),
-	catchError(this.handleError<Program>('getProgramDetailsUrl'))
+        catchError(this.handleError<Program>('getProgramDetailsUrl'))
       );
   }
-  
+
   getStatusUrl(): Observable<string> {
     return this.http.get(this.statusUrl(), {responseType: 'text'})
       .pipe(
@@ -114,7 +114,7 @@ export class MythDataService {
     return this.cookieService.get('rootApiUrl');
   }
   conflictUrl() {
-    return this.baseUrl() + '/Dvr/GetConflictList'; 
+    return this.baseUrl() + '/Dvr/GetConflictList';
   }
   recordedUrl() {
     return this.baseUrl() + '/Dvr/GetRecordedList';  // &Count=10';
@@ -124,14 +124,13 @@ export class MythDataService {
   }
   guideUrl(startTime: string, endTime: string, chanId: string) {
     if (( typeof chanId === undefined ) || (chanId === null)) {
-      return this.baseUrl() + '/Guide/GetProgramGuide&Details=false&StartTime='+startTime+'&EndTime='+endTime;
-    }
-    else {
-      return this.baseUrl() + '/Guide/GetProgramList&Details=false&StartTime='+startTime+'&EndTime='+endTime+'&ChanId='+chanId;
+      return this.baseUrl() + '/Guide/GetProgramGuide&Details=false&StartTime=' + startTime + '&EndTime=' + endTime;
+    } else {
+      return this.baseUrl() + '/Guide/GetProgramList&Details=false&StartTime=' + startTime + '&EndTime=' + endTime + '&ChanId=' + chanId;
     }
   }
   programDetailsUrl(chanId: string, startTime: string) {
-    return this.baseUrl() + '/Guide/GetProgramDetails&StartTime='+startTime+'&ChanId='+chanId;
+    return this.baseUrl() + '/Guide/GetProgramDetails&StartTime=' + startTime + '&ChanId=' + chanId;
   }
   statusUrl() {
     return this.baseUrl() + '/Status/xml';

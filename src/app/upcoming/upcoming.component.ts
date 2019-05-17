@@ -128,33 +128,33 @@ export class UpcomingComponent implements OnInit {
   }
 
   filterProgramsByDate(): void {
-    //this.dateFilteredPrograms = [];
+    // this.dateFilteredPrograms = [];
     this.dateProgramList = [];
 
     if ((this.selectedDate == null) || (this.selectedDate === '')) {
       // do nothing
     } else if (this.selectedDate === this.allDatesString ) {
-      //this.dateFilteredPrograms = this.groupFilteredPrograms;
+      // this.dateFilteredPrograms = this.groupFilteredPrograms;
       for (const d of this.dateList) {
-        if(d != this.allDatesString) {
-          let dateItem = new UpcomingDateProgramClass();
-	  dateItem.DateString = d;
-	  dateItem.DateDisplayString = formatDate(dateItem.DateString,'fullDate','en-US');
-	  dateItem.Programs = [];
-        
+        if (d !== this.allDatesString) {
+          const dateItem = new UpcomingDateProgramClass();
+          dateItem.DateString = d;
+          dateItem.DateDisplayString = formatDate(dateItem.DateString, 'fullDate', 'en-US');
+          dateItem.Programs = [];
+
           for (const u of this.groupFilteredPrograms) {
             if (formatDate(u.StartTime, 'yyyy-MM-dd', 'en-US') === formatDate(dateItem.DateString, 'yyyy-MM-dd', 'en-US')) {
               dateItem.Programs.push(u);
             }
           }
 
-	  this.dateProgramList.push(dateItem);
+          this.dateProgramList.push(dateItem);
         }
       }
     } else {
-      let dateItem = new UpcomingDateProgramClass();
+      const dateItem = new UpcomingDateProgramClass();
       dateItem.DateString = this.selectedDate;
-      dateItem.DateDisplayString = formatDate(dateItem.DateString, 'fullDate','en-US')
+      dateItem.DateDisplayString = formatDate(dateItem.DateString, 'fullDate', 'en-US');
       dateItem.Programs = [];
 
       for (const u of this.groupFilteredPrograms) {

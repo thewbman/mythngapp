@@ -31,7 +31,7 @@ export class UpcomingDateProgramClass {
 
 
 export class ProgramGuideResponse {
-  //Using this for both /Guide/GetProgramList and /Guide/GetProgramGuide
+  // Using this for both /Guide/GetProgramList and /Guide/GetProgramGuide
   ProgramGuide?: ChannelListClass;
   ProgramList?: ProgramListClass;
 }

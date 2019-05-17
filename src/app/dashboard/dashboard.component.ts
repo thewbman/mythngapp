@@ -15,7 +15,7 @@ export class DashboardComponent implements OnInit {
 
   dataLoaded: boolean;
 
-  conflicts: Program[]
+  conflicts: Program[];
   conflictCount: number;
 
   constructor(private conflictService: MythDataService, private mesService: MessageService) { }

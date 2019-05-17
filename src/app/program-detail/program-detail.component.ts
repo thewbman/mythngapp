@@ -20,7 +20,7 @@ export class ProgramDetailComponent implements OnInit {
 
   ngOnInit() {
     this.dataLoaded = false;
-    
+
     if (this.program.showImage) {
       this.imageUrl = this.dataService.getPreviewImageUrlWidth(this.program, 400);
     }
@@ -29,7 +29,7 @@ export class ProgramDetailComponent implements OnInit {
   }
 
   getProgramDetails(): void {
-    this.dataService.getProgramDetailsUrl(this.program.Channel.ChanId,this.program.StartTime).subscribe(response => {this.program = response.Program; this.getProgramDetailsCompleted(); });
+    this.dataService.getProgramDetailsUrl(this.program.Channel.ChanId, this.program.StartTime).subscribe(response => {this.program = response.Program; this.getProgramDetailsCompleted(); });
   }
 
   getProgramDetailsCompleted(): void {

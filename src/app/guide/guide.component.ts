@@ -24,7 +24,7 @@ export class GuideComponent implements OnInit {
 
   time: Date;
 
-  selectedTimeString: string;		//note all times are UTC
+  selectedTimeString: string;		// note all times are UTC
   selectedChannel: GuideChannel;
   selectedChanId: string;
   selectedProgram: Program;
@@ -40,7 +40,7 @@ export class GuideComponent implements OnInit {
 
   ngOnInit() {
     this.dataLoaded = false;
-    
+
     this.tabIndex = 0;
     this.guideTabEnabled = false;
     this.byTimeLayout = true;
@@ -51,36 +51,38 @@ export class GuideComponent implements OnInit {
   getGuideNow(): void {
     this.guideTabEnabled = true;
     this.tabIndex = 1;
-    
-    let d = new Date();
+
+    const d = new Date();
     this.selectedTimeString = d.toISOString();
     this.selectedChanId = null;
 
     this.startTimeInput = this.selectedTimeString;
     this.endTimeInput = '';
     this.chanIdInput = '';
-    
+
     this.getGuide(this.selectedTimeString, this.selectedTimeString, this.selectedChanId);
   }
 
-  //Possible bug in MythTV api not taking chanid parameter
+  // Possible bug in MythTV api not taking chanid parameter
   getGuide(startTime: string, endTime: string, chanId: string): void {
-    this.mesService.add("getGuide()");
+    this.mesService.add('getGuide()');
     this.dataLoaded = false;
-    
+
     this.guideService.getGuideUrl(startTime, endTime, chanId).subscribe(
       guideResponse => {
-        if( typeof guideResponse.ProgramGuide != "undefined" ) {
+        if ( typeof guideResponse.ProgramGuide !== 'undefined' ) {
           this.guideChannels = guideResponse.ProgramGuide.Channels;
-	  this.guidePrograms = null;
-	  this.byTimeLayout = true;
-	}
-	if( typeof guideResponse.ProgramList != "undefined" ) {
-	  this.guideChannels = null;
+          this.guidePrograms = null;
+          this.byTimeLayout = true;
+        }
+
+        if ( typeof guideResponse.ProgramList !== 'undefined' ) {
+          this.guideChannels = null;
           this.guidePrograms = guideResponse.ProgramList.Programs;
-	  this.byTimeLayout = false;
-	}
-        this.getGuideCompleted(); 
+          this.byTimeLayout = false;
+        }
+
+        this.getGuideCompleted();
       }
     );
   }
@@ -97,80 +99,78 @@ export class GuideComponent implements OnInit {
   onClickNow(): void {
     this.getGuideNow();
   }
-  
+
   onClickGo(): void {
-    this.mesService.add("onClickGo");
+    this.mesService.add('onClickGo');
     let d = new Date();
     let d2 = new Date();
 
-    if(this.chanIdInput === "") {
+    if (this.chanIdInput === '') {
       this.selectedChanId = null;
-    }
-    else {
+    } else {
       this.selectedChanId = this.chanIdInput;
     }
 
-    if(this.startTimeInput === "") {
-      //let d2 = new Date(d.getTime() + 24*60*60*1000);
+    if (this.startTimeInput === '') {
+      // let d2 = new Date(d.getTime() + 24*60*60*1000);
       this.selectedTimeString = d.toISOString();
       this.startTimeInput = d.toISOString();
-    }
-    else {
+    } else {
       d = new Date(this.startTimeInput);
       this.selectedTimeString = this.startTimeInput;
     }
 
-    if(this.endTimeInput === "") {
-      if(this.chanIdInput != "") {
-        //Use 24 hours if have channel and no end time
-        d2 = new Date(d.getTime() + 24*60*60*1000);
+    if (this.endTimeInput === '') {
+      if (this.chanIdInput !== '') {
+        // Use 24 hours if have channel and no end time
+        d2 = new Date(d.getTime() + 24 * 60 * 60 * 1000);
+      } else {
+        // If no channel, use same time
+        d2 = new Date(d.getTime());
       }
-      else {
-        //If no channel, use same time
-	d2 = new Date(d.getTime());
-      }
-    }
-    else {
+    } else {
       d2 = new Date(this.endTimeInput);
     }
 
 
-    this.getGuide(this.selectedTimeString,d2.toISOString(),this.selectedChanId);
+    this.getGuide(this.selectedTimeString, d2.toISOString(), this.selectedChanId);
   }
-  
+
   onSelectChannel(myChan: GuideChannel): void {
-    this.mesService.add("onSelectChannel");
+    this.mesService.add('onSelectChannel');
     this.selectedChannel = myChan;
     this.selectedChanId = myChan.ChanId;
     this.selectedTimeString = null;
     this.selectedProgram = null;
 
-    let d = new Date();
-    let d2 = new Date(d.getTime() + 24*60*60*1000);
+    const d = new Date();
+    const d2 = new Date(d.getTime() + 24 * 60 * 60 * 1000);
     this.selectedTimeString = d.toISOString();
 
     this.chanIdInput = this.selectedChanId;
-    
-    this.getGuide(this.selectedTimeString,d2.toISOString(),this.selectedChanId);
+
+    this.getGuide(this.selectedTimeString, d2.toISOString(), this.selectedChanId);
   }
 
   onSelectTime(myTime: string): void {
-    this.mesService.add("onSelectTime");
+    this.mesService.add('onSelectTime');
     this.selectedChannel = null;
     this.selectedChanId = null;
     this.selectedProgram = null;
 
-    let d = new Date(myTime);
-    let d2 = new Date(d.getTime() + 1000);		//add 1 second so we dont get programs ending exactly on time
+    const d = new Date(myTime);
+    const d2 = new Date(d.getTime() + 1000);		// add 1 second so we dont get programs ending exactly on time
     this.selectedTimeString = d2.toISOString();
 
-    this.getGuide(this.selectedTimeString,this.selectedTimeString,this.selectedChanId);
+    this.chanIdInput = '';
+
+    this.getGuide(this.selectedTimeString, this.selectedTimeString, this.selectedChanId);
   }
 
   onSelectProgram(myProg: Program, chanId: string): void {
-    this.mesService.add("onSelectProgram");
+    this.mesService.add('onSelectProgram');
 
-    if( typeof myProg.Channel === "undefined" ) {
+    if ( typeof myProg.Channel === 'undefined' ) {
       myProg.Channel = {};
       myProg.Channel.ChanId = chanId;
     }
@@ -188,19 +188,21 @@ export class GuideComponent implements OnInit {
 
     switch (this.tabIndex) {
       case 0: {
-        //Inputs
+        // Inputs
         this.selectedProgram = null;
 
-	this.guidePrograms = null;
-	this.guideChannels = null;
+        this.guidePrograms = null;
+        this.guideChannels = null;
 
         this.guideTabEnabled = false;
 
         break;
       }
       case 1: {
-        //Guide
-	this.selectedProgram = null;
+        // Guide
+        this.selectedProgram = null;
+
+        break;
       }
       case 2: {
         // Details
