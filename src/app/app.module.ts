@@ -20,7 +20,6 @@ import { SettingsComponent } from './settings/settings.component';
 import { WINDOW_PROVIDERS } from './window.provider';
 import { UniquePipe } from './pipes/unique.pipe';
 import { UniqueTitlePipe } from './pipes/unique-title.pipe';
-import { ProgramListComponent } from './program-list/program-list.component';
 import { MaterialModule } from './material';
 import { RecstatusPipe } from './pipes/recstatus.pipe';
 
@@ -40,7 +39,6 @@ import { CookieService } from './cookie.service';
     GuideComponent,
     UniquePipe,
     UniqueTitlePipe,
-    ProgramListComponent,
     RecstatusPipe,
     SettingsComponent
   ],

@@ -60,6 +60,14 @@ export class MythDataService {
         catchError(this.handleError<ProgramGuideResponse>('getGuideUrl'))
       );
   }
+
+  getProgramDetailsUrl(chanId: string, startTime: string): Observable<Program> {
+    return this.http.get<Program>(this.programDetailsUrl(chanId, startTime))
+      .pipe(
+        tap(_ => this.log('fetched program details')),
+	catchError(this.handleError<Program>('getProgramDetailsUrl'))
+      );
+  }
   
   getStatusUrl(): Observable<string> {
     return this.http.get(this.statusUrl(), {responseType: 'text'})
@@ -100,10 +108,11 @@ export class MythDataService {
     return this.getPreviewImageUrl(rec) + '&Width=' + wd.toString();
   }
 
+
+
   baseUrl() {
     return this.cookieService.get('rootApiUrl');
   }
-
   conflictUrl() {
     return this.baseUrl() + '/Dvr/GetConflictList'; 
   }
@@ -120,6 +129,9 @@ export class MythDataService {
     else {
       return this.baseUrl() + '/Guide/GetProgramList&Details=false&StartTime='+startTime+'&EndTime='+endTime+'&ChanId='+chanId;
     }
+  }
+  programDetailsUrl(chanId: string, startTime: string) {
+    return this.baseUrl() + '/Guide/GetProgramDetails&StartTime='+startTime+'&ChanId='+chanId;
   }
   statusUrl() {
     return this.baseUrl() + '/Status/xml';

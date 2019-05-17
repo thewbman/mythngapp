@@ -53,7 +53,6 @@ export class GuideComponent implements OnInit {
 	  this.byTimeLayout = true;
 	}
 	if( typeof guideResponse.ProgramList != "undefined" ) {
-	  this.mesService.add("typeof guideResponse.ProgramList: "+typeof guideResponse.ProgramList);
 	  this.guideChannels = null;
           this.guidePrograms = guideResponse.ProgramList.Programs;
 	  this.byTimeLayout = false;
@@ -97,8 +96,17 @@ export class GuideComponent implements OnInit {
     this.getGuide(this.selectedTimeString,this.selectedTimeString,this.selectedChanId);
   }
 
-  onSelectProgram(myProg: Program): void {
+  onSelectProgram(myProg: Program, chanId: string): void {
     this.mesService.add("onSelectProgram");
+    this.mesService.add("typeof myProg.Channel: "+typeof myProg.Channel);
+
+    if( typeof myProg.Channel === "undefined" ) {
+      myProg.Channel = {};
+      myProg.Channel.ChanId = chanId;
+    }
+
+    this.mesService.add("typeof myProg.Channel: "+typeof myProg.Channel);
+    
     this.selectedProgram = myProg;
   }
 

@@ -22,7 +22,7 @@ Loading...
 
 <tr *ngFor="let ch of guideChannels; last as last">
 <td (click)="onSelectChannel(ch)">{{ch.ChanNum}} - {{ch.ChannelName}}</td>
-<td *ngIf="ch.Programs.length > 0" (click)="onSelectProgram(ch.Programs[0])">{{ch.Programs[0].Title}}</td>
+<td *ngIf="ch.Programs.length > 0" (click)="onSelectProgram(ch.Programs[0],ch.ChanId)">{{ch.Programs[0].Title}}</td>
 </tr>
 
 </table>
