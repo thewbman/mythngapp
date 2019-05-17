@@ -9,7 +9,7 @@ import { DeferLoadModule } from '@trademe/ng-defer-load';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RecordedComponent } from './recorded/recorded.component';
-import { RecordedDetailComponent } from './recorded-detail/recorded-detail.component';
+import { ProgramDetailComponent } from './program-detail/program-detail.component';
 import { MessagesComponent } from './messages/messages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UpcomingComponent } from './upcoming/upcoming.component';
@@ -32,7 +32,7 @@ import { CookieService } from './cookie.service';
   declarations: [
     AppComponent,
     RecordedComponent,
-    RecordedDetailComponent,
+    ProgramDetailComponent,
     MessagesComponent,
     DashboardComponent,
     UpcomingComponent,

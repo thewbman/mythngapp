@@ -1,0 +1,22 @@
+<mat-card *ngIf="program" class="program-detail-card">
+
+
+<mat-card-header>
+<mat-card-title>{{program.Title}}</mat-card-title>
+<mat-card-subtitle>{{program.SubTitle}}</mat-card-subtitle>
+</mat-card-header>
+
+<img *ngIf="imageUrl" mat-card-image [src]="imageUrl" />
+
+
+<mat-card-content>
+
+<p><span>Start: </span>{{program.StartTime | date:'MM/dd/yyyy @ h:mma'}}</p>
+<p *ngIf="program.Channel">ChanId: {{program.Channel.ChanId}}</p>
+<p *ngIf="program.Recording">RecStart: {{program.Recording.StartTs | date:'MM/dd/yyyy @ h:mma'}}</p>
+<div>{{program.Description}}</div>
+
+</mat-card-content>
+
+  
+</mat-card>
