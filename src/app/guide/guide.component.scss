@@ -7,3 +7,16 @@
 .guide-full-width {
   width: 100%;
 }
+
+.guide-header {
+  width: 100%;
+  text-align: center;
+  background-color: rgb(66, 66, 66);
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: x-large;
+}
+
+td.mat-cell:first-of-type {
+  padding-left: 6px;
+}

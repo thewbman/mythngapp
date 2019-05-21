@@ -36,10 +36,17 @@ export class GuideComponent implements OnInit {
   public endTimeInput: string;
   public chanIdInput: string;
 
+  byTimeColumns: string[];
+  byChannelColumns: string[];
+
   constructor(private guideService: MythDataService, private mesService: MessageService) { }
 
   ngOnInit() {
     this.dataLoaded = false;
+
+    this.byTimeColumns = ['channel','program'];
+    this.byChannelColumns = ['time','program'];
+  
 
     this.tabIndex = 0;
     this.guideTabEnabled = false;
@@ -71,7 +78,12 @@ export class GuideComponent implements OnInit {
     this.guideService.getGuideUrl(startTime, endTime, chanId).subscribe(
       guideResponse => {
         if ( typeof guideResponse.ProgramGuide !== 'undefined' ) {
-          this.guideChannels = guideResponse.ProgramGuide.Channels;
+          this.guideChannels = [];
+          for(const ch of guideResponse.ProgramGuide.Channels) {
+            if(ch.Programs.length > 0) {
+              this.guideChannels.push(ch);
+            }
+	  }
           this.guidePrograms = null;
           this.byTimeLayout = true;
         }
