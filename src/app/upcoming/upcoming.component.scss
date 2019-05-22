@@ -6,13 +6,18 @@
 .dateString {
   background-color: gray;
   font-size: x-large;
-  border-bottom-color: blue;
-  border-bottom-style: solid;
-  width: 100%;
+  xborder-bottom-color: blue;
+  xborder-bottom-style: solid;
+  xwidth: 100%;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   position: absolute;
-  padding: 10px;
+  padding: 10px 0px 0px 10px;
+  vertical-align: middle;
+}
+
+.xfilteredProgramDateList .mat-list-item {
+  height: 32px;
 }
