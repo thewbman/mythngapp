@@ -25,6 +25,9 @@ export class ProgramRecording {
   FileName?: string;
   RecGroup?: string;
   StartTs?: string;
+  EndTs?: string;
+  FileSize?: string;
+  HostName?: string;
   [key: string]: any;
 }
 

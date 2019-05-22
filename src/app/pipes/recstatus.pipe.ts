@@ -18,7 +18,7 @@ case '-4': return 'Aborted';
 case '-3': return 'Recorded';
 case '-2': return 'Recording';
 case '-1': return 'Will Record';
-case '0': return 'Unknown';
+case '0': return 'N/A';
 case '1': return 'Dont Record';
 case '2': return 'Previous Recording';
 case '3': return 'Current Recording';
