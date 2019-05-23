@@ -64,7 +64,7 @@ Loading...
 <p matLine>{{u.SubTitle}}</p>
 <p matLine>Status: {{u.Recording.Status |  recstatus}}</p>
 <p matLine *ngIf='u.Season > 0' >S{{u.Season}}E{{u.Episode}}</p>
-<p matLine>Recording Start: {{u.StartTime | date:'MM/dd/yyyy @ h:mma'}}</p>
+<p matLine>Recording Start: {{u.StartTime | date:'M/dd/yyyy @ h:mma'}}</p>
 <p matLine *ngIf='u.Airdate' >Original Airdate: {{u.Airdate}}</p>
 <mat-divider [inset]="true"  *ngIf="!last" ></mat-divider>
 </mat-list-item>

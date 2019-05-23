@@ -10,6 +10,8 @@ export class Program {
   Episode?: string;
   Recording?: ProgramRecording;
   Channel?: ProgramChannel;
+  Artwork?: ProgramArtwork;
+  Cast?: ProgramCast;
   [key: string]: any;
 
   showImage?: boolean;
@@ -35,6 +37,21 @@ export class ProgramChannel {
   ChanId?: string;
   ChannelName?: string;
   [key: string]: any;
+}
+
+export class ProgramArtwork {
+  [key: string]: any;
+}
+
+export class ProgramCast {
+  CastMembers?: ProgramCastMember[];
+}
+
+export class ProgramCastMember {
+  Name: string;
+  CharacterName?: string;
+  Role?: string;
+  TranslatedRole?: string;
 }
 
 export enum RecStatusEnum {

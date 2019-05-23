@@ -11,8 +11,8 @@
 
 <mat-card-content>
 
-<p><span>Start: </span>{{program.StartTime | date:'MM/dd/yyyy @ h:mma'}}</p>
-<p><span>End: </span>{{program.EndTime | date:'MM/dd/yyyy @ h:mma'}}</p>
+<p><span>Start: </span>{{program.StartTime | date:'M/dd/yyyy @ h:mma'}}</p>
+<p><span>End: </span>{{program.EndTime | date:'M/dd/yyyy @ h:mma'}}</p>
 <div>{{program.Description}}</div>
 
 <mat-tree [dataSource]="treeDataSource" [treeControl]="treeControl">

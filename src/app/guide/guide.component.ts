@@ -44,9 +44,9 @@ export class GuideComponent implements OnInit {
   ngOnInit() {
     this.dataLoaded = false;
 
-    this.byTimeColumns = ['channel','program'];
-    this.byChannelColumns = ['time','program'];
-  
+    this.byTimeColumns = ['channel', 'program'];
+    this.byChannelColumns = ['time', 'program'];
+
 
     this.tabIndex = 0;
     this.guideTabEnabled = false;
@@ -79,11 +79,11 @@ export class GuideComponent implements OnInit {
       guideResponse => {
         if ( typeof guideResponse.ProgramGuide !== 'undefined' ) {
           this.guideChannels = [];
-          for(const ch of guideResponse.ProgramGuide.Channels) {
-            if(ch.Programs.length > 0) {
+          for (const ch of guideResponse.ProgramGuide.Channels) {
+            if (ch.Programs.length > 0) {
               this.guideChannels.push(ch);
             }
-	  }
+          }
           this.guidePrograms = null;
           this.byTimeLayout = true;
         }

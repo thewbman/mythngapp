@@ -58,8 +58,8 @@ Loading...
 <p matLine>{{rec.Title}}</p>
 <p matLine>{{rec.SubTitle}}</p>
 <p matLine *ngIf='rec.Season > 0' >S{{rec.Season}}E{{rec.Episode}}</p>
-<p matLine>Recorded: {{rec.StartTime | date:'MM/dd/yyyy @ h:mma'}}</p>
-<p matLine *ngIf='rec.Airdate' >Original Airdate: {{rec.Airdate | date:'MM/dd/yyyy'}}</p>
+<p matLine>Recorded: {{rec.StartTime | date:'M/dd/yyyy @ h:mma'}}</p>
+<p matLine *ngIf='rec.Airdate' >Original Airdate: {{rec.Airdate | date:'M/dd/yyyy'}}</p>
 
 
 <!--<img matListAvatar  *ngIf='rec.smallPreviewImageUrl' [src]='rec.smallPreviewImageUrl' alt='image here' />-->
