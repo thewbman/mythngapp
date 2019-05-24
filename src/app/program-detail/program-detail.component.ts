@@ -82,15 +82,21 @@ export class ProgramDetailComponent implements OnInit {
   getProgramDetailsCompleted(): void {
     this.dataLoaded = true;
 
+
     const channelNode: TreeNode = { name: 'Channel: ' + this.program.Channel.ChannelName, children: [] };
     channelNode.children.push({ name: 'Name: ' + this.program.Channel.ChannelName, children: []});
     channelNode.children.push({ name: 'Number: ' + this.program.Channel.ChanNum, children: []});
     channelNode.children.push({ name: 'ChanId: ' + this.program.Channel.ChanId, children: []});
 
+
     const recordingNode: TreeNode = { name: 'Recording: ' + this.recstatus.transform(this.program.Recording.Status), children: [] };
-    recordingNode.children.push({ name: 'Status: ' + this.program.Recording.Status, children: []});
-    recordingNode.children.push({ name: 'StartTs: ' + formatDate(this.program.Recording.StartTs, 'M/dd/yyyy @ h:mm:ssa', 'en-US'), children: []});
-    recordingNode.children.push({ name: 'EndTs: ' + formatDate(this.program.Recording.EndTs, 'M/dd/yyyy @ h:mm:ssa', 'en-US'), children: []});
+    //recordingNode.children.push({ name: 'Status: ' + this.program.Recording.Status, children: []});
+    if ((this.program.Recording.StartTs) && (this.program.Recording.StartTs !== '')) {
+      recordingNode.children.push({ name: 'StartTs: ' + formatDate(this.program.Recording.StartTs, 'M/dd/yyyy @ h:mm:ssa', 'en-US'), children: []});
+    }
+    if ((this.program.Recording.EndTs) && (this.program.Recording.EndTs !== '')) {
+      recordingNode.children.push({ name: 'EndTs: ' + formatDate(this.program.Recording.EndTs, 'M/dd/yyyy @ h:mm:ssa', 'en-US'), children: []});
+    }
     if ((this.program.Recording.FileName) && (this.program.Recording.FileName !== '')) {
       recordingNode.children.push({ name: 'FileName: ' + this.program.Recording.FileName, children: []});
     }
@@ -98,9 +104,12 @@ export class ProgramDetailComponent implements OnInit {
       recordingNode.children.push({ name: 'FileSize: ' + this.program.Recording.FileSize, children: []});
     }
 
+
     const castNode: TreeNode = { name: 'Cast', children: []};
-    for (const ca of this.program.Cast.CastMembers) {
-      castNode.children.push({ name: (ca.TranslatedRole !== '' ? ca.TranslatedRole + ': ' : '') + ca.Name, children: []});
+    if (this.program.Cast) {
+      for (const ca of this.program.Cast.CastMembers) {
+        castNode.children.push({ name: (ca.TranslatedRole !== '' ? ca.TranslatedRole + ': ' : '') + ca.Name, children: []});
+      }
     }
 
 

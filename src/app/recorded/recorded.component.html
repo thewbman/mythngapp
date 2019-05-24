@@ -52,7 +52,7 @@ Loading...
 <mat-list-item *ngFor="let rec of filteredRecordeds; last as last" class="program" (click)="onSelectRecorded(rec)" [class.selected]="rec === selectedRecorded" style="height: 120px;">
 
 
-<img matListAvatar *ngIf="rec.smallPreviewImageUrl" src={{rec.smallPreviewImageUrl}} class="lazy" />
+<img matListAvatar *ngIf="rec.smallPreviewImageUrl" src={{rec.smallPreviewImageUrl}} class="lazy" loading="lazy" />
 
 
 <p matLine>{{rec.Title}}</p>
