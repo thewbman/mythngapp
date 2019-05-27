@@ -1,5 +1,6 @@
 <div class="upcoming">
 
+
 <mat-tab-group [selectedIndex]="tabIndex" (selectedTabChange)=onTabChanged($event)>
     <mat-tab label="Group">
         <ng-template matTabContent>
@@ -62,7 +63,7 @@ Loading...
 <mat-list-item *ngFor="let u of d.Programs; last as last" (click)="onSelectProgram(u)" [class.selected]="u === selectedUpcoming">
 <p matLine>{{u.Title}}</p>
 <p matLine>{{u.SubTitle}}</p>
-<p matLine>Status: {{u.Recording.Status |  recstatus}}</p>
+<p matLine>Status: {{u.Recording.Status | recstatus}}</p>
 <p matLine *ngIf='u.Season > 0' >S{{u.Season}}E{{u.Episode}}</p>
 <p matLine>Recording Start: {{u.StartTime | date:'M/dd/yyyy @ h:mma'}}</p>
 <p matLine *ngIf='u.Airdate' >Original Airdate: {{u.Airdate}}</p>

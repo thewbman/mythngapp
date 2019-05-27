@@ -5,7 +5,7 @@
     <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" color="primary">
       <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
     </button>
-    <span>{{ title }}</span>
+    <span id="headerTitleSpan">{{ title }}</span>
     <button type="button" aria-label="Toggle message" mat-icon-button (click)="messages.toggle()" color="primary">
       <mat-icon>menu</mat-icon>
     </button>
@@ -32,9 +32,11 @@
 
 </mat-sidenav>
 
+<!--
 <mat-sidenav #messages mode="side" position="end" closed>
 <app-messages></app-messages>
 </mat-sidenav>
+-->
 
 <mat-sidenav-content class="content-continer">
 

@@ -33,8 +33,6 @@ export class ProgramDetailComponent implements OnInit {
 
   imageUrl: string;
 
-  treeData: TreeNode[];
-
   private transformer = (node: TreeNode, level: number) => {
     return {
       expandable: !!node.children && node.children.length > 0,
@@ -42,7 +40,9 @@ export class ProgramDetailComponent implements OnInit {
       level,
     };
   }
-  
+
+  treeData: TreeNode[];
+
   treeControl = new FlatTreeControl<ExampleFlatNode>(
       node => node.level, node => node.expandable);
 
@@ -57,7 +57,7 @@ export class ProgramDetailComponent implements OnInit {
   ngOnInit() {
     this.dataLoaded = false;
 
-    if (this.program.showImage) {
+    if ((typeof this.program !== 'undefined') && (this.program.showImage)) {
       this.imageUrl = this.dataService.getPreviewImageUrlWidth(this.program, 400);
     }
 
@@ -65,63 +65,68 @@ export class ProgramDetailComponent implements OnInit {
   }
 
   getProgramDetails(): void {
-    this.dataService.getProgramDetailsUrl(this.program.Channel.ChanId, this.program.StartTime).subscribe(response => {
-      // For recorded programs we don't really want to reload since can either fail or loses file info
-      if (response.Program.StartTime !== '') {
-        if ((this.program.Recording.FileName !== '') && (response.Program.Recording.FileName === '')) {
-          // dont overwrite with new details
-        } else {
-          this.program = response.Program;
+    if ( typeof this.program !== 'undefined') {
+      this.dataService.getProgramDetailsUrl(this.program.Channel.ChanId, this.program.StartTime).subscribe(response => {
+        // For recorded programs we don't really want to reload since can either fail or loses file info
+        if (response.Program.StartTime !== '') {
+          if ((this.program.Recording.FileName !== '') && (response.Program.Recording.FileName === '')) {
+            // dont overwrite with new details
+          } else {
+            this.program = response.Program;
+          }
         }
-      }
 
       this.getProgramDetailsCompleted();
-   });
+     });
+   }
   }
 
   getProgramDetailsCompleted(): void {
     this.dataLoaded = true;
 
+    if (( typeof this.program !== 'undefined' ) && (typeof this.program.Channel !== 'undefined')) {
 
-    const channelNode: TreeNode = { name: 'Channel: ' + this.program.Channel.ChannelName, children: [] };
-    channelNode.children.push({ name: 'Name: ' + this.program.Channel.ChannelName, children: []});
-    channelNode.children.push({ name: 'Number: ' + this.program.Channel.ChanNum, children: []});
-    channelNode.children.push({ name: 'ChanId: ' + this.program.Channel.ChanId, children: []});
-
-
-    const recordingNode: TreeNode = { name: 'Recording: ' + this.recstatus.transform(this.program.Recording.Status), children: [] };
-    //recordingNode.children.push({ name: 'Status: ' + this.program.Recording.Status, children: []});
-    if ((this.program.Recording.StartTs) && (this.program.Recording.StartTs !== '')) {
-      recordingNode.children.push({ name: 'StartTs: ' + formatDate(this.program.Recording.StartTs, 'M/dd/yyyy @ h:mm:ssa', 'en-US'), children: []});
-    }
-    if ((this.program.Recording.EndTs) && (this.program.Recording.EndTs !== '')) {
-      recordingNode.children.push({ name: 'EndTs: ' + formatDate(this.program.Recording.EndTs, 'M/dd/yyyy @ h:mm:ssa', 'en-US'), children: []});
-    }
-    if ((this.program.Recording.FileName) && (this.program.Recording.FileName !== '')) {
-      recordingNode.children.push({ name: 'FileName: ' + this.program.Recording.FileName, children: []});
-    }
-    if ((this.program.Recording.FileSize) && (this.program.Recording.FileSize !== '0')) {
-      recordingNode.children.push({ name: 'FileSize: ' + this.program.Recording.FileSize, children: []});
-    }
+      const channelNode: TreeNode = { name: 'Channel: ' + this.program.Channel.ChannelName, children: [] };
+      channelNode.children.push({ name: 'Name: ' + this.program.Channel.ChannelName, children: []});
+      channelNode.children.push({ name: 'Number: ' + this.program.Channel.ChanNum, children: []});
+      channelNode.children.push({ name: 'ChanId: ' + this.program.Channel.ChanId, children: []});
 
 
-    const castNode: TreeNode = { name: 'Cast', children: []};
-    if (this.program.Cast) {
-      for (const ca of this.program.Cast.CastMembers) {
-        castNode.children.push({ name: (ca.TranslatedRole !== '' ? ca.TranslatedRole + ': ' : '') + ca.Name, children: []});
+      const recordingNode: TreeNode = { name: 'Recording: ' + this.recstatus.transform(this.program.Recording.Status), children: [] };
+      // recordingNode.children.push({ name: 'Status: ' + this.program.Recording.Status, children: []});
+      if ((this.program.Recording.StartTs) && (this.program.Recording.StartTs !== '')) {
+        recordingNode.children.push({ name: 'StartTs: ' + formatDate(this.program.Recording.StartTs, 'M/dd/yyyy @ h:mm:ssa', 'en-US'), children: []});
       }
+      if ((this.program.Recording.EndTs) && (this.program.Recording.EndTs !== '')) {
+        recordingNode.children.push({ name: 'EndTs: ' + formatDate(this.program.Recording.EndTs, 'M/dd/yyyy @ h:mm:ssa', 'en-US'), children: []});
+      }
+      if ((this.program.Recording.FileName) && (this.program.Recording.FileName !== '')) {
+        recordingNode.children.push({ name: 'FileName: ' + this.program.Recording.FileName, children: []});
+      }
+      if ((this.program.Recording.FileSize) && (this.program.Recording.FileSize !== '0')) {
+        recordingNode.children.push({ name: 'FileSize: ' + this.program.Recording.FileSize, children: []});
+      }
+
+
+      const castNode: TreeNode = { name: 'Cast', children: []};
+      if (this.program.Cast) {
+        for (const ca of this.program.Cast.CastMembers) {
+          castNode.children.push({ name: (ca.TranslatedRole !== '' ? ca.TranslatedRole + ': ' : '') + ca.Name, children: []});
+        }
+      }
+
+
+      this.treeData = [];
+      this.treeData.push(channelNode);
+      this.treeData.push(recordingNode);
+
+      if (castNode.children.length > 0) {
+        this.treeData.push(castNode);
+      }
+
+      this.treeDataSource.data = this.treeData; 
+    
     }
-
-
-    this.treeData = [];
-    this.treeData.push(channelNode);
-    this.treeData.push(recordingNode);
-
-    if (castNode.children.length > 0) {
-      this.treeData.push(castNode);
-    }
-
-    this.treeDataSource.data = this.treeData;
   }
 
 

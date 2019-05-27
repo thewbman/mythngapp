@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, OnDestroy, ViewChild } from '@angular/cor
 import { Router, Event, NavigationStart, NavigationEnd, NavigationError } from '@angular/router';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { MatSidenav } from '@angular/material';
+
 import { CookieService } from './cookie.service';
 
 @Component({

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as _ from 'lodash';
 
 
+
 import { Program } from '../classes/program';
 import { MythDataService } from '../mythdata.service';
 import { MessageService } from '../message.service';
@@ -50,7 +51,11 @@ export class RecordedComponent implements OnInit {
 
   getRecordeds(): void {
     // this.recService.getRecordeds().subscribe(recordeds => this.recordeds = recordeds);
-    this.recService.getRecordedsUrl().subscribe(recordedResponse => {this.recordeds = recordedResponse.ProgramList.Programs; this.getRecordedsCompleted(); });
+    this.recService.getRecordedsUrl().subscribe(recordedResponse => {
+      if ( typeof recordedResponse !== 'undefined') {
+        this.recordeds = recordedResponse.ProgramList.Programs; this.getRecordedsCompleted();
+      }
+    });
   }
 
   getRecordedsCompleted(): void {

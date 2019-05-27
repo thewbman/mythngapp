@@ -1,4 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { CookieService } from '../cookie.service';
+import { MaterialModule } from '../material/material.module';
 
 import { SettingsComponent } from './settings.component';
 
@@ -8,7 +12,16 @@ describe('SettingsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SettingsComponent ]
+      declarations: [
+        SettingsComponent
+      ],
+      imports: [
+        MaterialModule,
+	BrowserAnimationsModule
+      ],
+      providers: [
+        CookieService
+      ]
     })
     .compileComponents();
   }));

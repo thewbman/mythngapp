@@ -39,9 +39,11 @@ export class StatusComponent implements OnInit {
   }
 
   getStatus(): void {
-    this.dataService.getStatusUrl().subscribe(resp => {this.rawStatusText = resp; this.getStatusCompleted(); });
-
-    // this.dataService.getStatusHtmlUrl().subscribe(resp => {this.statusHtml = resp.split("<body")[1].split("</body>")[0]; });
+    this.dataService.getStatusUrl().subscribe(resp => {
+      if( typeof resp !== 'undefined') {
+        this.rawStatusText = resp; this.getStatusCompleted(); 
+      }
+    });  
   }
 
   getStatusCompleted(): void {

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { formatDate } from '@angular/common';
 import * as _ from 'lodash';
 
+
 import { Program } from '../classes/program';
 import { UpcomingDateProgramClass } from '../classes/recordedProgramResponse';
 import { MythDataService } from '../mythdata.service';
@@ -59,7 +60,11 @@ export class UpcomingComponent implements OnInit {
   }
 
   getUpcoming(): void {
-    this.dataService.getUpcomingUrl().subscribe(resp => {this.allPrograms = resp.ProgramList.Programs; this.getUpcomingCompleted(); });
+    this.dataService.getUpcomingUrl().subscribe(resp => {
+      if ( typeof resp !== 'undefined' ) {
+        this.allPrograms = resp.ProgramList.Programs; this.getUpcomingCompleted();
+      }
+    });
   }
 
   getUpcomingCompleted(): void {

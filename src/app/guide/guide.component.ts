@@ -3,7 +3,7 @@ import * as _ from 'lodash';
 
 
 import { Program } from '../classes/program';
-import { GuideChannel } from '../classes/recordedProgramResponse';
+import { ProgramGuideResponse, GuideChannel } from '../classes/recordedProgramResponse';
 import { MythDataService } from '../mythdata.service';
 import { MessageService } from '../message.service';
 
@@ -77,7 +77,7 @@ export class GuideComponent implements OnInit {
 
     this.guideService.getGuideUrl(startTime, endTime, chanId).subscribe(
       guideResponse => {
-        if ( typeof guideResponse.ProgramGuide !== 'undefined' ) {
+        if ((typeof guideResponse !== 'undefined') && ( typeof guideResponse.ProgramGuide !== 'undefined' )) {
           this.guideChannels = [];
           for (const ch of guideResponse.ProgramGuide.Channels) {
             if (ch.Programs.length > 0) {
@@ -86,9 +86,7 @@ export class GuideComponent implements OnInit {
           }
           this.guidePrograms = null;
           this.byTimeLayout = true;
-        }
-
-        if ( typeof guideResponse.ProgramList !== 'undefined' ) {
+        } else if ((typeof guideResponse !== 'undefined') && ( typeof guideResponse.ProgramList !== 'undefined' )) {
           this.guideChannels = null;
           this.guidePrograms = guideResponse.ProgramList.Programs;
           this.byTimeLayout = false;

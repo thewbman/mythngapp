@@ -28,7 +28,11 @@ export class DashboardComponent implements OnInit {
   }
 
   getConflicts(): void {
-    this.conflictService.getConflictsUrl().subscribe(conflictResponse => {this.conflicts = conflictResponse.ProgramList.Programs; this.getConflictsCompleted(); });
+    this.conflictService.getConflictsUrl().subscribe(conflictResponse => {
+      if ( typeof conflictResponse !== 'undefined') {
+        this.conflicts = conflictResponse.ProgramList.Programs; this.getConflictsCompleted();
+      }
+    });
   }
 
   getConflictsCompleted(): void {

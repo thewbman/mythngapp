@@ -3,7 +3,15 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DeferLoadModule } from '@trademe/ng-defer-load';
+
+import { MaterialModule } from './material/material.module';
+
+import { WINDOW_PROVIDERS } from './window.provider';
+import { UniquePipe } from './pipes/unique.pipe';
+import { UniqueTitlePipe } from './pipes/unique-title.pipe';
+import { RecstatusPipe } from './pipes/recstatus.pipe';
+
+import { CookieService } from './cookie.service';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -17,17 +25,25 @@ import { StatusComponent } from './status/status.component';
 import { GuideComponent } from './guide/guide.component';
 import { SettingsComponent } from './settings/settings.component';
 
-import { WINDOW_PROVIDERS } from './window.provider';
-import { UniquePipe } from './pipes/unique.pipe';
-import { UniqueTitlePipe } from './pipes/unique-title.pipe';
-import { MaterialModule } from './material';
-import { RecstatusPipe } from './pipes/recstatus.pipe';
-
-import { CookieService } from './cookie.service';
 
 
 
 @NgModule({
+  imports: [
+    BrowserModule,
+    FormsModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+    AppRoutingModule
+  ],
+  // exports: [
+  //  MaterialModule
+  // ],
+  providers: [
+    WINDOW_PROVIDERS,
+    CookieService
+  ],
   declarations: [
     AppComponent,
     RecordedComponent,
@@ -37,23 +53,10 @@ import { CookieService } from './cookie.service';
     UpcomingComponent,
     StatusComponent,
     GuideComponent,
+    SettingsComponent,
     UniquePipe,
     UniqueTitlePipe,
-    RecstatusPipe,
-    SettingsComponent
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    AppRoutingModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    MaterialModule,
-    DeferLoadModule
-  ],
-  providers: [
-    WINDOW_PROVIDERS,
-    CookieService
+    RecstatusPipe
   ],
   bootstrap: [AppComponent]
 })
