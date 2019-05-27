@@ -13,7 +13,6 @@ import { MaterialModule } from '../material/material.module';
 import { Component, OnInit } from '@angular/core';
 
 import { Program } from '../classes/program';
-import { RecordedProgramResponse, GuideChannel } from '../classes/recordedProgramResponse';
 import { MessageService } from '../message.service';
 import { MythDataService } from '../mythdata.service';
 

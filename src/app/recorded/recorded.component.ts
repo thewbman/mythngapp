@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import * as _ from 'lodash';
 
 
-
 import { Program } from '../classes/program';
 import { MythDataService } from '../mythdata.service';
 import { MessageService } from '../message.service';
@@ -69,7 +68,7 @@ export class RecordedComponent implements OnInit {
     if (this.recordeds != null) {
       for (const r of this.recordeds) {
         if (r.Recording != null) {
-          // this.mesService.add('Adding rec group: ' + r.Recording.RecGroup.toString());
+          this.mesService.add('Adding rec group: ' + r.Recording.RecGroup.toString());
           this.recGroupList.push(r.Recording.RecGroup.toString());
         }
       }
@@ -138,8 +137,9 @@ export class RecordedComponent implements OnInit {
     this.mesService.add('Selected recGroup: ' + myRecGroup);
     this.selectedRecGroup = myRecGroup;
     this.titleTabEnabled = true;
+    this.selectedTitle = '';
     this.tabIndex = 1;
-    // this.filterTitlesByRecGroup();
+    this.filterTitlesByRecGroup();
   }
 
   onSelectTitle(myRecTitle: string): void {

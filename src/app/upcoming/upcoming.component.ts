@@ -4,7 +4,7 @@ import * as _ from 'lodash';
 
 
 import { Program } from '../classes/program';
-import { UpcomingDateProgramClass } from '../classes/recordedProgramResponse';
+import { UpcomingDateProgramClass } from '../classes/api-responses';
 import { MythDataService } from '../mythdata.service';
 import { MessageService } from '../message.service';
 

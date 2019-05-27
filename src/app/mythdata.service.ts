@@ -1,8 +1,10 @@
 import { Program } from './classes/program';
-import { RecordedProgramResponse, UpcomingProgramResponse, ConflictProgramResponse, ProgramGuideResponse } from './classes/recordedProgramResponse';
-import { MOCK_RECORDED, MOCK_RECORDED_RESPONSE } from './classes/mock-recorded';
+import { RecordedProgramResponse, UpcomingProgramResponse, ConflictProgramResponse, ProgramGuideResponse } from './classes/api-responses';
+import { MOCK_RECORDED_RESPONSE, MOCK_CONFLICT_RESPONSE, MOCK_UPCOMING_RESPONSE, MOCK_GUIDE_RESPONSE, MOCK_GUIDE_RESPONSE_2, MOCK_PROGRAMDETAILS_RESPONSE } from './classes/mock-data';
 import { MessageService } from './message.service';
 import { CookieService } from './cookie.service';
+
+import { environment } from './../environments/environment';
 
 import { WINDOW } from './window.provider';
 
@@ -22,67 +24,88 @@ export class MythDataService {
 
   constructor(@Inject(WINDOW) private window: Window, private mesService: MessageService, private http: HttpClient, private cookieService: CookieService) {  }
 
-  getRecordeds(): Observable<Program[]> {
-    this.log('RecordedService: fetched recorded');
-    return of(MOCK_RECORDED_RESPONSE.ProgramList.Programs);
-
-    // return this.getRecordedsUrl().ProgramList.Programs;
-  }
-
- getConflictsUrl(): Observable<ConflictProgramResponse> {
-    return this.http.get<ConflictProgramResponse>(this.conflictUrl())
-      .pipe(
-        tap(_ => this.log('fetched conflict')),
-        catchError(this.handleError<ConflictProgramResponse>('getConflictsUrl'))
-      );
+  getConflictsUrl(): Observable<ConflictProgramResponse> {
+    if(this.useMockData()) {
+      return of(MOCK_CONFLICT_RESPONSE);
+    }
+    else {
+      return this.http.get<ConflictProgramResponse>(this.conflictUrl())
+        .pipe(
+          tap(_ => this.log('fetched conflict')),
+          catchError(this.handleError<ConflictProgramResponse>('getConflictsUrl'))
+        );
+    }
   }
 
   getRecordedsUrl(): Observable<RecordedProgramResponse> {
-    return this.http.get<RecordedProgramResponse>(this.recordedUrl())
-      .pipe(
-        tap(_ => this.log('fetched recorded')),
-        catchError(this.handleError<RecordedProgramResponse>('getRecordedsUrl'))
-      );
+    if(this.useMockData()) {
+      return of(MOCK_RECORDED_RESPONSE);
+    }
+    else {
+      return this.http.get<RecordedProgramResponse>(this.recordedUrl())
+        .pipe(
+          tap(_ => this.log('fetched recorded')),
+          catchError(this.handleError<RecordedProgramResponse>('getRecordedsUrl'))
+        );
+    }
   }
 
   getUpcomingUrl(): Observable<UpcomingProgramResponse> {
-    return this.http.get<UpcomingProgramResponse>(this.upcomingUrl())
-      .pipe(
-        tap(_ => this.log('fetched upcoming')),
-        catchError(this.handleError<UpcomingProgramResponse>('getUpcomingUrl'))
-      );
+    if(this.useMockData()) {
+      return of(MOCK_UPCOMING_RESPONSE);
+    }
+    else {
+      return this.http.get<UpcomingProgramResponse>(this.upcomingUrl())
+        .pipe(
+          tap(_ => this.log('fetched upcoming')),
+          catchError(this.handleError<UpcomingProgramResponse>('getUpcomingUrl'))
+        );
+    }
   }
 
   getGuideUrl(startTime: string, endTime: string, chanId: string): Observable<ProgramGuideResponse> {
-    return this.http.get<ProgramGuideResponse>(this.guideUrl(startTime, endTime, chanId))
-      .pipe(
-        tap(_ => this.log('fetched guide')),
-        catchError(this.handleError<ProgramGuideResponse>('getGuideUrl'))
-      );
+    if(this.useMockData()) {
+      return of(MOCK_GUIDE_RESPONSE);
+    }
+    else {
+      return this.http.get<ProgramGuideResponse>(this.guideUrl(startTime, endTime, chanId))
+        .pipe(
+          tap(_ => this.log('fetched guide')),
+          catchError(this.handleError<ProgramGuideResponse>('getGuideUrl'))
+        );
+    }
   }
 
   getProgramDetailsUrl(chanId: string, startTime: string): Observable<Program> {
-    return this.http.get<Program>(this.programDetailsUrl(chanId, startTime))
-      .pipe(
-        tap(_ => this.log('fetched program details')),
-        catchError(this.handleError<Program>('getProgramDetailsUrl'))
-      );
+    if(this.useMockData()) {
+      return of(MOCK_PROGRAMDETAILS_RESPONSE);
+    }
+    else {
+        return this.http.get<Program>(this.programDetailsUrl(chanId, startTime))
+        .pipe(
+          tap(_ => this.log('fetched program details')),
+          catchError(this.handleError<Program>('getProgramDetailsUrl'))
+        );
+    }
   }
 
   getStatusUrl(): Observable<string> {
-    return this.http.get(this.statusUrl(), {responseType: 'text'})
-      .pipe(
-        tap(_ => this.log('fetched status')),
-        catchError(this.handleError<string>('getStatusUrl'))
-      );
+    if(this.useMockData()) {
+       return this.http.get('./assets/status.xml', {responseType: 'text'})
+        .pipe(
+          tap(_ => this.log('fetched status')),
+          catchError(this.handleError<string>('getStatusUrl'))
+        );
+    }
+    else {
+      return this.http.get(this.statusUrl(), {responseType: 'text'})
+        .pipe(
+          tap(_ => this.log('fetched status')),
+          catchError(this.handleError<string>('getStatusUrl'))
+        );
+    }
   }
-  getStatusHtmlUrl(): Observable<string> {
-    return this.http.get(this.statusHtmlUrl(), {responseType: 'text'})
-      .pipe(
-        tap(_ => this.log('fetched status thml')),
-        catchError(this.handleError<string>('getStatusHtmlUrl'))
-      );
-  }
+  
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
@@ -99,13 +122,38 @@ export class MythDataService {
   }
 
   getPreviewImageUrl(rec: Program) {
-    return this.baseUrl() + '/Content/GetPreviewImage&ChanId=' + rec.Channel.ChanId + '&StartTime=' + rec.Recording.StartTs;
+    if(this.useMockData()) {
+      return './assets/mythtv.png';
+    }
+    else {
+      return this.baseUrl() + '/Content/GetPreviewImage&ChanId=' + rec.Channel.ChanId + '&StartTime=' + rec.Recording.StartTs;
+    }
   }
   getPreviewImageUrlHeight(rec: Program, ht: number) {
-    return this.getPreviewImageUrl(rec) + '&Height=' + ht.toString();
+    if(this.useMockData()) {
+      return './assets/mythtv.png';
+    }
+    else {
+      return this.getPreviewImageUrl(rec) + '&Height=' + ht.toString();
+    }
   }
   getPreviewImageUrlWidth(rec: Program, wd: number) {
-    return this.getPreviewImageUrl(rec) + '&Width=' + wd.toString();
+    if(this.useMockData()) {
+      return './assets/mythtv.png';
+    }
+    else {
+      return this.getPreviewImageUrl(rec) + '&Width=' + wd.toString();
+    }
+  }
+
+
+  useMockData() {
+    if(this.baseUrl() === environment.defaultRootUrl) {
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 
 
@@ -135,9 +183,7 @@ export class MythDataService {
   statusUrl() {
     return this.baseUrl() + '/Status/xml';
   }
-  statusHtmlUrl() {
-    return this.baseUrl() + '/Status/GetStatusHTML';
-  }
+
 
 
   private log(message: string) {

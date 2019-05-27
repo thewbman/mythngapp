@@ -3,7 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  defaultRootUrl: 'http://myRootUrl:8080/api/api.php?Host=localhost&Port=6544&Url='
 };
 
 /*

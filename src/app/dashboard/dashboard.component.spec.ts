@@ -14,7 +14,7 @@ import { ProgramDetailComponent } from '../program-detail/program-detail.compone
 import { Component, OnInit } from '@angular/core';
 
 import { Program } from '../classes/program';
-import { RecordedProgramResponse, GuideChannel } from '../classes/recordedProgramResponse';
+import { RecordedProgramResponse, GuideChannel } from '../classes/api-responses';
 import { MessageService } from '../message.service';
 import { MythDataService } from '../mythdata.service';
 

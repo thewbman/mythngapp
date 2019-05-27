@@ -8,9 +8,9 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  it('should display welcome message on default dashboard', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('Welcome to mythngapp!');
+    expect(page.getTitleText()).toEqual('Welcome to the Dashboard!');
   });
 
   afterEach(async () => {

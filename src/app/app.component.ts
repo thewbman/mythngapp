@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, OnDestroy, ViewChild } from '@angular/cor
 import { Router, Event, NavigationStart, NavigationEnd, NavigationError } from '@angular/router';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { MatSidenav } from '@angular/material';
+import { environment } from './../environments/environment';
 
 import { CookieService } from './cookie.service';
 
@@ -21,7 +22,7 @@ export class AppComponent implements OnDestroy {
 
   this._rootApiUrl = cookieService.get('rootApiUrl');
   if (this._rootApiUrl === '') {
-    this.setCookie('http://myRootUrl:8080/api/api.php?Host=localhost&Port=6544&Url=');
+    this.setCookie(environment.defaultRootUrl);
   }
 
   this.mobileQuery = media.matchMedia('(max-width: 600px)');
