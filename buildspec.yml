@@ -9,6 +9,7 @@ phases:
       - ls
       - npm install
       - ls
+      - npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
       - ng build -c production
 artifacts:
   files:

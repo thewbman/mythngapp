@@ -9,7 +9,6 @@ import { CookieService } from '../cookie.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MaterialModule } from '../material/material.module';
-import { ProgramDetailComponent } from '../program-detail/program-detail.component';
 
 import { Component, OnInit } from '@angular/core';
 

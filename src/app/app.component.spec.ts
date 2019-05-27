@@ -6,6 +6,9 @@ import { MaterialModule } from './material/material.module';
 import { CookieService } from './cookie.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { MessagesComponent } from './messages/messages.component';
+
+
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -15,7 +18,8 @@ describe('AppComponent', () => {
 	BrowserAnimationsModule
       ],
       declarations: [
-        AppComponent
+        AppComponent,
+	MessagesComponent
       ],
       providers: [
         CookieService
