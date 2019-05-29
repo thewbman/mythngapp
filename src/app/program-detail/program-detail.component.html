@@ -13,6 +13,8 @@
 
 <p><span>Start: </span>{{program.StartTime | date:'M/dd/yyyy @ h:mma'}}</p>
 <p><span>End: </span>{{program.EndTime | date:'M/dd/yyyy @ h:mma'}}</p>
+<p matLine *ngIf='program.Airdate' >Original Airdate: {{program.Airdate | date:'yyyy-MM-dd' }}</p>
+
 <div>{{program.Description}}</div>
 
 <mat-tree [dataSource]="treeDataSource" [treeControl]="treeControl">
