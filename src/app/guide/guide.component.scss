@@ -8,15 +8,54 @@
   width: 100%;
 }
 
-.guide-header {
+.guide-flex-1 {
+  flex: 1;
+}
+
+.guide-header-wrapper {
   width: 100%;
-  text-align: center;
   background-color: rgb(66, 66, 66);
   padding-top: 10px;
   padding-bottom: 10px;
+  display: flex;
+}
+
+.guide-header-icon {
+  border-radius: 10%;
+  background-size: cover;
+  background-position-x: center;
+  background-position-y: center;
+  height: 26px;
+  width: 26px;
+  flex-shrink: 0;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.guide-header-text {
+  //width: 100%;
+  text-align: center;
+  background-color: rgb(66, 66, 66);
+  //padding-top: 10px;
+  //padding-bottom: 10px;
   font-size: x-large;
 }
 
 td.mat-cell:first-of-type {
   padding-left: 6px;
+}
+
+.guide-channelicon-wrapper {
+  width: 30px;
+}
+
+.guide-channelicon {
+  border-radius: 10%;
+  background-size: cover;
+  background-position-x: center;
+  background-position-y: center;
+  height: 26px;
+  width: 26px;
+  flex-shrink: 0;
+  object-fit: cover;
 }

@@ -31,7 +31,8 @@ export class ProgramDetailComponent implements OnInit {
 
   dataLoaded: boolean;
 
-  imageUrl: string;
+  screenshotUrl: string;
+  channelIconUrl: string;
 
   private transformer = (node: TreeNode, level: number) => {
     return {
@@ -58,7 +59,7 @@ export class ProgramDetailComponent implements OnInit {
     this.dataLoaded = false;
 
     if ((typeof this.program !== 'undefined') && (this.program.showImage)) {
-      this.imageUrl = this.dataService.getPreviewImageUrlWidth(this.program, 400);
+      this.screenshotUrl = this.dataService.getPreviewImageUrlWidth(this.program, 400);
     }
 
     this.getProgramDetails();
@@ -125,6 +126,11 @@ export class ProgramDetailComponent implements OnInit {
       }
 
       this.treeDataSource.data = this.treeData; 
+
+      if ((this.program.Channel.IconURL) && (this.program.Channel.IconURL !== ''))  {
+        this.channelIconUrl = "url('"+this.dataService.getChannelIcon(this.program.Channel.IconURL)+"')";
+      }
+      
     
     }
   }

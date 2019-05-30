@@ -48,32 +48,30 @@ Loading...
 
 <div *ngIf="byTimeLayout">
 
-<div class="guide-header">{{selectedTimeString | date:'medium'}}</div>
+<div class="guide-header-wrapper">
+  <div class="guide-flex-1"></div>
+  <div class="guide-header-text">{{selectedTimeString | date:'medium'}}</div>
+  <div class="guide-flex-1"></div>
+</div>
 
 <table mat-table [dataSource]="guideChannels" class="mat-elevation-z8 guide-full-width">
-  <ng-container matColumnDef="channel">
-    <th mat-header-cell *matHeaderCellDef> Channel </th>
-    <td mat-cell *matCellDef="let ch" (click)="onSelectChannel(ch)" >{{ch.ChanNum}} - {{ch.ChannelName}}</td>
+  <ng-container matColumnDef="channelIcon">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let ch" (click)="onSelectChannel(ch)" class="guide-channelicon-wrapper" ><div class="guide-channelicon" [ngStyle]="{'background-image': getChannelIconUrl(ch.IconURL)}" > </div></td>
   </ng-container>
 
+  <ng-container matColumnDef="channel">
+    <th mat-header-cell *matHeaderCellDef> Channel </th>
+    <td mat-cell *matCellDef="let ch" (click)="onSelectChannel(ch)" >{{ch.ChanNum}} - {{ch.ChannelName}} </td>
+  </ng-container>
+  
   <ng-container matColumnDef="program">
     <th mat-header-cell *matHeaderCellDef> Program </th>
     <td mat-cell *matCellDef="let ch" (click)="onSelectProgram(ch.Programs[0],ch.ChanId)">{{ch.Programs[0].Title}}</td>
   </ng-container>
     
   <tr mat-header-row *matHeaderRowDef="byTimeColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: byTimeColumns;"></tr>
-
-<!--
-<tr>
-<th>Channel</th>
-<th>Program</th>
-</tr>
-<tr *ngFor="let ch of guideChannels; last as last">
-<td (click)="onSelectChannel(ch)">{{ch.ChanNum}} - {{ch.ChannelName}}</td>
-<td *ngIf="ch.Programs.length > 0" (click)="onSelectProgram(ch.Programs[0],ch.ChanId)">{{ch.Programs[0].Title}}</td>
-</tr>
---> 
+  <tr mat-row *matRowDef="let row; columns: byTimeColumns;"></tr> 
 
 </table>
 
@@ -82,7 +80,12 @@ Loading...
 
 <div *ngIf="!byTimeLayout">
 
-<div class="guide-header">{{selectedChannel.ChanNum}} - {{selectedChannel.ChannelName}}</div>
+<div class="guide-header-wrapper">
+  <div class="guide-flex-1"></div>
+  <div class="guide-header-icon" *ngIf="selectedChannel.IconURL"  [ngStyle]="{'background-image': getChannelIconUrl(selectedChannel.IconURL)}" > </div>
+  <div class="guide-header-text">{{selectedChannel.ChanNum}} - {{selectedChannel.ChannelName}}</div>
+  <div class="guide-flex-1"></div>
+</div>
  
 <table mat-table [dataSource]="guidePrograms" class="mat-elevation-z8 guide-full-width">
   <ng-container matColumnDef="time">
@@ -98,17 +101,6 @@ Loading...
   <tr mat-header-row *matHeaderRowDef="byChannelColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: byChannelColumns;"></tr>
   
-<!--
-<tr>
-<th>Time</th>
-<th>Program</th>
-</tr>
-
-<tr *ngFor="let p of guidePrograms; last as last">
-<td (click)="onSelectTime(p.StartTime)">{{p.StartTime | date:'medium'}}</td>
-<td (click)="onSelectProgram(p)">{{p.Title}}</td>
-</tr>
--->
 
 </table>
 

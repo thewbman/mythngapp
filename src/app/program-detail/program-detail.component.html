@@ -2,11 +2,12 @@
 
 
 <mat-card-header>
+<div mat-card-avatar class="program-detail-channelicon"  *ngIf="channelIconUrl" [ngStyle]="{'background-image': channelIconUrl}" ></div>
 <mat-card-title>{{program.Title}}</mat-card-title>
 <mat-card-subtitle>{{program.SubTitle}}</mat-card-subtitle>
 </mat-card-header>
 
-<img *ngIf="imageUrl" mat-card-image [src]="imageUrl" />
+<img *ngIf="screenshotUrl" mat-card-image [src]="screenshotUrl" />
 
 
 <mat-card-content>

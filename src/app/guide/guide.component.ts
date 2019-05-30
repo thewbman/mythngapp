@@ -44,7 +44,7 @@ export class GuideComponent implements OnInit {
   ngOnInit() {
     this.dataLoaded = false;
 
-    this.byTimeColumns = ['channel', 'program'];
+    this.byTimeColumns = ['channelIcon', 'channel', 'program'];
     this.byChannelColumns = ['time', 'program'];
 
 
@@ -101,6 +101,10 @@ export class GuideComponent implements OnInit {
     this.dataLoaded = true;
     this.guideTabEnabled = true;
     this.tabIndex = 1;
+  }
+
+  getChannelIconUrl(iconUrl: string) {
+    return "url('"+this.guideService.getChannelIcon(iconUrl)+"')";
   }
 
 

@@ -146,6 +146,15 @@ export class MythDataService {
     }
   }
 
+  getChannelIcon(iconUrl: string) {
+    if(this.useMockData()) {
+      return './assets/channelIcon.png';
+    }
+    else {
+      return this.baseUrl() + iconUrl;
+    }
+  }
+
 
   useMockData() {
     if(this.baseUrl() === environment.defaultRootUrl) {
