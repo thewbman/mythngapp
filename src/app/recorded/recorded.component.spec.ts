@@ -64,4 +64,54 @@ describe('RecordedComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('select allTextString title', () => {
+    component.onSelectTitle(component.allTextString);
+    component.filterRecordedsByTitle();
+    expect(component.tabIndex).toBe(2);
+  });
+  it('select title', () => {
+    component.onSelectTitle(component.titleList[component.titleList.length - 1]);
+    component.filterRecordedsByTitle();
+    expect(component.tabIndex).toBe(2);
+  });
+  
+
+  it('select a program', () => {
+    component.onSelectRecGroup(component.recGroupList[0]);
+    component.onSelectTitle(component.allTextString);
+    component.onSelectRecorded(component.recordeds[0]);
+    expect(component.tabIndex).toBe(3);
+  });
+
+
+
+  it('change tab 1', () => {
+    //changing tabs doesnt seem to call onTabChanged event
+    component.tabIndex = 1;
+    expect(component.tabIndex).toBe(1);
+  });
+  it('call onTabChanges to 3', () => {
+    component.tabIndex = 3;
+    component.onTabChanged({index: 3});
+    expect(component.tabIndex).toBe(3);
+  });
+  it('call onTabChanges to 2', () => {
+    component.tabIndex = 2;
+    component.onTabChanged({index: 2});
+    expect(component.tabIndex).toBe(2);
+  });
+  it('call onTabChanges to 1', () => {
+    component.tabIndex = 1;
+    component.onTabChanged({index: 1});
+    expect(component.tabIndex).toBe(1);
+  });
+  it('call onTabChanges to 0', () => {
+    component.tabIndex = -1;
+    component.onTabChanged({index: 0});
+    expect(component.tabIndex).toBe(0);
+  });
+  
+
+  
 });

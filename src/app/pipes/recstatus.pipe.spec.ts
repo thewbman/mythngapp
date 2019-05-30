@@ -32,7 +32,7 @@ expect(pipe.transform('11')).toBe('Never Record','Never Record');
 expect(pipe.transform('100')).toBe('Unknown status: 100','Never Record');
 
 
-expect(pipe.transform()).toBeNull('Null');
+expect(pipe.transform(null)).toBeNull('Null');
 
   });
 });
