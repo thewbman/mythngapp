@@ -31,6 +31,8 @@ export class ProgramDetailComponent implements OnInit {
 
   dataLoaded: boolean;
 
+  cardContentClass: string;
+
   screenshotUrl: string;
   channelIconUrl: string;
 
@@ -94,6 +96,7 @@ export class ProgramDetailComponent implements OnInit {
 
 
       const recordingNode: TreeNode = { name: 'Recording: ' + this.recstatus.transform(this.program.Recording.Status), children: [] };
+      this.cardContentClass = 'status-'+this.recstatus.transform(this.program.Recording.Status);
       // recordingNode.children.push({ name: 'Status: ' + this.program.Recording.Status, children: []});
       if ((this.program.Recording.StartTs) && (this.program.Recording.StartTs !== '')) {
         recordingNode.children.push({ name: 'StartTs: ' + formatDate(this.program.Recording.StartTs, 'M/dd/yyyy @ h:mm:ssa', 'en-US'), children: []});

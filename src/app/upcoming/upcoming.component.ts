@@ -7,12 +7,13 @@ import { Program } from '../classes/program';
 import { UpcomingDateProgramClass } from '../classes/api-responses';
 import { MythDataService } from '../mythdata.service';
 import { MessageService } from '../message.service';
-
+import { RecstatusPipe } from '../pipes/recstatus.pipe';
 
 @Component({
   selector: 'app-upcoming',
   templateUrl: './upcoming.component.html',
-  styleUrls: ['./upcoming.component.scss']
+  styleUrls: ['./upcoming.component.scss'],
+  providers: [ RecstatusPipe]  
 })
 export class UpcomingComponent implements OnInit {
 
@@ -38,7 +39,7 @@ export class UpcomingComponent implements OnInit {
   upcomingGroupList: string[];
   dateList: string[];
 
-  constructor(private dataService: MythDataService, private mesService: MessageService) { }
+  constructor(private dataService: MythDataService, private mesService: MessageService, private recstatus: RecstatusPipe) { }
 
   ngOnInit() {
     this.dataLoaded = false;

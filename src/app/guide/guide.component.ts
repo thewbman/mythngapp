@@ -6,12 +6,14 @@ import { Program } from '../classes/program';
 import { ProgramGuideResponse, GuideChannel } from '../classes/api-responses';
 import { MythDataService } from '../mythdata.service';
 import { MessageService } from '../message.service';
+import { RecstatusPipe } from '../pipes/recstatus.pipe';
 
 
 @Component({
   selector: 'app-guide',
   templateUrl: './guide.component.html',
-  styleUrls: ['./guide.component.scss']
+  styleUrls: ['./guide.component.scss'],
+  providers: [ RecstatusPipe]
 })
 export class GuideComponent implements OnInit {
 
@@ -39,7 +41,7 @@ export class GuideComponent implements OnInit {
   byTimeColumns: string[];
   byChannelColumns: string[];
 
-  constructor(private guideService: MythDataService, private mesService: MessageService) { }
+  constructor(private guideService: MythDataService, private mesService: MessageService, private recstatus: RecstatusPipe) { }
 
   ngOnInit() {
     this.dataLoaded = false;

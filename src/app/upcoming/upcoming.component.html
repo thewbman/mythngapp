@@ -60,7 +60,7 @@ Loading...
 </mat-list-item>
 
 <mat-list class="programList">
-<mat-list-item *ngFor="let u of d.Programs; last as last" (click)="onSelectProgram(u)" [class.selected]="u === selectedUpcoming">
+<mat-list-item *ngFor="let u of d.Programs; last as last" (click)="onSelectProgram(u)" [class.selected]="u === selectedUpcoming" [ngClass]="'status-'+recstatus.transform(u.Recording.Status)" >
 <p matLine>{{u.Title}}</p>
 <p matLine>{{u.SubTitle}}</p>
 <p matLine>Status: {{u.Recording.Status | recstatus}}</p>
