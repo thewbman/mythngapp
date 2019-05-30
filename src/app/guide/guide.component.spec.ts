@@ -4,7 +4,7 @@ import { Injectable, Inject } from '@angular/core';
 import { WINDOW, WINDOW_PROVIDERS } from '../window.provider';
 import { HttpClient, HttpHeaders, HttpClientModule, HttpHandler } from '@angular/common/http';
 
-import { CookieService } from '../cookie.service';
+import { CookieService } from '../services/cookie.service';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -15,9 +15,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { Program } from '../classes/program';
 import { ProgramGuideResponse, GuideChannel } from '../classes/api-responses';
-import { MessageService } from '../message.service';
-
-import { MythDataService } from '../mythdata.service';
+import { MessageService } from '../services/message.service';
+import { MythDataService } from '../services/mythdata.service';
 
 import { GuideComponent } from './guide.component';
 

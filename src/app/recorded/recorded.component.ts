@@ -3,8 +3,8 @@ import * as _ from 'lodash';
 
 
 import { Program } from '../classes/program';
-import { MythDataService } from '../mythdata.service';
-import { MessageService } from '../message.service';
+import { MythDataService } from '../services/mythdata.service';
+import { MessageService } from '../services/message.service';
 
 
 @Component({

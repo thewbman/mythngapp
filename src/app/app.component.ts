@@ -4,7 +4,7 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { MatSidenav } from '@angular/material';
 import { environment } from './../environments/environment';
 
-import { CookieService } from './cookie.service';
+import { CookieService } from './services/cookie.service';
 
 @Component({
   selector: 'app-root',

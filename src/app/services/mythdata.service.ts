@@ -1,12 +1,12 @@
-import { Program } from './classes/program';
-import { RecordedProgramResponse, UpcomingProgramResponse, ConflictProgramResponse, ProgramGuideResponse } from './classes/api-responses';
-import { MOCK_RECORDED_RESPONSE, MOCK_CONFLICT_RESPONSE, MOCK_UPCOMING_RESPONSE, MOCK_GUIDE_RESPONSE, MOCK_GUIDE_RESPONSE_2, MOCK_PROGRAMDETAILS_RESPONSE } from './classes/mock-data';
+import { Program } from '../classes/program';
+import { RecordedProgramResponse, UpcomingProgramResponse, ConflictProgramResponse, ProgramGuideResponse } from '../classes/api-responses';
+import { MOCK_RECORDED_RESPONSE, MOCK_CONFLICT_RESPONSE, MOCK_UPCOMING_RESPONSE, MOCK_GUIDE_RESPONSE, MOCK_GUIDE_RESPONSE_2, MOCK_PROGRAMDETAILS_RESPONSE } from '../classes/mock-data';
 import { MessageService } from './message.service';
 import { CookieService } from './cookie.service';
 
-import { environment } from './../environments/environment';
+import { environment } from '../../environments/environment';
 
-import { WINDOW } from './window.provider';
+import { WINDOW } from '../window.provider';
 
 import { Injectable, Inject } from '@angular/core';
 import { Observable, of } from 'rxjs';

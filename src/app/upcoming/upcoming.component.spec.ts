@@ -15,8 +15,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { Program } from '../classes/program';
 import { UpcomingProgramResponse, GuideChannel } from '../classes/api-responses';
-import { MessageService } from '../message.service';
-import { MythDataService } from '../mythdata.service';
+import { MessageService } from '../services/message.service';
+import { MythDataService } from '../services/mythdata.service';
 
 import { Pipe, PipeTransform } from '@angular/core';
 import { RecstatusPipe } from '../pipes/recstatus.pipe';

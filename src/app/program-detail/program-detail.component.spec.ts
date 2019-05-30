@@ -13,8 +13,8 @@ import { MaterialModule } from '../material/material.module';
 import { Component, OnInit } from '@angular/core';
 
 import { Program } from '../classes/program';
-import { MessageService } from '../message.service';
-import { MythDataService } from '../mythdata.service';
+import { MessageService } from '../services/message.service';
+import { MythDataService } from '../services/mythdata.service';
 
 import { MOCK_PROGRAMDETAILS_RESPONSE } from '../classes/mock-data';
 

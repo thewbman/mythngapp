@@ -4,8 +4,8 @@ import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree'
 import { formatDate } from '@angular/common';
 
 import { Program } from '../classes/program';
-import { MythDataService } from '../mythdata.service';
-import { MessageService } from '../message.service';
+import { MythDataService } from '../services/mythdata.service';
+import { MessageService } from '../services/message.service';
 import { TreeNode } from '../classes/tree-node';
 import { RecstatusPipe } from '../pipes/recstatus.pipe';
 

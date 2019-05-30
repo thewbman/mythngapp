@@ -3,7 +3,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 
 import { MaterialModule } from './material/material.module';
-import { CookieService } from './cookie.service';
+import { CookieService } from './services/cookie.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MessagesComponent } from './messages/messages.component';

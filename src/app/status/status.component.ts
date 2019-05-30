@@ -5,8 +5,8 @@ import * as convert from 'xml-js';
 
 import { Program } from '../classes/program';
 import { StatusRootObject } from '../classes/statusClass';
-import { MythDataService } from '../mythdata.service';
-import { MessageService } from '../message.service';
+import { MythDataService } from '../services/mythdata.service';
+import { MessageService } from '../services/message.service';
 
 
 @Component({

@@ -9,7 +9,7 @@ import { MaterialModule } from './material/material.module';
 import { WINDOW_PROVIDERS } from './window.provider';
 import { RecstatusPipe } from './pipes/recstatus.pipe';
 
-import { CookieService } from './cookie.service';
+import { CookieService } from './services/cookie.service';
 
 
 import { AppRoutingModule } from './app-routing.module';

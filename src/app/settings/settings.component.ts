@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CookieService } from '../cookie.service';
+import { CookieService } from '../services/cookie.service';
 import { FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 
 @Component({
