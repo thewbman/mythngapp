@@ -65,7 +65,12 @@ export class MythDataService {
 
   getGuideUrl(startTime: string, endTime: string, chanId: string): Observable<ProgramGuideResponse> {
     if(this.useMockData()) {
-      return of(MOCK_GUIDE_RESPONSE);
+      if(( typeof chanId === undefined ) || (chanId === null)) {
+        return of(MOCK_GUIDE_RESPONSE);
+      } 
+      else {
+        return of(MOCK_GUIDE_RESPONSE_2);
+      }
     }
     else {
       return this.http.get<ProgramGuideResponse>(this.guideUrl(startTime, endTime, chanId))
@@ -158,6 +163,8 @@ export class MythDataService {
 
   useMockData() {
     if(this.baseUrl() === environment.defaultRootUrl) {
+      return true;
+    } else if(this.baseUrl() === "") {
       return true;
     }
     else {

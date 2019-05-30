@@ -34,9 +34,9 @@ export class GuideComponent implements OnInit {
   guideChannels: GuideChannel[];
   guidePrograms: Program[];
 
-  public startTimeInput: string;
-  public endTimeInput: string;
-  public chanIdInput: string;
+  startTimeInput: string;
+  endTimeInput: string;
+  chanIdInput: string;
 
   byTimeColumns: string[];
   byChannelColumns: string[];
