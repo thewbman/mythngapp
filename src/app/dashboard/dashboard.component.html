@@ -12,7 +12,7 @@ Loading...
 
 <mat-list class="conflictList">
 
-<mat-list-item *ngFor="let c of conflicts; last as last" class="program"  style="height: 120px;">
+<mat-list-item *ngFor="let c of conflicts; last as last" class="program"  style="height: 120px;" [ngClass]="'status-'+recstatus.transform(c.Recording.Status)">
 
 <p matLine>{{c.Title}}</p>
 <p matLine>{{c.SubTitle}}</p>

@@ -4,12 +4,14 @@ import * as _ from 'lodash';
 import { Program } from '../classes/program';
 import { MythDataService } from '../mythdata.service';
 import { MessageService } from '../message.service';
+import { RecstatusPipe } from '../pipes/recstatus.pipe';
 
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
+  providers: [ RecstatusPipe]
 })
 export class DashboardComponent implements OnInit {
 
@@ -18,7 +20,7 @@ export class DashboardComponent implements OnInit {
   conflicts: Program[];
   conflictCount: number;
 
-  constructor(private conflictService: MythDataService, private mesService: MessageService) { }
+  constructor(private conflictService: MythDataService, private mesService: MessageService, private recstatus: RecstatusPipe) { }
 
   ngOnInit() {
     this.dataLoaded = false;
