@@ -16,6 +16,8 @@ import { Program } from '../classes/program';
 import { MessageService } from '../message.service';
 import { MythDataService } from '../mythdata.service';
 
+import { MOCK_PROGRAMDETAILS_RESPONSE } from '../classes/mock-data';
+
 import { Pipe, PipeTransform } from '@angular/core';
 import { RecstatusPipe } from '../pipes/recstatus.pipe';
 
@@ -23,14 +25,14 @@ import { RecstatusPipe } from '../pipes/recstatus.pipe';
 import { ProgramDetailComponent } from './program-detail.component';
 
 describe('ProgramDetailComponent', () => {
-  let component: ProgramDetailComponent;
-  let fixture: ComponentFixture<ProgramDetailComponent>;
+  let hostComponent: TestHostComponent;
+  let hostFixture: ComponentFixture<TestHostComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ 
         ProgramDetailComponent,
-        ProgramDetailComponent
+        TestHostComponent
       ],
       imports: [
         BrowserModule,
@@ -53,12 +55,35 @@ describe('ProgramDetailComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProgramDetailComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    hostFixture = TestBed.createComponent(TestHostComponent);
+    hostComponent = hostFixture.componentInstance;
+    hostFixture.detectChanges();
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(hostComponent).toBeTruthy();
   });
+
+  it('pass mock single program', () => {
+    hostComponent.setInput(MOCK_PROGRAMDETAILS_RESPONSE.Program);
+    hostFixture.detectChanges();
+    expect(hostComponent).toBeTruthy();
+  });
+
+
+
+
+  @Component({
+    selector: `host-component`,
+    template: `<app-program-detail [program]="myProgram" *ngIf="myProgram"></app-program-detail>`
+  })
+  class TestHostComponent {
+    private myProgram: Program;
+
+    setInput(newProgram: Program) {
+      this.myProgram = newProgram;
+    }
+  }
+
+  
 });
