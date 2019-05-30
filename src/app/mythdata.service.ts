@@ -148,7 +148,7 @@ export class MythDataService {
 
   getChannelIcon(iconUrl: string) {
     if(this.useMockData()) {
-      return './assets/channelIcon.png';
+      return './assets/channelIcon.jpg';
     }
     else {
       return this.baseUrl() + iconUrl;
