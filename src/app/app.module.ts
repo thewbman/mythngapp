@@ -7,8 +7,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 
 import { WINDOW_PROVIDERS } from './window.provider';
-import { UniquePipe } from './pipes/unique.pipe';
-import { UniqueTitlePipe } from './pipes/unique-title.pipe';
 import { RecstatusPipe } from './pipes/recstatus.pipe';
 
 import { CookieService } from './cookie.service';
@@ -54,8 +52,6 @@ import { SettingsComponent } from './settings/settings.component';
     StatusComponent,
     GuideComponent,
     SettingsComponent,
-    UniquePipe,
-    UniqueTitlePipe,
     RecstatusPipe
   ],
   bootstrap: [AppComponent]
