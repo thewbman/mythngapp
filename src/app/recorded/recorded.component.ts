@@ -68,7 +68,7 @@ export class RecordedComponent implements OnInit {
     if (this.recordeds != null) {
       for (const r of this.recordeds) {
         if (r.Recording != null) {
-          this.mesService.add('Adding rec group: ' + r.Recording.RecGroup.toString());
+          //this.mesService.add('Adding rec group: ' + r.Recording.RecGroup.toString());
           this.recGroupList.push(r.Recording.RecGroup.toString());
         }
       }
