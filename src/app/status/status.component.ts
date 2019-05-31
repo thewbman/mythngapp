@@ -43,6 +43,9 @@ export class StatusComponent implements OnInit {
       if( typeof resp !== 'undefined') {
         this.rawStatusText = resp; this.getStatusCompleted(); 
       }
+      else {
+        //failure message?
+      }
     });  
   }
 

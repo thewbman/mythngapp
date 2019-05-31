@@ -1,0 +1,92 @@
+export const MOCK_STATUSXML_RESPONSE: string = `
+<Status ISODate="2019-05-27T19:34:16Z" date="Mon May 27 2019" version="29.20180316-1" protoVer="91" time="1:34 PM">
+<Encoders count="2">
+<Encoder sleepstatus="8" id="4" state="0" connected="1" devlabel="[ HDHOMERUN : 10499C42-0 ]" hostname="wes-htpc" local="1"/>
+<Encoder sleepstatus="8" id="5" state="0" connected="1" devlabel="[ HDHOMERUN : 10499C42-1 ]" hostname="wes-htpc" local="1"/>
+</Encoders>
+<Scheduled count="10">
+<Program endTime="2019-05-28T00:30:00Z" lastModified="2019-05-27T02:24:02Z" seriesId="EP00002348" repeat="0" category="Game show" startTime="2019-05-28T00:00:00Z" stars="0" programFlags="0" fileSize="0" hostname="wes-htpc" title="Jeopardy!" subTitle="" airdate="Mon May 27 2019" catType="series" programId="EP000023484208">
+<Channel chanId="6311" inputId="4" chanNum="31_1" callSign="KDVR-DT" chanFilters="" sourceId="6" commFree="0" channelName="KDVR-DT"/>
+<Recording recordId="10002" recStartTs="2019-05-27T23:57:00Z" recEndTs="2019-05-28T00:33:00Z" recGroup="Default" dupMethod="6" recProfile="Default" encoderId="4" playGroup="Default" recStatus="-1" recPriority="0" dupInType="15" recType="4"/>
+</Program>
+<Program endTime="2019-05-29T00:30:00Z" lastModified="2019-05-27T02:24:02Z" seriesId="EP00002348" repeat="0" category="Game show" startTime="2019-05-29T00:00:00Z" stars="0" programFlags="0" fileSize="0" hostname="wes-htpc" title="Jeopardy!" subTitle="" airdate="Tue May 28 2019" catType="series" programId="EP000023484209">
+<Channel chanId="6311" inputId="4" chanNum="31_1" callSign="KDVR-DT" chanFilters="" sourceId="6" commFree="0" channelName="KDVR-DT"/>
+<Recording recordId="10002" recStartTs="2019-05-28T23:57:00Z" recEndTs="2019-05-29T00:33:00Z" recGroup="Default" dupMethod="6" recProfile="Default" encoderId="4" playGroup="Default" recStatus="-1" recPriority="0" dupInType="15" recType="4"/>
+</Program>
+<Program endTime="2019-05-29T02:00:00Z" lastModified="2019-05-27T02:24:02Z" seriesId="EP01251347" repeat="0" category="Reality" startTime="2019-05-29T01:00:00Z" stars="0" programFlags="0" fileSize="0" hostname="wes-htpc" title="MasterChef" subTitle="Junior Edition: The Semi-Final" airdate="Tue May 28 2019" catType="series" programId="EP012513470320">
+The contestants must create a dish inspired by family; the cook who elevates a secret ingredient with the most finesse and personality secures a spot in the finale.
+<Channel chanId="6311" inputId="4" chanNum="31_1" callSign="KDVR-DT" chanFilters="" sourceId="6" commFree="0" channelName="KDVR-DT"/>
+<Recording recordId="8926" recStartTs="2019-05-29T00:57:00Z" recEndTs="2019-05-29T02:03:00Z" recGroup="Default" dupMethod="6" recProfile="Default" encoderId="4" playGroup="Default" recStatus="-1" recPriority="0" dupInType="15" recType="4"/>
+</Program>
+<Program endTime="2019-05-29T03:00:00Z" lastModified="2019-05-27T02:24:02Z" seriesId="EP01251347" repeat="0" category="Reality" startTime="2019-05-29T02:00:00Z" stars="0" programFlags="0" fileSize="0" hostname="wes-htpc" title="MasterChef" subTitle="Junior Edition: The Road to the Finale" airdate="Tue May 28 2019" catType="series" programId="EP012513470321">
+Gordon Ramsay looks back at his favorite moments from the season, charting the journey the talented group of junior home cooks has taken.
+<Channel chanId="6311" inputId="5" chanNum="31_1" callSign="KDVR-DT" chanFilters="" sourceId="6" commFree="0" channelName="KDVR-DT"/>
+<Recording recordId="8926" recStartTs="2019-05-29T01:57:00Z" recEndTs="2019-05-29T03:03:00Z" recGroup="Default" dupMethod="6" recProfile="Default" encoderId="5" playGroup="Default" recStatus="-1" recPriority="0" dupInType="15" recType="4"/>
+</Program>
+<Program endTime="2019-05-30T00:30:00Z" lastModified="2019-05-27T02:24:02Z" seriesId="EP00002348" repeat="0" category="Game show" startTime="2019-05-30T00:00:00Z" stars="0" programFlags="0" fileSize="0" hostname="wes-htpc" title="Jeopardy!" subTitle="" airdate="Wed May 29 2019" catType="series" programId="EP000023484210">
+<Channel chanId="6311" inputId="4" chanNum="31_1" callSign="KDVR-DT" chanFilters="" sourceId="6" commFree="0" channelName="KDVR-DT"/>
+<Recording recordId="10002" recStartTs="2019-05-29T23:57:00Z" recEndTs="2019-05-30T00:33:00Z" recGroup="Default" dupMethod="6" recProfile="Default" encoderId="4" playGroup="Default" recStatus="-1" recPriority="0" dupInType="15" recType="4"/>
+</Program>
+<Program endTime="2019-05-30T02:00:00Z" lastModified="2019-05-27T02:24:02Z" seriesId="EP00446853" repeat="0" category="Reality" startTime="2019-05-30T01:00:00Z" stars="0" programFlags="0" fileSize="0" hostname="wes-htpc" title="The Amazing Race" subTitle="" airdate="Wed May 29 2019" catType="series" programId="EP004468530450">
+<Channel chanId="6041" inputId="5" chanNum="4_1" callSign="KCNC-TV" chanFilters="" sourceId="6" commFree="0" channelName="KCNC-TV"/>
+<Recording recordId="10001" recStartTs="2019-05-30T00:57:00Z" recEndTs="2019-05-30T02:03:00Z" recGroup="Default" dupMethod="6" recProfile="Default" encoderId="5" playGroup="Default" recStatus="-1" recPriority="0" dupInType="15" recType="4"/>
+</Program>
+<Program endTime="2019-05-30T02:00:00Z" lastModified="2019-05-27T02:24:02Z" seriesId="EP01251347" repeat="0" category="Reality" startTime="2019-05-30T01:00:00Z" stars="0" programFlags="0" fileSize="0" hostname="wes-htpc" title="MasterChef" subTitle="Season Premiere" airdate="Wed May 29 2019" catType="series" programId="EP012513470312">
+Surprise visitors greet the new contestants; the cooks learn they will undergo evaluation from the judges; one lucky individual benefits from a special twist.
+<Channel chanId="6311" inputId="4" chanNum="31_1" callSign="KDVR-DT" chanFilters="" sourceId="6" commFree="0" channelName="KDVR-DT"/>
+<Recording recordId="8926" recStartTs="2019-05-30T00:57:00Z" recEndTs="2019-05-30T02:03:00Z" recGroup="Default" dupMethod="6" recProfile="Default" encoderId="4" playGroup="Default" recStatus="-1" recPriority="0" dupInType="15" recType="4"/>
+</Program>
+<Program endTime="2019-05-31T00:30:00Z" lastModified="2019-05-27T02:24:02Z" seriesId="EP00002348" repeat="0" category="Game show" startTime="2019-05-31T00:00:00Z" stars="0" programFlags="0" fileSize="0" hostname="wes-htpc" title="Jeopardy!" subTitle="" airdate="Thu May 30 2019" catType="series" programId="EP000023484211">
+<Channel chanId="6311" inputId="4" chanNum="31_1" callSign="KDVR-DT" chanFilters="" sourceId="6" commFree="0" channelName="KDVR-DT"/>
+<Recording recordId="10002" recStartTs="2019-05-30T23:57:00Z" recEndTs="2019-05-31T00:33:00Z" recGroup="Default" dupMethod="6" recProfile="Default" encoderId="4" playGroup="Default" recStatus="-1" recPriority="0" dupInType="15" recType="4"/>
+</Program>
+<Program endTime="2019-05-31T01:30:00Z" lastModified="2019-05-27T02:24:02Z" seriesId="EP02695542" repeat="0" category="Sitcom" startTime="2019-05-31T01:00:00Z" stars="0" programFlags="0" fileSize="0" hostname="wes-htpc" title="A.P. Bio" subTitle="Handcuffed" airdate="Thu May 30 2019" catType="series" programId="EP026955420024">
+When he's kicked off his Harvard phone plan, Jack is offered a chance to leapfrog onto Mary's on one condition -- he must help her break up with her scuzzy boyfriend; Anthony becomes Durbin's right-hand man.
+<Channel chanId="6091" inputId="4" chanNum="9_1" callSign="KUSA-HD" chanFilters="" sourceId="6" commFree="0" channelName="KUSA-HD"/>
+<Recording recordId="9701" recStartTs="2019-05-31T00:57:00Z" recEndTs="2019-05-31T01:33:00Z" recGroup="Default" dupMethod="6" recProfile="Default" encoderId="4" playGroup="Default" recStatus="-1" recPriority="0" dupInType="15" recType="4"/>
+</Program>
+<Program endTime="2019-05-31T02:00:00Z" lastModified="2019-05-27T02:24:02Z" seriesId="EP02695542" repeat="0" category="Sitcom" startTime="2019-05-31T01:30:00Z" stars="0" programFlags="0" fileSize="0" hostname="wes-htpc" title="A.P. Bio" subTitle="Spectacle" airdate="Thu May 30 2019" catType="series" programId="EP026955420025">
+After his computer breaks, Jack rallies his class to win the annual Whitlock's Got Talent competition so the prize money can go toward a new laptop; Helen and Durbin host the show; Mary, Stef and Michelle prepare a hand-bell routine.
+<Channel chanId="6091" inputId="5" chanNum="9_1" callSign="KUSA-HD" chanFilters="" sourceId="6" commFree="0" channelName="KUSA-HD"/>
+<Recording recordId="9701" recStartTs="2019-05-31T01:27:00Z" recEndTs="2019-05-31T02:03:00Z" recGroup="Default" dupMethod="6" recProfile="Default" encoderId="5" playGroup="Default" recStatus="-1" recPriority="0" dupInType="15" recType="4"/>
+</Program>
+</Scheduled>
+<Frontends/>
+<Backends count="0"/>
+<JobQueue count="3">
+<Job chanId="6311" flags="2" id="38696" statusTime="2019-05-24T00:33:44Z" startTime="2019-05-23T23:56:00Z" insertTime="2019-05-23T23:56:00Z" type="4" cmds="0" hostname="wes-htpc" startTs="20190523235600" schedTime="2019-05-23T23:56:00Z" args="" status="304">
+Failed with exit status 128
+<Program endTime="2019-05-24T00:30:00Z" lastModified="2019-05-24T01:01:08Z" seriesId="EP00002348" repeat="0" category="Game show" startTime="2019-05-24T00:00:00Z" stars="0" programFlags="5" fileSize="3299914368" hostname="wes-htpc" title="Jeopardy!" subTitle="" airdate="Thu May 23 2019" catType="series" programId="EP000023484206">
+<Channel chanId="6311" inputId="0" chanNum="31_1" callSign="KDVR-DT" chanFilters="" sourceId="0" commFree="0" channelName="KDVR-DT"/>
+<Recording recordId="10002" recStartTs="2019-05-23T23:56:00Z" recEndTs="2019-05-24T00:34:01Z" recGroup="Default" dupMethod="6" recProfile="Default" encoderId="0" playGroup="Default" recStatus="-3" recPriority="0" dupInType="15" recType="0"/>
+</Program>
+</Job>
+<Job chanId="6021" flags="2" id="38699" statusTime="2019-05-24T03:04:06Z" startTime="2019-05-24T01:56:00Z" insertTime="2019-05-24T01:56:00Z" type="4" cmds="0" hostname="wes-htpc" startTs="20190524015600" schedTime="2019-05-24T01:56:00Z" args="" status="304">
+Failed with exit status 128
+<Program endTime="2019-05-24T03:00:00Z" lastModified="2019-05-24T03:04:07Z" seriesId="EP01922973" repeat="0" category="Drama" startTime="2019-05-24T02:00:00Z" stars="0" programFlags="4" fileSize="6020386980" hostname="wes-htpc" title="iZombie" subTitle="dot zom" airdate="Thu May 23 2019" catType="series" programId="EP019229730066">
+The head of a successful traffic app company suspiciously dies; Cornell's ex-girlfriend takes over the company and makes an interesting reveal to Liv and Clive; Peyton focuses on maintaining positive zombie relations in the city.
+<Channel chanId="6021" inputId="0" chanNum="2_1" callSign="KWGN-DT" chanFilters="" sourceId="0" commFree="0" channelName="KWGN-DT"/>
+<Recording recordId="8995" recStartTs="2019-05-24T01:56:00Z" recEndTs="2019-05-24T03:04:07Z" recGroup="Default" dupMethod="6" recProfile="Default" encoderId="0" playGroup="Default" recStatus="-3" recPriority="0" dupInType="15" recType="0"/>
+</Program>
+</Job>
+<Job chanId="6311" flags="2" id="38701" statusTime="2019-05-25T00:33:14Z" startTime="2019-05-24T23:56:00Z" insertTime="2019-05-24T23:56:00Z" type="4" cmds="0" hostname="wes-htpc" startTs="20190524235600" schedTime="2019-05-24T23:56:00Z" args="" status="304">
+Failed with exit status 128
+<Program endTime="2019-05-25T00:30:00Z" lastModified="2019-05-25T01:00:37Z" seriesId="EP00002348" repeat="0" category="Game show" startTime="2019-05-25T00:00:00Z" stars="0" programFlags="5" fileSize="3228074116" hostname="wes-htpc" title="Jeopardy!" subTitle="" airdate="Fri May 24 2019" catType="series" programId="EP000023484207">
+<Channel chanId="6311" inputId="0" chanNum="31_1" callSign="KDVR-DT" chanFilters="" sourceId="0" commFree="0" channelName="KDVR-DT"/>
+<Recording recordId="10002" recStartTs="2019-05-24T23:56:00Z" recEndTs="2019-05-25T00:34:00Z" recGroup="Default" dupMethod="6" recProfile="Default" encoderId="0" playGroup="Default" recStatus="-3" recPriority="0" dupInType="15" recType="0"/>
+</Program>
+</Job>
+</JobQueue>
+<MachineInfo>
+<Storage>
+<Group used="869846" id="total" expirable="724958" free="529344" livetv="0" deleted="12274" total="1399190" dir="TotalDiskSpace"/>
+<Group used="363163" id="1" free="82287" total="445451" dir="wes-htpc:/internal/channelicons,wes-htpc:/internal/mythtv"/>
+<Group used="506683" id="2" free="447056" total="953739" dir="wes-htpc:/mythtv"/>
+</Storage>
+<Load avg2="0.09" avg3="0.09" avg1="0.15"/>
+<Guide guideThru="2019-06-09T02:00:00Z" next="2019-05-27T22:34:19Z" guideDays="13" start="Sun May 26, 4:31 PM" end="Sun May 26, 4:32 PM" status="Successful.">
+Your subscription expires on Fri Jun 19 (2020) 10:34 PM
+</Guide>
+</MachineInfo>
+</Status>
+`

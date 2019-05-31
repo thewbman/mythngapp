@@ -1,6 +1,7 @@
 import { Program } from '../classes/program';
 import { RecordedProgramResponse, UpcomingProgramResponse, ConflictProgramResponse, ProgramGuideResponse } from '../classes/api-responses';
 import { MOCK_RECORDED_RESPONSE, MOCK_CONFLICT_RESPONSE, MOCK_UPCOMING_RESPONSE, MOCK_GUIDE_RESPONSE, MOCK_GUIDE_RESPONSE_2, MOCK_PROGRAMDETAILS_RESPONSE } from '../classes/mock-data';
+import { MOCK_STATUSXML_RESPONSE } from '../classes/mock-statusxml';
 import { MessageService } from './message.service';
 import { CookieService } from './cookie.service';
 
@@ -96,11 +97,7 @@ export class MythDataService {
 
   getStatusUrl(): Observable<string> {
     if(this.useMockData()) {
-       return this.http.get('./assets/status.xml', {responseType: 'text'})
-        .pipe(
-          tap(_ => this.log('fetched status')),
-          catchError(this.handleError<string>('getStatusUrl'))
-        );
+      return of(MOCK_STATUSXML_RESPONSE);
     }
     else {
       return this.http.get(this.statusUrl(), {responseType: 'text'})
