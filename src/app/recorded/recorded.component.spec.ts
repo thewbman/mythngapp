@@ -4,7 +4,7 @@ import { Injectable, Inject } from '@angular/core';
 import { WINDOW, WINDOW_PROVIDERS } from '../window.provider';
 import { HttpClient, HttpHeaders, HttpClientModule, HttpHandler } from '@angular/common/http';
 
-import { CookieService } from '../cookie.service';
+import { CookieService } from '../services/cookie.service';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
