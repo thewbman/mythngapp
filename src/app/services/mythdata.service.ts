@@ -23,10 +23,10 @@ const httpOptions = {
 })
 export class MythDataService {
 
-  useMockOverride: any;		//want to leave undefined
+  baseUrlOverride: string;		//want to leave undefined, but can set during testing
 
   constructor(@Inject(WINDOW) private window: Window, private mesService: MessageService, private http: HttpClient, private cookieService: CookieService) {
-    //this.useMockOverride = false;
+    //this.baseUrlOverride = '/assets/mock';
   }
 
   getConflictsUrl(): Observable<ConflictProgramResponse> {
@@ -163,10 +163,7 @@ export class MythDataService {
 
 
   useMockData() {
-    if(typeof this.useMockOverride !== 'undefined') {
-      return this.useMockOverride;
-    }
-    else if(this.baseUrl() === environment.defaultRootUrl) {
+    if(this.baseUrl() === environment.defaultRootUrl) {
       return true;
     } 
     else if(this.baseUrl() === "") {
@@ -180,7 +177,7 @@ export class MythDataService {
 
 
   baseUrl() {
-    return this.cookieService.get('rootApiUrl');
+    return this.baseUrlOverride ? this.baseUrlOverride : this.cookieService.get('rootApiUrl');
   }
   firstSeperator() {
     if(this.baseUrl().includes("?")) {

@@ -6,12 +6,23 @@ import { MaterialModule } from './material/material.module';
 import { CookieService } from './services/cookie.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { RecordedComponent } from './recorded/recorded.component';
+import { ProgramDetailComponent } from './program-detail/program-detail.component';
 import { MessagesComponent } from './messages/messages.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { UpcomingComponent } from './upcoming/upcoming.component';
+import { StatusComponent } from './status/status.component';
+import { GuideComponent } from './guide/guide.component';
+import { SettingsComponent } from './settings/settings.component';
+
+import { RecstatusPipe } from './pipes/recstatus.pipe';
 
 
 describe('AppComponent', () => {
   let cookieServiceMock: jasmine.SpyObj<CookieService>;
   let fixture: ComponentFixture<AppComponent>;
+
+  //const routerSpy = jasmine.createSpyObj('Router', ['navigateByUrl']);
     
   beforeEach(async(() => {
     cookieServiceMock = jasmine.createSpyObj<CookieService>('CookieService', ['set', 'get', 'setWithExpiryInYears', 'check' ]);
@@ -19,13 +30,29 @@ describe('AppComponent', () => {
 	
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule,
+        RouterTestingModule.withRoutes([
+	     { path: '', component: DashboardComponent },
+             { path: 'recorded', component: RecordedComponent },
+             { path: 'upcoming', component: UpcomingComponent },
+             { path: 'guide', component: GuideComponent },
+             { path: 'status', component: StatusComponent },
+             { path: 'dashboard', component: DashboardComponent },
+             { path: 'settings', component: SettingsComponent }
+	  ]),
 	MaterialModule,
 	BrowserAnimationsModule
       ],
       declarations: [
         AppComponent,
-	MessagesComponent
+	MessagesComponent,
+	DashboardComponent,
+	RecordedComponent,
+	UpcomingComponent,
+	GuideComponent,
+	StatusComponent,
+	SettingsComponent,
+	ProgramDetailComponent,
+	RecstatusPipe
       ]
     });
 
@@ -34,7 +61,9 @@ describe('AppComponent', () => {
         providers: [{
           provide: CookieService,
           useValue: cookieServiceMock
-        }]
+        },
+          RecstatusPipe
+        ]
       }
     }).createComponent(AppComponent);
     
@@ -75,5 +104,9 @@ describe('AppComponent', () => {
     //app.cookieService.set(key, value, new Date());
 
     //expect(app.cookieService.get(key).toMat
+  });
+
+  it('test routing', () => {
+    
   });
 });
