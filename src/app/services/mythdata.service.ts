@@ -23,7 +23,11 @@ const httpOptions = {
 })
 export class MythDataService {
 
-  constructor(@Inject(WINDOW) private window: Window, private mesService: MessageService, private http: HttpClient, private cookieService: CookieService) {  }
+  useMockOverride: any;		//want to leave undefined
+
+  constructor(@Inject(WINDOW) private window: Window, private mesService: MessageService, private http: HttpClient, private cookieService: CookieService) {
+    //this.useMockOverride = false;
+  }
 
   getConflictsUrl(): Observable<ConflictProgramResponse> {
     if(this.useMockData()) {
@@ -128,7 +132,7 @@ export class MythDataService {
       return './assets/mythtv.png';
     }
     else {
-      return this.baseUrl() + '/Content/GetPreviewImage&ChanId=' + rec.Channel.ChanId + '&StartTime=' + rec.Recording.StartTs;
+      return this.baseUrl() + '/Content/GetPreviewImage'+this.firstSeperator()+'ChanId=' + rec.Channel.ChanId + '&StartTime=' + rec.Recording.StartTs;
     }
   }
   getPreviewImageUrlHeight(rec: Program, ht: number) {
@@ -159,9 +163,13 @@ export class MythDataService {
 
 
   useMockData() {
-    if(this.baseUrl() === environment.defaultRootUrl) {
+    if(typeof this.useMockOverride !== 'undefined') {
+      return this.useMockOverride;
+    }
+    else if(this.baseUrl() === environment.defaultRootUrl) {
       return true;
-    } else if(this.baseUrl() === "") {
+    } 
+    else if(this.baseUrl() === "") {
       return true;
     }
     else {
@@ -174,6 +182,14 @@ export class MythDataService {
   baseUrl() {
     return this.cookieService.get('rootApiUrl');
   }
+  firstSeperator() {
+    if(this.baseUrl().includes("?")) {
+      return "&";
+    }
+    else {
+      return "?";
+    }
+  }
   conflictUrl() {
     return this.baseUrl() + '/Dvr/GetConflictList';
   }
@@ -181,17 +197,17 @@ export class MythDataService {
     return this.baseUrl() + '/Dvr/GetRecordedList';  // &Count=10';
   }
   upcomingUrl() {
-    return this.baseUrl() + '/Dvr/GetUpcomingList&ShowAll=true&Count=10000';
+    return this.baseUrl() + '/Dvr/GetUpcomingList'+this.firstSeperator()+'ShowAll=true&Count=10000';
   }
   guideUrl(startTime: string, endTime: string, chanId: string) {
     if (( typeof chanId === undefined ) || (chanId === null)) {
-      return this.baseUrl() + '/Guide/GetProgramGuide&Details=false&StartTime=' + startTime + '&EndTime=' + endTime;
+      return this.baseUrl() + '/Guide/GetProgramGuide'+this.firstSeperator()+'Details=false&StartTime=' + startTime + '&EndTime=' + endTime;
     } else {
-      return this.baseUrl() + '/Guide/GetProgramList&Details=false&StartTime=' + startTime + '&EndTime=' + endTime + '&ChanId=' + chanId;
+      return this.baseUrl() + '/Guide/GetProgramList'+this.firstSeperator()+'Details=false&StartTime=' + startTime + '&EndTime=' + endTime + '&ChanId=' + chanId;
     }
   }
   programDetailsUrl(chanId: string, startTime: string) {
-    return this.baseUrl() + '/Guide/GetProgramDetails&StartTime=' + startTime + '&ChanId=' + chanId;
+    return this.baseUrl() + '/Guide/GetProgramDetails'+this.firstSeperator()+'StartTime=' + startTime + '&ChanId=' + chanId;
   }
   statusUrl() {
     return this.baseUrl() + '/Status/xml';

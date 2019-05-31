@@ -13,4 +13,6 @@ describe('CookieService', () => {
     const service: CookieService = TestBed.get(CookieService);
     expect(service).toBeTruthy();
   });
+
+  //note cookie testing is better done in app.component
 });

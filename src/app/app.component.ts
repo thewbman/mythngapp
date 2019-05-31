@@ -18,11 +18,13 @@ export class AppComponent implements OnDestroy {
   title = 'Myth-ng App';
   private _rootApiUrl: string;
 
+  cookieKey = 'rootApiUrl';
+
   constructor(private router: Router, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, public cookieService: CookieService) {
 
-  this._rootApiUrl = cookieService.get('rootApiUrl');
-  if (this._rootApiUrl === '') {
-    this.setCookie(environment.defaultRootUrl);
+  this._rootApiUrl = this.getCookie(this.cookieKey);
+  if ((this._rootApiUrl === 'undefined') || (this._rootApiUrl === '')) {
+    this.setCookie(this.cookieKey,environment.defaultRootUrl);
   }
 
   this.mobileQuery = media.matchMedia('(max-width: 600px)');
@@ -55,9 +57,13 @@ export class AppComponent implements OnDestroy {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 
-  public setCookie(value: string) {
+  public setCookie(key: string, value: string) {
     this._rootApiUrl = value;
-    this.cookieService.setWithExpiryInYears('rootApiUrl', value, 1);
+    this.cookieService.setWithExpiryInYears(key, value, 1);
+  }
+
+  public getCookie(key: string): string {
+    return this.cookieService.get(key);
   }
 
 }

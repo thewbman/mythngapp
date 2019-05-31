@@ -1,0 +1,8 @@
+{"Program": 
+  {"StartTime": "2019-05-24T00:00:00Z", "EndTime": "2019-05-24T00:30:00Z", "Title": "Jeopardy!", "SubTitle": "", "Category": "Game show", "CatType": "series", "Repeat": "false", "VideoProps": "1", "AudioProps": "1", "SubProps": "1", "SeriesId": "EP00002348", "ProgramId": "EP000023484206", "Stars": "0", "LastModified": "2019-05-24T00:00:00Z", "ProgramFlags": "0", "Airdate": "2019-05-23", "Description": "", "Inetref": "", "Season": "0", "Episode": "0", "TotalEpisodes": "0", "FileSize": "0", "FileName": "", "HostName": "", 
+    "Channel": {"ChanId": "6311", "ChanNum": "31_1", "CallSign": "KDVR-DT", "IconURL": "\/Guide\/GetChannelIcon?ChanId=6311", "ChannelName": "KDVR-DT", "MplexId": "113", "ServiceId": "3", "ATSCMajorChan": "31", "ATSCMinorChan": "1", "Format": "ATSC", "FrequencyId": "32", "FineTune": "0", "ChanFilters": "", "SourceId": "6", "InputId": "0", "CommFree": "false", "UseEIT": "false", "Visible": "true", "XMLTVID": "21319", "DefaultAuth": "", "Programs": []}, 
+    "Recording": {"RecordedId": "0", "Status": "-3", "Priority": "0", "StartTs": "2019-05-24T00:00:00Z", "EndTs": "2019-05-24T00:30:00Z", "FileSize": "0", "FileName": "", "HostName": "", "LastModified": "2019-05-24T00:00:00Z", "RecordId": "10002", "RecGroup": "Default", "PlayGroup": "Default", "StorageGroup": "Default", "RecType": "4", "DupInType": "15", "DupMethod": "8", "EncoderId": "0", "EncoderName": "", "Profile": "Default"}, 
+    "Artwork": {"ArtworkInfos": []}, 
+    "Cast": {"CastMembers": [{"Name": "Alex Trebek", "CharacterName": "", "Role": "host", "TranslatedRole": "Host"}]}
+  }
+}
