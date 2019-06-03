@@ -55,7 +55,7 @@ export class UpcomingComponent implements OnInit {
     this.selectedDateFormatted = '';
     this.selectedUpcoming = null;
 
-    this.upcomingGroupList = ['All', 'Conflicting', 'Overrides', 'Upcoming'];
+    this.upcomingGroupList = ['All', 'Conflicting', /*'Overrides',*/ 'Upcoming'];
 
     this.getUpcoming();
   }
