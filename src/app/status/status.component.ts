@@ -38,6 +38,10 @@ export class StatusComponent implements OnInit {
     this.getStatus();
   }
 
+  refresh(): void {
+    this.dataLoaded = false;
+    this.getStatus();
+  }
   getStatus(): void {
     this.dataService.getStatusUrl().subscribe(resp => {
       if( typeof resp !== 'undefined') {

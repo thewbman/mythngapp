@@ -72,6 +72,10 @@ export class GuideComponent implements OnInit {
     this.getGuide(this.selectedTimeString, this.selectedTimeString, this.selectedChanId);
   }
 
+
+  refresh(): void {
+    this.onClickGo();
+  }
   // Possible bug in MythTV api not taking chanid parameter
   getGuide(startTime: string, endTime: string, chanId: string): void {
     this.mesService.add('getGuide()');

@@ -29,6 +29,10 @@ export class DashboardComponent implements OnInit {
     this.getConflicts();
   }
 
+  refresh(): void {
+    this.dataLoaded = false;
+    this.getConflicts();
+  }
   getConflicts(): void {
     this.conflictService.getConflictsUrl().subscribe(conflictResponse => {
       if ( typeof conflictResponse !== 'undefined') {

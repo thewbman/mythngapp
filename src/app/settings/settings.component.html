@@ -1,3 +1,5 @@
+<div class="settings">
+
 <form class="settings-form">
   <mat-form-field class="settings-full-width">
     <input matInput placeholder="Root API Url (begins with http*)" [value]="_rootApiUrl" (input)="_rootApiUrl = $event.target.value">
@@ -10,3 +12,16 @@
 </div>
 
 
+<mat-toolbar color="warn" class="bottom-footer" >
+  <mat-toolbar-row>
+    <span></span>
+    <!--<button type="button" aria-label="Reload data" mat-icon-button (click)="refresh()" color="primary">
+      <mat-icon>refresh</mat-icon>
+    </button>
+    -->
+    <span></span>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+
+</div>

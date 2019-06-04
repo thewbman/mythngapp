@@ -60,7 +60,20 @@ export class UpcomingComponent implements OnInit {
     this.getUpcoming();
   }
 
+  refresh(): void {
+    this.mesService.add('refreshUpcoming');
+    this.dataService.storeMyUpcoming(null);
+    this.getUpcoming();
+  }
   getUpcoming(): void {
+    this.dataLoaded = false;
+    this.tabIndex = 0;
+    this.dateTabEnabled = false;
+    this.programTabEnabled = false;
+    this.selectedDate = '';
+    this.selectedUpcoming = null;
+
+    //data service will provide cached results if they exist
     this.dataService.getUpcomingUrl().subscribe(resp => {
       if ( typeof resp !== 'undefined' ) {
         
@@ -76,6 +89,9 @@ export class UpcomingComponent implements OnInit {
 
   getUpcomingCompleted(): void {
     this.dataLoaded = true;
+
+    //when loading data always default to 'Upcoming' group
+    this.selectedUpcomingGroup = 'Upcoming';
     this.onSelectGroup(this.selectedUpcomingGroup);
   }
 

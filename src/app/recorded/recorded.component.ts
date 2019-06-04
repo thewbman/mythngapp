@@ -49,7 +49,21 @@ export class RecordedComponent implements OnInit {
 
   }
 
+  refresh(): void {
+    this.mesService.add('refreshRecordeds');
+    this.recService.storeMyRecordeds(null);
+    this.getRecordeds();
+  }
   getRecordeds(): void {
+    this.dataLoaded = false;
+    this.tabIndex = 0;
+    this.titleTabEnabled = false;
+    this.recordingTabEnabled = false;
+    this.recGroupList = [];
+    this.selectedTitle = '';
+    this.selectedRecorded = null;
+	
+  
     //data service will provide cached results if they exist
     this.recService.getRecordedsUrl().subscribe(recordedResponse => {
       if ( typeof recordedResponse !== 'undefined') {
@@ -66,6 +80,9 @@ export class RecordedComponent implements OnInit {
 
   getRecordedsCompleted(): void {
     this.dataLoaded = true;
+
+    //always choose group 'Default' when loading data
+    this.selectedRecGroup = 'Default';
     this.filterRecGroupList();
   }
 
