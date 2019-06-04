@@ -63,7 +63,13 @@ export class UpcomingComponent implements OnInit {
   getUpcoming(): void {
     this.dataService.getUpcomingUrl().subscribe(resp => {
       if ( typeof resp !== 'undefined' ) {
-        this.allPrograms = resp.ProgramList.Programs; this.getUpcomingCompleted();
+        
+        //push results pack into service to store cache
+        this.dataService.myUpcoming = resp;
+
+        //process for this component
+        this.allPrograms = resp.ProgramList.Programs; 
+        this.getUpcomingCompleted();
       }
     });
   }

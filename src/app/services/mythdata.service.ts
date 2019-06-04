@@ -25,6 +25,10 @@ export class MythDataService {
 
   baseUrlOverride: string;		//want to leave undefined, but can set during testing
 
+  //Persist data in service so dont need to reload on each router change for Recorded and Upcoming; all others reload each time
+  public myRecordeds: RecordedProgramResponse;
+  public myUpcoming: UpcomingProgramResponse;
+
   constructor(@Inject(WINDOW) private window: Window, private mesService: MessageService, private http: HttpClient, private cookieService: CookieService) {
     //this.baseUrlOverride = '/assets/mock';
   }
@@ -42,7 +46,13 @@ export class MythDataService {
     }
   }
 
+
+
   getRecordedsUrl(): Observable<RecordedProgramResponse> {
+    //if cache data send it
+    if(this.myRecordeds) {
+      return of(this.myRecordeds);
+    }
     if(this.useMockData()) {
       return of(MOCK_RECORDED_RESPONSE);
     }
@@ -56,6 +66,10 @@ export class MythDataService {
   }
 
   getUpcomingUrl(): Observable<UpcomingProgramResponse> {
+    //if cache data send it
+    if(this.myUpcoming) {
+      return of(this.myUpcoming);
+    }
     if(this.useMockData()) {
       return of(MOCK_UPCOMING_RESPONSE);
     }

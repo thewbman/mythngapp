@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as _ from 'lodash';
+import { Observable, of } from 'rxjs';
 
 
 import { Program } from '../classes/program';
@@ -42,19 +43,25 @@ export class RecordedComponent implements OnInit {
 
     this.selectedRecGroup = 'Default';
 
-    this.getRecordeds();
-
     this.allTextString = '-- All --';
+
+    this.getRecordeds();
 
   }
 
   getRecordeds(): void {
-    // this.recService.getRecordeds().subscribe(recordeds => this.recordeds = recordeds);
+    //data service will provide cached results if they exist
     this.recService.getRecordedsUrl().subscribe(recordedResponse => {
       if ( typeof recordedResponse !== 'undefined') {
-        this.recordeds = recordedResponse.ProgramList.Programs; this.getRecordedsCompleted();
+        
+        //push results pack into service to store cache
+        this.recService.myRecordeds = recordedResponse;
+
+        //process for this component
+        this.recordeds = recordedResponse.ProgramList.Programs; 
+        this.getRecordedsCompleted();
       }
-    });
+    });    
   }
 
   getRecordedsCompleted(): void {
@@ -82,20 +89,22 @@ export class RecordedComponent implements OnInit {
 
   filterTitlesByRecGroup(): void {
     this.titleList = [];
+    let tmpTitleList = [];
 
     if (this.recordeds != null) {
       for (const r of this.recordeds) {
         if (r.Recording != null) {
           if (r.Recording.RecGroup === this.selectedRecGroup) {
-            // this.mesService.add('Adding title: ' + r.Title);
-            this.titleList.push(r.Title);
+            //this.mesService.add('Adding title: ' + r.Title);
+            tmpTitleList.push(r.Title);
           }
         }
       }
     }
 
-    this.titleList = Array.from(new Set(this.titleList)).sort();
-    this.titleList.unshift(this.allTextString);
+    tmpTitleList = Array.from(new Set(tmpTitleList)).sort();
+    tmpTitleList.unshift(this.allTextString);
+    this.titleList = tmpTitleList;
   }
 
   filterRecordedsByTitle(): void {
@@ -205,5 +214,9 @@ export class RecordedComponent implements OnInit {
 
     }
   }
+
+  async delay(ms: number) {
+    await new Promise(resolve => setTimeout(()=>resolve(), ms)).then(()=>console.log("fired"));
+}
 
 }
