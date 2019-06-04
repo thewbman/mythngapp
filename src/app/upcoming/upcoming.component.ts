@@ -65,7 +65,7 @@ export class UpcomingComponent implements OnInit {
       if ( typeof resp !== 'undefined' ) {
         
         //push results pack into service to store cache
-        this.dataService.myUpcoming = resp;
+        this.dataService.storeMyUpcoming(resp);
 
         //process for this component
         this.allPrograms = resp.ProgramList.Programs; 

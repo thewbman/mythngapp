@@ -55,7 +55,7 @@ export class RecordedComponent implements OnInit {
       if ( typeof recordedResponse !== 'undefined') {
         
         //push results pack into service to store cache
-        this.recService.myRecordeds = recordedResponse;
+        this.recService.storeMyRecordeds(recordedResponse);
 
         //process for this component
         this.recordeds = recordedResponse.ProgramList.Programs; 
