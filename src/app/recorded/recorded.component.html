@@ -1,5 +1,7 @@
 <div class="recorded">
 
+<div class="content-above-footer">
+
 <mat-tab-group [selectedIndex]="tabIndex" (selectedTabChange)=onTabChanged($event)>
     <mat-tab label="Group">
         <ng-template matTabContent>
@@ -20,7 +22,12 @@ Loading...
           </mat-list>
 
 </div>
+<div class="blank-footer-filler">&nbsp;</div>
+
           </ng-template>
+
+
+	  
         </mat-tab>
 
   <mat-tab label="Title" *ngIf="titleTabEnabled">
@@ -36,8 +43,10 @@ Loading...
 </mat-list-item>
 
 </mat-list>
+<div class="blank-footer-filler">&nbsp;</div>
 
     </ng-template>
+    
   </mat-tab>
 
   <mat-tab label="Recording" *ngIf="recordingTabEnabled">
@@ -74,20 +83,25 @@ Loading...
 
 
 </div>
-
+<div class="blank-footer-filler">&nbsp;</div>
 
     </ng-template>
+
   </mat-tab>
   <mat-tab label="Detail" *ngIf="selectedRecorded">
     <ng-template matTabContent>
 
 <app-program-detail [program]="selectedRecorded"></app-program-detail>
 
-
+<div class="blank-footer-filler">&nbsp;</div>
 </ng-template>
+
 </mat-tab>
 
 </mat-tab-group>
+
+</div>
+
 
 <mat-toolbar color="warn" class="bottom-footer" >
   <mat-toolbar-row>
@@ -98,5 +112,6 @@ Loading...
     <span></span>
   </mat-toolbar-row>
 </mat-toolbar>
+
 
 </div>
