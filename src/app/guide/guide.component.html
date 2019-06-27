@@ -67,7 +67,7 @@ Loading...
   
   <ng-container matColumnDef="program">
     <th mat-header-cell *matHeaderCellDef> Program </th>
-    <td mat-cell *matCellDef="let ch" (click)="onSelectProgram(ch.Programs[0],ch.ChanId)" [ngClass]="'status-'+recstatus.transform(ch.Programs[0].Recording.Status)" >{{ch.Programs[0].Title}}</td>
+    <td mat-cell *matCellDef="let ch" (click)="onSelectProgram(ch.Programs[0],ch.ChanId)" [ngClass]="'status-'+recstatus.transform(ch.Programs[0].Recording.Status).replace(' ','_')" >{{ch.Programs[0].Title}}</td>
   </ng-container>
     
   <tr mat-header-row *matHeaderRowDef="byTimeColumns"></tr>
@@ -95,7 +95,7 @@ Loading...
 
   <ng-container matColumnDef="program">
     <th mat-header-cell *matHeaderCellDef> Program </th>
-    <td mat-cell *matCellDef="let p" (click)="onSelectProgram(p)" [ngClass]="'status-'+recstatus.transform(p.Recording.Status)">{{p.Title}}</td>
+    <td mat-cell *matCellDef="let p" (click)="onSelectProgram(p)" [ngClass]="'status-'+recstatus.transform(p.Recording.Status).replace(' ','_')">{{p.Title}}</td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="byChannelColumns"></tr>
